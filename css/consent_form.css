@@ -1,0 +1,57 @@
+.note
+{
+    font-size:1em;
+    text-align:justify;
+    background-color:#DCDCDC;
+}
+.consent_tb
+{
+    width:100%;
+}
+.consent_tb tr,td,th
+{
+     border: 0px solid #DCDCDC;
+     padding:10px;
+}
+th
+{
+    background-color:#1E90FF;
+}
+.importent_note
+{
+    font:bold;
+    color:red;
+}
+#list_calcellation
+{
+    list-style-type:square
+}
+.specify_religion
+{
+    display:none;
+}
+.add_another
+{
+    font-size:16px;
+    cursor:pointer;
+}
+#additional_tel_business,#additional_email_private,#additional_email_business,#additional_company_website,#specify_name_hear_about_us,#additional_child_name,#internet_socialmedia,#specify_other_media
+{
+    display:none;
+}
+#active_client,#speech_theraphy,#specify_other_active,#category_other_sub
+{
+     display:none;
+}
+.error
+{
+    color:red !important;
+}
+
+#advance_search
+{
+    padding:10px;
+    margin:15px;
+    text-align:center;
+}
+

@@ -1,0 +1,474 @@
+[16-May-2017 13:26:42 UTC] PHP Fatal error:  Call to undefined function is_logged_in() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 9
+[16-May-2017 13:26:43 UTC] PHP Fatal error:  Call to undefined function is_logged_in() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 9
+[16-May-2017 13:26:44 UTC] PHP Fatal error:  Call to undefined function is_logged_in() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 9
+[16-May-2017 13:27:07 UTC] PHP Fatal error:  Call to undefined function is_logged_in() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 9
+[16-May-2017 13:27:08 UTC] PHP Fatal error:  Call to undefined function is_logged_in() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 9
+[16-May-2017 13:27:09 UTC] PHP Fatal error:  Call to undefined function is_logged_in() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 9
+[16-May-2017 13:27:09 UTC] PHP Fatal error:  Call to undefined function is_logged_in() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 9
+[20-May-2017 07:58:39 UTC] PHP Fatal error:  Call to undefined function say() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 61
+[20-May-2017 08:13:37 UTC] PHP Fatal error:  Call to protected method CI_DB_query_builder::_compile_select() from context 'Database' in /home/demosoftwarecomp/public_html/sensation/application/models/Database.php on line 39
+[20-May-2017 08:25:17 UTC] PHP Fatal error:  Call to undefined function say() in /home/demosoftwarecomp/public_html/sensation/application/views/add_service.php on line 2
+[20-May-2017 08:28:57 UTC] PHP Fatal error:  Cannot access empty property in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 62
+[20-May-2017 08:33:13 UTC] PHP Fatal error:  Cannot access empty property in /home/demosoftwarecomp/public_html/sensation/application/views/add_service.php on line 3
+[20-May-2017 08:33:47 UTC] PHP Fatal error:  Cannot access empty property in /home/demosoftwarecomp/public_html/sensation/application/views/add_service.php on line 21
+[20-May-2017 08:54:04 UTC] PHP Fatal error:  Cannot redeclare Home::view_service() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 80
+[20-May-2017 08:54:12 UTC] PHP Fatal error:  Cannot redeclare Home::view_service() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 80
+[20-May-2017 08:54:14 UTC] PHP Fatal error:  Cannot redeclare Home::view_service() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 80
+[20-May-2017 08:54:15 UTC] PHP Fatal error:  Cannot redeclare Home::view_service() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 80
+[20-May-2017 08:54:17 UTC] PHP Fatal error:  Cannot redeclare Home::view_service() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 80
+[20-May-2017 08:54:18 UTC] PHP Fatal error:  Cannot redeclare Home::view_service() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 80
+[20-May-2017 08:54:23 UTC] PHP Fatal error:  Cannot redeclare Home::view_service() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 80
+[20-May-2017 08:54:25 UTC] PHP Fatal error:  Cannot redeclare Home::view_service() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 80
+[20-May-2017 08:55:11 UTC] PHP Fatal error:  Cannot redeclare Home::view_service() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 79
+[20-May-2017 13:15:28 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/demosoftwarecomp/public_html/sensation/application/views/view_service.php on line 62
+[22-May-2017 11:16:57 UTC] PHP Fatal error:  Call to undefined method Database::num_rows() in /home/demosoftwarecomp/public_html/sensation/application/helpers/common_helper.php on line 14
+[25-May-2017 12:23:46 UTC] PHP Fatal error:  Call to undefined function get_calendar() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 28
+[25-May-2017 12:24:13 UTC] PHP Fatal error:  Call to undefined function get_calendar() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 28
+[25-May-2017 12:24:38 UTC] PHP Fatal error:  Call to undefined function cal_days_in_month() in /home/demosoftwarecomp/public_html/sensation/application/helpers/common_helper.php on line 31
+[25-May-2017 12:24:46 UTC] PHP Fatal error:  Call to undefined function cal_days_in_month() in /home/demosoftwarecomp/public_html/sensation/application/helpers/common_helper.php on line 31
+[25-May-2017 12:25:50 UTC] PHP Fatal error:  Call to undefined function cal_days_in_month() in /home/demosoftwarecomp/public_html/sensation/application/helpers/common_helper.php on line 31
+[25-May-2017 12:25:53 UTC] PHP Fatal error:  Call to undefined function cal_days_in_month() in /home/demosoftwarecomp/public_html/sensation/application/helpers/common_helper.php on line 31
+[25-May-2017 12:26:38 UTC] PHP Fatal error:  Call to undefined function cal_days_in_month() in /home/demosoftwarecomp/public_html/sensation/application/helpers/common_helper.php on line 31
+[25-May-2017 12:29:35 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/demosoftwarecomp/public_html/sensation/application/helpers/common_helper.php on line 111
+[25-May-2017 12:29:59 UTC] PHP Fatal error:  Call to undefined function cal_days_in_month() in /home/demosoftwarecomp/public_html/sensation/application/helpers/common_helper.php on line 32
+[25-May-2017 12:31:38 UTC] PHP Fatal error:  Call to undefined function cal_days_in_month() in /home/demosoftwarecomp/public_html/sensation/application/helpers/common_helper.php on line 32
+[25-May-2017 12:32:02 UTC] PHP Fatal error:  Call to undefined function cal_days_in_month() in /home/demosoftwarecomp/public_html/sensation/application/helpers/common_helper.php on line 31
+[05-Jun-2017 07:49:33 UTC] PHP Fatal error:  Call to undefined function get_calendar() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 33
+[05-Jun-2017 10:16:42 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/demosoftwarecomp/public_html/sensation/application/helpers/calendar_helper.php on line 53
+[05-Jun-2017 10:19:28 UTC] PHP Parse error:  syntax error, unexpected end of file, expecting variable (T_VARIABLE) or '$' in /home/demosoftwarecomp/public_html/sensation/application/helpers/calendar_helper.php on line 31
+[10-Jun-2017 05:31:17 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/demosoftwarecomp/public_html/sensation/application/views/add_employee.php on line 176
+[10-Jun-2017 05:31:17 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/demosoftwarecomp/public_html/sensation/application/views/add_employee.php on line 176
+[10-Jun-2017 06:22:42 UTC] PHP Fatal error:  Call to undefined function alert() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 263
+[10-Jun-2017 06:25:25 UTC] PHP Fatal error:  Call to undefined function alert() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 263
+[24-Jun-2017 09:20:41 UTC] PHP Fatal error:  Call to undefined function select_qry_array() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 607
+[24-Jun-2017 09:22:06 UTC] PHP Fatal error:  Call to undefined function select_qry_array() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 607
+[24-Jun-2017 09:22:45 UTC] PHP Fatal error:  Call to undefined function select_qry_array() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 607
+[24-Jun-2017 09:22:47 UTC] PHP Fatal error:  Call to undefined function select_qry_array() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 607
+[24-Jun-2017 09:23:36 UTC] PHP Fatal error:  Call to undefined function select_qry_array() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 607
+[24-Jun-2017 11:01:10 UTC] PHP Parse error:  syntax error, unexpected ''.$id.'' (T_CONSTANT_ENCAPSED_STRING) in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 606
+[24-Jun-2017 11:03:51 UTC] PHP Fatal error:  Call to undefined function select_qry_array() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 607
+[24-Jun-2017 11:04:11 UTC] PHP Fatal error:  Call to undefined function select_qry_array() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 607
+[24-Jun-2017 11:04:12 UTC] PHP Fatal error:  Call to undefined function select_qry_array() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 607
+[24-Jun-2017 11:04:47 UTC] PHP Fatal error:  Call to undefined function select_qry_array() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 607
+[24-Jun-2017 11:04:48 UTC] PHP Fatal error:  Call to undefined function select_qry_array() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 607
+[24-Jun-2017 11:05:11 UTC] PHP Fatal error:  Call to undefined function select_qry_array() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 607
+[24-Jun-2017 11:05:12 UTC] PHP Fatal error:  Call to undefined function select_qry_array() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 607
+[01-Jul-2017 05:34:31 UTC] PHP Fatal error:  Call to undefined function select_qry_array() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 607
+[01-Jul-2017 05:36:04 UTC] PHP Fatal error:  Call to undefined function select_qry_array() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 607
+[01-Jul-2017 05:36:14 UTC] PHP Fatal error:  Call to undefined function select_qry_array() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 607
+[01-Jul-2017 07:18:49 UTC] PHP Fatal error:  Call to undefined function Get_employee_name_by_disipline() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 37
+[01-Jul-2017 07:18:51 UTC] PHP Fatal error:  Call to undefined function Get_employee_name_by_disipline() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 37
+[01-Jul-2017 08:00:38 UTC] PHP Fatal error:  Call to undefined function reg_add() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 622
+[01-Jul-2017 09:54:31 UTC] PHP Fatal error:  Call to undefined function reg_add() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 622
+[01-Jul-2017 11:50:20 UTC] PHP Parse error:  syntax error, unexpected ']', expecting variable (T_VARIABLE) or '$' in /home/demosoftwarecomp/public_html/sensation/application/views/view_employee.php on line 39
+[01-Jul-2017 11:53:17 UTC] PHP Fatal error:  Cannot use object of type stdClass as array in /home/demosoftwarecomp/public_html/sensation/application/views/view_employee.php on line 39
+[01-Jul-2017 11:53:24 UTC] PHP Fatal error:  Cannot use object of type stdClass as array in /home/demosoftwarecomp/public_html/sensation/application/views/view_employee.php on line 39
+[01-Jul-2017 11:55:55 UTC] PHP Fatal error:  Cannot use object of type stdClass as array in /home/demosoftwarecomp/public_html/sensation/application/views/view_employee.php on line 39
+[01-Jul-2017 11:56:01 UTC] PHP Fatal error:  Cannot use object of type stdClass as array in /home/demosoftwarecomp/public_html/sensation/application/views/view_employee.php on line 39
+[01-Jul-2017 11:56:02 UTC] PHP Fatal error:  Cannot use object of type stdClass as array in /home/demosoftwarecomp/public_html/sensation/application/views/view_employee.php on line 39
+[01-Jul-2017 11:56:03 UTC] PHP Fatal error:  Cannot use object of type stdClass as array in /home/demosoftwarecomp/public_html/sensation/application/views/view_employee.php on line 39
+[01-Jul-2017 11:56:04 UTC] PHP Fatal error:  Cannot use object of type stdClass as array in /home/demosoftwarecomp/public_html/sensation/application/views/view_employee.php on line 39
+[01-Jul-2017 11:56:13 UTC] PHP Fatal error:  Cannot use object of type stdClass as array in /home/demosoftwarecomp/public_html/sensation/application/views/view_employee.php on line 39
+[01-Jul-2017 11:56:14 UTC] PHP Fatal error:  Cannot use object of type stdClass as array in /home/demosoftwarecomp/public_html/sensation/application/views/view_employee.php on line 39
+[01-Jul-2017 11:56:14 UTC] PHP Fatal error:  Cannot use object of type stdClass as array in /home/demosoftwarecomp/public_html/sensation/application/views/view_employee.php on line 39
+[01-Jul-2017 11:56:15 UTC] PHP Fatal error:  Cannot use object of type stdClass as array in /home/demosoftwarecomp/public_html/sensation/application/views/view_employee.php on line 39
+[01-Jul-2017 11:56:16 UTC] PHP Fatal error:  Cannot use object of type stdClass as array in /home/demosoftwarecomp/public_html/sensation/application/views/view_employee.php on line 39
+[01-Jul-2017 11:56:16 UTC] PHP Fatal error:  Cannot use object of type stdClass as array in /home/demosoftwarecomp/public_html/sensation/application/views/view_employee.php on line 39
+[01-Jul-2017 11:56:17 UTC] PHP Fatal error:  Cannot use object of type stdClass as array in /home/demosoftwarecomp/public_html/sensation/application/views/view_employee.php on line 39
+[01-Jul-2017 11:56:17 UTC] PHP Fatal error:  Cannot use object of type stdClass as array in /home/demosoftwarecomp/public_html/sensation/application/views/view_employee.php on line 39
+[01-Jul-2017 11:56:17 UTC] PHP Fatal error:  Cannot use object of type stdClass as array in /home/demosoftwarecomp/public_html/sensation/application/views/view_employee.php on line 39
+[01-Jul-2017 11:56:18 UTC] PHP Fatal error:  Cannot use object of type stdClass as array in /home/demosoftwarecomp/public_html/sensation/application/views/view_employee.php on line 39
+[01-Jul-2017 11:56:18 UTC] PHP Fatal error:  Cannot use object of type stdClass as array in /home/demosoftwarecomp/public_html/sensation/application/views/view_employee.php on line 39
+[01-Jul-2017 11:56:19 UTC] PHP Fatal error:  Cannot use object of type stdClass as array in /home/demosoftwarecomp/public_html/sensation/application/views/view_employee.php on line 39
+[01-Jul-2017 11:56:19 UTC] PHP Fatal error:  Cannot use object of type stdClass as array in /home/demosoftwarecomp/public_html/sensation/application/views/view_employee.php on line 39
+[08-Jul-2017 07:17:06 UTC] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 657
+[08-Jul-2017 08:19:01 UTC] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 565
+[08-Jul-2017 08:19:25 UTC] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 565
+[08-Jul-2017 08:19:26 UTC] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 565
+[08-Jul-2017 08:19:26 UTC] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 565
+[08-Jul-2017 10:19:14 UTC] PHP Fatal error:  Cannot use object of type stdClass as array in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 343
+[08-Jul-2017 10:51:35 UTC] PHP Fatal error:  Call to a member function result() on boolean in /home/devgranddubai/public_html/sensation/application/models/Database.php on line 17
+[08-Jul-2017 10:55:02 UTC] PHP Fatal error:  Call to a member function result() on boolean in /home/devgranddubai/public_html/sensation/application/models/Database.php on line 17
+[08-Jul-2017 10:57:56 UTC] PHP Fatal error:  Call to a member function result() on boolean in /home/devgranddubai/public_html/sensation/application/models/Database.php on line 17
+[08-Jul-2017 11:18:50 UTC] PHP Fatal error:  Cannot redeclare Get_baby_6_month_details() (previously declared in /home/devgranddubai/public_html/sensation/application/views/reg_add.php:1315) in /home/devgranddubai/public_html/sensation/application/views/reg_add.php on line 1341
+[08-Jul-2017 11:19:10 UTC] PHP Fatal error:  Cannot redeclare Get_baby_6_month_details() (previously declared in /home/devgranddubai/public_html/sensation/application/views/reg_add.php:1315) in /home/devgranddubai/public_html/sensation/application/views/reg_add.php on line 1341
+[08-Jul-2017 11:19:14 UTC] PHP Fatal error:  Cannot redeclare Get_baby_6_month_details() (previously declared in /home/devgranddubai/public_html/sensation/application/views/reg_add.php:1315) in /home/devgranddubai/public_html/sensation/application/views/reg_add.php on line 1341
+[08-Jul-2017 11:20:48 UTC] PHP Fatal error:  Cannot redeclare Get_baby_6_month_details() (previously declared in /home/devgranddubai/public_html/sensation/application/views/reg_add.php:1315) in /home/devgranddubai/public_html/sensation/application/views/reg_add.php on line 1341
+[08-Jul-2017 11:23:03 UTC] PHP Fatal error:  Cannot redeclare Get_baby_6_month_details() (previously declared in /home/devgranddubai/public_html/sensation/application/views/reg_add.php:1315) in /home/devgranddubai/public_html/sensation/application/views/reg_add.php on line 1341
+[08-Jul-2017 11:23:14 UTC] PHP Fatal error:  Cannot redeclare Get_baby_6_month_details() (previously declared in /home/devgranddubai/public_html/sensation/application/views/reg_add.php:1315) in /home/devgranddubai/public_html/sensation/application/views/reg_add.php on line 1341
+[08-Jul-2017 11:23:29 UTC] PHP Fatal error:  Cannot redeclare Get_baby_6_month_details() (previously declared in /home/devgranddubai/public_html/sensation/application/views/reg_add.php:1315) in /home/devgranddubai/public_html/sensation/application/views/reg_add.php on line 1341
+[08-Jul-2017 11:33:51 UTC] PHP Fatal error:  Cannot redeclare Get_baby_6_month_details() (previously declared in /home/devgranddubai/public_html/sensation/application/views/reg_add.php:1315) in /home/devgranddubai/public_html/sensation/application/views/reg_add.php on line 1341
+[08-Jul-2017 11:33:54 UTC] PHP Fatal error:  Cannot redeclare Get_baby_6_month_details() (previously declared in /home/devgranddubai/public_html/sensation/application/views/reg_add.php:1315) in /home/devgranddubai/public_html/sensation/application/views/reg_add.php on line 1341
+[08-Jul-2017 11:38:16 UTC] PHP Fatal error:  Cannot redeclare Get_baby_6_month_details() (previously declared in /home/devgranddubai/public_html/sensation/application/views/reg_add.php:1316) in /home/devgranddubai/public_html/sensation/application/views/reg_add.php on line 1342
+[08-Jul-2017 11:43:41 UTC] PHP Fatal error:  Cannot redeclare Get_baby_6_month_details() (previously declared in /home/devgranddubai/public_html/sensation/application/views/reg_add.php:1316) in /home/devgranddubai/public_html/sensation/application/views/reg_add.php on line 1342
+[08-Jul-2017 11:47:58 UTC] PHP Fatal error:  Cannot redeclare Get_baby_6_month_details() (previously declared in /home/devgranddubai/public_html/sensation/application/views/reg_add.php:1315) in /home/devgranddubai/public_html/sensation/application/views/reg_add.php on line 1341
+[08-Jul-2017 11:52:40 UTC] PHP Fatal error:  Cannot redeclare Get_baby_6_month_details() (previously declared in /home/devgranddubai/public_html/sensation/application/views/reg_add.php:1316) in /home/devgranddubai/public_html/sensation/application/views/reg_add.php on line 1342
+[08-Jul-2017 11:52:43 UTC] PHP Fatal error:  Cannot redeclare Get_baby_6_month_details() (previously declared in /home/devgranddubai/public_html/sensation/application/views/reg_add.php:1316) in /home/devgranddubai/public_html/sensation/application/views/reg_add.php on line 1342
+[08-Jul-2017 11:53:55 UTC] PHP Fatal error:  Cannot redeclare Get_baby_6_month_details() (previously declared in /home/devgranddubai/public_html/sensation/application/views/reg_add.php:1316) in /home/devgranddubai/public_html/sensation/application/views/reg_add.php on line 1342
+[08-Jul-2017 11:54:06 UTC] PHP Fatal error:  Cannot redeclare Get_baby_6_month_details() (previously declared in /home/devgranddubai/public_html/sensation/application/views/reg_add.php:1316) in /home/devgranddubai/public_html/sensation/application/views/reg_add.php on line 1342
+[08-Jul-2017 11:54:08 UTC] PHP Fatal error:  Cannot redeclare Get_baby_6_month_details() (previously declared in /home/devgranddubai/public_html/sensation/application/views/reg_add.php:1316) in /home/devgranddubai/public_html/sensation/application/views/reg_add.php on line 1342
+[08-Jul-2017 11:55:07 UTC] PHP Fatal error:  Cannot redeclare Get_baby_6_month_details() (previously declared in /home/devgranddubai/public_html/sensation/application/views/reg_add.php:1316) in /home/devgranddubai/public_html/sensation/application/views/reg_add.php on line 1342
+[08-Jul-2017 11:55:13 UTC] PHP Fatal error:  Cannot redeclare Get_baby_6_month_details() (previously declared in /home/devgranddubai/public_html/sensation/application/views/reg_add.php:1316) in /home/devgranddubai/public_html/sensation/application/views/reg_add.php on line 1342
+[08-Jul-2017 11:55:44 UTC] PHP Fatal error:  Cannot redeclare Get_Nutrition_detail() (previously declared in /home/devgranddubai/public_html/sensation/application/views/reg_add.php:1344) in /home/devgranddubai/public_html/sensation/application/views/reg_add.php on line 1413
+[08-Jul-2017 11:56:07 UTC] PHP Fatal error:  Call to undefined function Get_Nutrition_detail() in /home/devgranddubai/public_html/sensation/application/views/reg_add.php on line 1197
+[08-Jul-2017 11:57:09 UTC] PHP Fatal error:  Call to undefined function Get_Nutrition_detail() in /home/devgranddubai/public_html/sensation/application/views/reg_add.php on line 1197
+[08-Jul-2017 11:57:12 UTC] PHP Fatal error:  Call to undefined function Get_Nutrition_detail() in /home/devgranddubai/public_html/sensation/application/views/reg_add.php on line 1197
+[08-Jul-2017 11:57:36 UTC] PHP Fatal error:  Cannot redeclare Get_baby_6_month_details() (previously declared in /home/devgranddubai/public_html/sensation/application/views/reg_add.php:1316) in /home/devgranddubai/public_html/sensation/application/views/reg_add.php on line 1342
+[08-Jul-2017 11:59:18 UTC] PHP Fatal error:  Cannot redeclare Get_baby_6_month_details() (previously declared in /home/devgranddubai/public_html/sensation/application/views/reg_add.php:1316) in /home/devgranddubai/public_html/sensation/application/views/reg_add.php on line 1342
+[11-Jul-2017 05:00:48 UTC] PHP Parse error:  syntax error, unexpected '$loged_detail' (T_VARIABLE) in /home/devgranddubai/public_html/sensation/application/controllers/Login.php on line 23
+[11-Jul-2017 05:10:12 UTC] PHP Fatal error:  Cannot use object of type stdClass as array in /home/devgranddubai/public_html/sensation/application/controllers/Login.php on line 25
+[11-Jul-2017 05:11:24 UTC] PHP Fatal error:  Cannot use [] for reading in /home/devgranddubai/public_html/sensation/application/controllers/Login.php on line 25
+[11-Jul-2017 05:16:16 UTC] PHP Parse error:  syntax error, unexpected '$loged_designation' (T_VARIABLE) in /home/devgranddubai/public_html/sensation/application/controllers/Login.php on line 26
+[11-Jul-2017 05:20:12 UTC] PHP Fatal error:  Cannot use object of type stdClass as array in /home/devgranddubai/public_html/sensation/application/controllers/Login.php on line 25
+[11-Jul-2017 08:15:17 UTC] PHP Parse error:  syntax error, unexpected '}' in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 771
+[12-Jul-2017 07:29:44 UTC] PHP Fatal error:  Cannot redeclare Home::send_reset_password() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 794
+[12-Jul-2017 11:37:27 Asia/Dubai] PHP Fatal error:  Using $this when not in object context in /home/devgranddubai/public_html/sensation/application/helpers/common_helper.php on line 10
+[12-Jul-2017 11:37:47 Asia/Dubai] PHP Fatal error:  Using $this when not in object context in /home/devgranddubai/public_html/sensation/application/helpers/common_helper.php on line 10
+[12-Jul-2017 07:39:58 UTC] PHP Parse error:  syntax error, unexpected '=', expecting identifier (T_STRING) or variable (T_VARIABLE) or '{' or '$' in /home/devgranddubai/public_html/sensation/application/helpers/common_helper.php on line 10
+[15-Jul-2017 10:56:41 Asia/Dubai] PHP Fatal error:  Call to undefined function reg_add() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 583
+[15-Jul-2017 12:31:54 UTC] PHP Fatal error:  Cannot redeclare Home::view_consent_form() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 804
+[15-Jul-2017 12:32:20 UTC] PHP Fatal error:  Cannot redeclare Home::view_consent_form() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 804
+[15-Jul-2017 12:32:22 UTC] PHP Fatal error:  Cannot redeclare Home::view_consent_form() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 804
+[15-Jul-2017 12:33:11 UTC] PHP Fatal error:  Cannot redeclare Home::view_consent_form() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 804
+[17-Jul-2017 13:11:54 UTC] PHP Parse error:  syntax error, unexpected '=' in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 677
+[17-Jul-2017 17:18:48 Asia/Dubai] PHP Fatal error:  Call to undefined function get_child_list_by_char() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 53
+[17-Jul-2017 17:18:48 Asia/Dubai] PHP Fatal error:  Call to undefined function get_child_list_by_char() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 53
+[17-Jul-2017 17:18:49 Asia/Dubai] PHP Fatal error:  Call to undefined function get_child_list_by_char() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 53
+[17-Jul-2017 17:40:48 Asia/Dubai] PHP Fatal error:  Call to undefined function get_child_list_by_char() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 53
+[17-Jul-2017 17:40:48 Asia/Dubai] PHP Fatal error:  Call to undefined function get_child_list_by_char() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 53
+[17-Jul-2017 17:40:50 Asia/Dubai] PHP Fatal error:  Call to undefined function get_child_list_by_char() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 53
+[17-Jul-2017 17:40:51 Asia/Dubai] PHP Fatal error:  Call to undefined function get_child_list_by_char() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 53
+[17-Jul-2017 17:40:52 Asia/Dubai] PHP Fatal error:  Call to undefined function get_child_list_by_char() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 53
+[17-Jul-2017 17:41:03 Asia/Dubai] PHP Fatal error:  Call to undefined function get_child_list_by_char() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 53
+[03-Aug-2017 04:49:12 UTC] PHP Fatal error:  Cannot redeclare Home::list_therapy_notes() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 1081
+[03-Aug-2017 04:49:17 UTC] PHP Fatal error:  Cannot redeclare Home::list_therapy_notes() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 1081
+[03-Aug-2017 04:49:20 UTC] PHP Fatal error:  Cannot redeclare Home::list_therapy_notes() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 1081
+[03-Aug-2017 04:49:25 UTC] PHP Fatal error:  Cannot redeclare Home::list_therapy_notes() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 1081
+[03-Aug-2017 05:24:46 UTC] PHP Fatal error:  Cannot redeclare Home::list_therapy_notes() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 1081
+[08-Aug-2017 15:14:54 Asia/Dubai] PHP Fatal error:  Call to undefined method CI_Loader::WriteHTML() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 16
+[08-Aug-2017 15:16:43 Asia/Dubai] PHP Fatal error:  Call to a member function Output() on null in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 17
+[08-Aug-2017 15:18:59 Asia/Dubai] PHP Fatal error:  Call to a member function WriteHTML() on null in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 18
+[08-Aug-2017 15:31:31 Asia/Dubai] PHP Fatal error:  Call to a member function WriteHTML() on null in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 23
+[08-Aug-2017 15:31:58 Asia/Dubai] PHP Fatal error:  Call to a member function WriteHTML() on null in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 18
+[08-Aug-2017 15:33:20 Asia/Dubai] PHP Fatal error:  Call to undefined method Pdf::WriteHTML() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 18
+[08-Aug-2017 12:17:06 UTC] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in /home/devgranddubai/public_html/sensation/application/helpers/mail_html_helper.php on line 60
+[08-Aug-2017 12:55:46 UTC] PHP Parse error:  syntax error, unexpected '<' in /home/devgranddubai/public_html/sensation/application/helpers/mail_html_helper.php on line 14
+[08-Aug-2017 12:55:52 UTC] PHP Parse error:  syntax error, unexpected '<' in /home/devgranddubai/public_html/sensation/application/helpers/mail_html_helper.php on line 14
+[08-Aug-2017 12:56:09 UTC] PHP Parse error:  syntax error, unexpected '<' in /home/devgranddubai/public_html/sensation/application/helpers/mail_html_helper.php on line 14
+[09-Aug-2017 09:00:51 Asia/Dubai] PHP Fatal error:  Using $this when not in object context in /home/devgranddubai/public_html/sensation/application/helpers/mail_html_helper.php on line 16
+[09-Aug-2017 09:16:22 Asia/Dubai] PHP Parse error:  syntax error, unexpected '?>' in /home/devgranddubai/public_html/sensation/application/views/receipt_pdf.php on line 3
+[09-Aug-2017 09:30:22 Asia/Dubai] PHP Fatal error:  Cannot use object of type stdClass as array in /home/devgranddubai/public_html/sensation/application/helpers/mail_html_helper.php on line 33
+[09-Aug-2017 09:32:29 Asia/Dubai] PHP Fatal error:  Cannot use object of type stdClass as array in /home/devgranddubai/public_html/sensation/application/helpers/mail_html_helper.php on line 36
+[10-Aug-2017 09:16:12 Asia/Dubai] PHP Fatal error:  Call to undefined function printr() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 934
+[15-Aug-2017 08:22:08 UTC] PHP Warning:  POST Content-Length of 9573804 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[16-Aug-2017 11:48:16 Asia/Dubai] PHP Parse error:  syntax error, unexpected '?>' in /home/devgranddubai/public_html/sensation/application/views/registration.php on line 1329
+[16-Aug-2017 11:48:47 Asia/Dubai] PHP Parse error:  syntax error, unexpected '?>' in /home/devgranddubai/public_html/sensation/application/views/registration.php on line 1328
+[16-Aug-2017 10:04:05 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Customer.php on line 196
+[16-Aug-2017 10:04:33 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Customer.php on line 196
+[16-Aug-2017 10:05:23 UTC] PHP Parse error:  syntax error, unexpected '`', expecting ',' or ';' in /home/devgranddubai/public_html/sensation/application/controllers/Customer.php on line 195
+[16-Aug-2017 10:05:39 UTC] PHP Parse error:  syntax error, unexpected 'status' (T_STRING), expecting ',' or ';' in /home/devgranddubai/public_html/sensation/application/controllers/Customer.php on line 195
+[16-Aug-2017 10:05:57 UTC] PHP Parse error:  syntax error, unexpected 'status' (T_STRING), expecting ',' or ';' in /home/devgranddubai/public_html/sensation/application/controllers/Customer.php on line 196
+[16-Aug-2017 10:06:25 UTC] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/devgranddubai/public_html/sensation/application/controllers/Customer.php on line 208
+[16-Aug-2017 10:08:37 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Customer.php on line 196
+[16-Aug-2017 10:09:55 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Customer.php on line 196
+[16-Aug-2017 10:11:03 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Customer.php on line 196
+[16-Aug-2017 10:11:20 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Customer.php on line 196
+[16-Aug-2017 10:11:21 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Customer.php on line 196
+[16-Aug-2017 10:11:22 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Customer.php on line 196
+[16-Aug-2017 10:11:23 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Customer.php on line 196
+[16-Aug-2017 10:11:23 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Customer.php on line 196
+[16-Aug-2017 10:11:39 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Customer.php on line 196
+[16-Aug-2017 10:11:45 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Customer.php on line 196
+[16-Aug-2017 14:22:42 Asia/Dubai] PHP Parse error:  syntax error, unexpected ':', expecting ';' in /home/devgranddubai/public_html/sensation/application/views/registration.php on line 1327
+[16-Aug-2017 14:23:11 Asia/Dubai] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/devgranddubai/public_html/sensation/application/views/registration.php on line 1323
+[16-Aug-2017 14:26:21 Asia/Dubai] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/devgranddubai/public_html/sensation/application/views/registration.php on line 1323
+[16-Aug-2017 14:26:28 Asia/Dubai] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/devgranddubai/public_html/sensation/application/views/registration.php on line 1323
+[16-Aug-2017 14:26:57 Asia/Dubai] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/devgranddubai/public_html/sensation/application/views/registration.php on line 1323
+[16-Aug-2017 10:49:58 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Customer.php on line 16
+[16-Aug-2017 10:50:33 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Customer.php on line 16
+[16-Aug-2017 10:50:58 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Customer.php on line 16
+[16-Aug-2017 10:51:47 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Customer.php on line 17
+[16-Aug-2017 10:51:50 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Customer.php on line 17
+[16-Aug-2017 10:51:52 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Customer.php on line 17
+[16-Aug-2017 10:53:24 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Customer.php on line 17
+[16-Aug-2017 10:54:03 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Customer.php on line 17
+[16-Aug-2017 10:54:26 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Customer.php on line 213
+[16-Aug-2017 10:55:42 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Customer.php on line 213
+[16-Aug-2017 10:55:43 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Customer.php on line 213
+[16-Aug-2017 10:55:45 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Customer.php on line 213
+[16-Aug-2017 10:56:07 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Customer.php on line 214
+[16-Aug-2017 10:56:10 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Customer.php on line 214
+[16-Aug-2017 10:56:55 UTC] PHP Parse error:  syntax error, unexpected end of file, expecting variable (T_VARIABLE) or ${ (T_DOLLAR_OPEN_CURLY_BRACES) or {$ (T_CURLY_OPEN) in /home/devgranddubai/public_html/sensation/application/controllers/Customer.php on line 214
+[16-Aug-2017 10:57:13 UTC] PHP Parse error:  syntax error, unexpected end of file, expecting variable (T_VARIABLE) or ${ (T_DOLLAR_OPEN_CURLY_BRACES) or {$ (T_CURLY_OPEN) in /home/devgranddubai/public_html/sensation/application/controllers/Customer.php on line 214
+[16-Aug-2017 11:28:09 UTC] PHP Parse error:  syntax error, unexpected ';', expecting ']' in /home/devgranddubai/public_html/sensation/application/controllers/Customer.php on line 184
+[16-Aug-2017 11:28:43 UTC] PHP Parse error:  syntax error, unexpected ';', expecting ']' in /home/devgranddubai/public_html/sensation/application/controllers/Customer.php on line 185
+[16-Aug-2017 15:32:56 Asia/Dubai] PHP Fatal error:  Cannot redeclare Get_baby_6_month_details() (previously declared in /home/devgranddubai/public_html/sensation/application/views/reg_add.php:1344) in /home/devgranddubai/public_html/sensation/application/views/reg_add.php on line 1370
+[16-Aug-2017 11:36:23 UTC] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) in /home/devgranddubai/public_html/sensation/application/controllers/Customer.php on line 223
+[16-Aug-2017 11:39:56 UTC] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) in /home/devgranddubai/public_html/sensation/application/controllers/Customer.php on line 223
+[16-Aug-2017 11:47:48 UTC] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) in /home/devgranddubai/public_html/sensation/application/controllers/Customer.php on line 225
+[17-Aug-2017 11:17:37 Asia/Dubai] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR), expecting identifier (T_STRING) or variable (T_VARIABLE) or '{' or '$' in /home/devgranddubai/public_html/sensation/application/views/consent_form.php on line 23
+[17-Aug-2017 15:27:03 Asia/Dubai] PHP Parse error:  syntax error, unexpected 'Y' (T_STRING), expecting ',' or ';' in /home/devgranddubai/public_html/sensation/application/views/consent_form.php on line 294
+[17-Aug-2017 15:51:25 Asia/Dubai] PHP Parse error:  syntax error, unexpected ':' in /home/devgranddubai/public_html/sensation/application/views/consent_form.php on line 248
+[17-Aug-2017 12:02:41 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 949
+[17-Aug-2017 12:03:21 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 949
+[17-Aug-2017 12:03:26 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 949
+[17-Aug-2017 12:04:03 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 949
+[17-Aug-2017 12:04:17 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 949
+[17-Aug-2017 12:04:31 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 949
+[17-Aug-2017 12:13:15 UTC] PHP Parse error:  syntax error, unexpected 'child_id' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 955
+[17-Aug-2017 16:27:20 Asia/Dubai] PHP Fatal error:  Call to a member function update() on null in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 405
+[17-Aug-2017 13:30:25 UTC] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 1047
+[17-Aug-2017 13:30:34 UTC] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 1047
+[17-Aug-2017 13:30:36 UTC] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 1047
+[17-Aug-2017 13:30:39 UTC] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 1047
+[17-Aug-2017 13:32:00 UTC] PHP Parse error:  syntax error, unexpected ',' in /home/devgranddubai/public_html/sensation/application/controllers/Customer.php on line 14
+[19-Aug-2017 12:44:48 Asia/Dubai] PHP Fatal error:  Call to undefined function get_calendar() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 60
+[19-Aug-2017 12:45:03 Asia/Dubai] PHP Fatal error:  Call to undefined function get_calendar() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 60
+[19-Aug-2017 12:45:58 Asia/Dubai] PHP Fatal error:  Call to undefined function get_calendar() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 60
+[19-Aug-2017 12:46:25 Asia/Dubai] PHP Fatal error:  Call to undefined function get_calendar() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 60
+[19-Aug-2017 12:47:17 Asia/Dubai] PHP Fatal error:  Call to undefined function get_calendar() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 60
+[19-Aug-2017 12:47:35 Asia/Dubai] PHP Fatal error:  Call to undefined function get_calendar() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 60
+[19-Aug-2017 12:47:56 Asia/Dubai] PHP Fatal error:  Call to undefined function get_calendar() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 60
+[19-Aug-2017 12:48:33 Asia/Dubai] PHP Fatal error:  Call to undefined function get_calendar() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 60
+[19-Aug-2017 12:48:57 Asia/Dubai] PHP Fatal error:  Call to undefined function get_calendar() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 60
+[19-Aug-2017 12:50:11 Asia/Dubai] PHP Fatal error:  Call to undefined function get_calendar() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 60
+[19-Aug-2017 15:24:46 Asia/Dubai] PHP Fatal error:  Call to undefined function get_calendar() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 60
+[19-Aug-2017 15:25:22 Asia/Dubai] PHP Fatal error:  Call to undefined function get_calendar() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 60
+[19-Aug-2017 15:25:33 Asia/Dubai] PHP Fatal error:  Call to undefined function get_calendar() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 60
+[19-Aug-2017 15:25:39 Asia/Dubai] PHP Fatal error:  Call to undefined function get_calendar() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 60
+[19-Aug-2017 15:33:42 Asia/Dubai] PHP Fatal error:  Call to undefined function get_calendar() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 60
+[19-Aug-2017 12:48:27 UTC] PHP Parse error:  syntax error, unexpected 'popditltab' (T_STRING) in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 163
+[19-Aug-2017 12:52:21 UTC] PHP Parse error:  syntax error, unexpected 'popditltab' (T_STRING) in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 163
+[19-Aug-2017 12:52:23 UTC] PHP Parse error:  syntax error, unexpected 'popditltab' (T_STRING) in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 163
+[19-Aug-2017 13:06:28 UTC] PHP Parse error:  syntax error, unexpected '"popditltab"' (T_CONSTANT_ENCAPSED_STRING) in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 163
+[19-Aug-2017 13:06:54 UTC] PHP Parse error:  syntax error, unexpected '"'popditltab'"' (T_CONSTANT_ENCAPSED_STRING) in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 163
+[20-Aug-2017 05:32:25 UTC] PHP Parse error:  syntax error, unexpected '=>' (T_DOUBLE_ARROW) in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 158
+[20-Aug-2017 05:48:26 UTC] PHP Fatal error:  Cannot redeclare Home::therapy_history() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 1249
+[20-Aug-2017 05:48:31 UTC] PHP Fatal error:  Cannot redeclare Home::therapy_history() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 1249
+[20-Aug-2017 05:48:33 UTC] PHP Fatal error:  Cannot redeclare Home::therapy_history() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 1249
+[20-Aug-2017 06:14:04 UTC] PHP Parse error:  syntax error, unexpected '$chid' (T_VARIABLE) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 1020
+[20-Aug-2017 07:03:48 UTC] PHP Parse error:  syntax error, unexpected ',' in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 213
+[20-Aug-2017 11:31:46 Asia/Dubai] PHP Fatal error:  Using $this when not in object context in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 144
+[21-Aug-2017 13:00:04 UTC] PHP Warning:  POST Content-Length of 9573795 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[21-Aug-2017 17:57:29 Asia/Dubai] PHP Fatal error:  Class 'mPDF' not found in /home/devgranddubai/public_html/sensation/application/libraries/Pdf.php on line 14
+[21-Aug-2017 17:57:34 Asia/Dubai] PHP Fatal error:  Class 'mPDF' not found in /home/devgranddubai/public_html/sensation/application/libraries/Pdf.php on line 14
+[21-Aug-2017 17:57:37 Asia/Dubai] PHP Fatal error:  Class 'mPDF' not found in /home/devgranddubai/public_html/sensation/application/libraries/Pdf.php on line 14
+[21-Aug-2017 17:57:39 Asia/Dubai] PHP Fatal error:  Class 'mPDF' not found in /home/devgranddubai/public_html/sensation/application/libraries/Pdf.php on line 14
+[21-Aug-2017 17:57:39 Asia/Dubai] PHP Fatal error:  Class 'mPDF' not found in /home/devgranddubai/public_html/sensation/application/libraries/Pdf.php on line 14
+[21-Aug-2017 17:57:40 Asia/Dubai] PHP Fatal error:  Class 'mPDF' not found in /home/devgranddubai/public_html/sensation/application/libraries/Pdf.php on line 14
+[21-Aug-2017 17:57:40 Asia/Dubai] PHP Fatal error:  Class 'mPDF' not found in /home/devgranddubai/public_html/sensation/application/libraries/Pdf.php on line 14
+[21-Aug-2017 17:57:40 Asia/Dubai] PHP Fatal error:  Class 'mPDF' not found in /home/devgranddubai/public_html/sensation/application/libraries/Pdf.php on line 14
+[21-Aug-2017 17:57:41 Asia/Dubai] PHP Fatal error:  Class 'mPDF' not found in /home/devgranddubai/public_html/sensation/application/libraries/Pdf.php on line 14
+[21-Aug-2017 17:57:41 Asia/Dubai] PHP Fatal error:  Class 'mPDF' not found in /home/devgranddubai/public_html/sensation/application/libraries/Pdf.php on line 14
+[21-Aug-2017 17:57:41 Asia/Dubai] PHP Fatal error:  Class 'mPDF' not found in /home/devgranddubai/public_html/sensation/application/libraries/Pdf.php on line 14
+[21-Aug-2017 17:57:41 Asia/Dubai] PHP Fatal error:  Class 'mPDF' not found in /home/devgranddubai/public_html/sensation/application/libraries/Pdf.php on line 14
+[21-Aug-2017 17:57:42 Asia/Dubai] PHP Fatal error:  Class 'mPDF' not found in /home/devgranddubai/public_html/sensation/application/libraries/Pdf.php on line 14
+[21-Aug-2017 17:57:42 Asia/Dubai] PHP Fatal error:  Class 'mPDF' not found in /home/devgranddubai/public_html/sensation/application/libraries/Pdf.php on line 14
+[21-Aug-2017 17:57:42 Asia/Dubai] PHP Fatal error:  Class 'mPDF' not found in /home/devgranddubai/public_html/sensation/application/libraries/Pdf.php on line 14
+[21-Aug-2017 17:57:42 Asia/Dubai] PHP Fatal error:  Class 'mPDF' not found in /home/devgranddubai/public_html/sensation/application/libraries/Pdf.php on line 14
+[21-Aug-2017 17:57:42 Asia/Dubai] PHP Fatal error:  Class 'mPDF' not found in /home/devgranddubai/public_html/sensation/application/libraries/Pdf.php on line 14
+[21-Aug-2017 17:57:43 Asia/Dubai] PHP Fatal error:  Class 'mPDF' not found in /home/devgranddubai/public_html/sensation/application/libraries/Pdf.php on line 14
+[21-Aug-2017 17:57:43 Asia/Dubai] PHP Fatal error:  Class 'mPDF' not found in /home/devgranddubai/public_html/sensation/application/libraries/Pdf.php on line 14
+[21-Aug-2017 17:57:48 Asia/Dubai] PHP Fatal error:  Class 'mPDF' not found in /home/devgranddubai/public_html/sensation/application/libraries/Pdf.php on line 14
+[21-Aug-2017 17:58:08 Asia/Dubai] PHP Fatal error:  Class 'mPDF' not found in /home/devgranddubai/public_html/sensation/application/libraries/Pdf.php on line 14
+[21-Aug-2017 17:58:16 Asia/Dubai] PHP Fatal error:  Class 'mPDF' not found in /home/devgranddubai/public_html/sensation/application/libraries/Pdf.php on line 14
+[21-Aug-2017 17:58:17 Asia/Dubai] PHP Fatal error:  Class 'mPDF' not found in /home/devgranddubai/public_html/sensation/application/libraries/Pdf.php on line 14
+[21-Aug-2017 17:58:18 Asia/Dubai] PHP Fatal error:  Class 'mPDF' not found in /home/devgranddubai/public_html/sensation/application/libraries/Pdf.php on line 14
+[21-Aug-2017 17:58:18 Asia/Dubai] PHP Fatal error:  Class 'mPDF' not found in /home/devgranddubai/public_html/sensation/application/libraries/Pdf.php on line 14
+[21-Aug-2017 17:58:18 Asia/Dubai] PHP Fatal error:  Class 'mPDF' not found in /home/devgranddubai/public_html/sensation/application/libraries/Pdf.php on line 14
+[21-Aug-2017 17:58:18 Asia/Dubai] PHP Fatal error:  Class 'mPDF' not found in /home/devgranddubai/public_html/sensation/application/libraries/Pdf.php on line 14
+[21-Aug-2017 17:58:18 Asia/Dubai] PHP Fatal error:  Class 'mPDF' not found in /home/devgranddubai/public_html/sensation/application/libraries/Pdf.php on line 14
+[21-Aug-2017 17:58:19 Asia/Dubai] PHP Fatal error:  Class 'mPDF' not found in /home/devgranddubai/public_html/sensation/application/libraries/Pdf.php on line 14
+[21-Aug-2017 17:58:19 Asia/Dubai] PHP Fatal error:  Class 'mPDF' not found in /home/devgranddubai/public_html/sensation/application/libraries/Pdf.php on line 14
+[21-Aug-2017 17:58:19 Asia/Dubai] PHP Fatal error:  Class 'mPDF' not found in /home/devgranddubai/public_html/sensation/application/libraries/Pdf.php on line 14
+[21-Aug-2017 17:58:36 Asia/Dubai] PHP Fatal error:  Class 'mPDF' not found in /home/devgranddubai/public_html/sensation/application/libraries/Pdf.php on line 14
+[22-Aug-2017 13:43:37 Asia/Dubai] PHP Parse error:  syntax error, unexpected ')' in /home/devgranddubai/public_html/sensation/application/views/view_child_details.php on line 145
+[22-Aug-2017 13:44:32 Asia/Dubai] PHP Parse error:  syntax error, unexpected '?>' in /home/devgranddubai/public_html/sensation/application/views/view_child_details.php on line 145
+[22-Aug-2017 13:44:34 Asia/Dubai] PHP Parse error:  syntax error, unexpected '?>' in /home/devgranddubai/public_html/sensation/application/views/view_child_details.php on line 145
+[23-Aug-2017 09:16:57 Asia/Dubai] PHP Fatal error:  Using $this when not in object context in /home/devgranddubai/public_html/sensation/application/helpers/receipt_helper.php on line 62
+[23-Aug-2017 09:17:46 Asia/Dubai] PHP Fatal error:  Using $this when not in object context in /home/devgranddubai/public_html/sensation/application/helpers/receipt_helper.php on line 62
+[23-Aug-2017 09:18:32 Asia/Dubai] PHP Fatal error:  Using $this when not in object context in /home/devgranddubai/public_html/sensation/application/helpers/receipt_helper.php on line 62
+[23-Aug-2017 09:22:14 Asia/Dubai] PHP Fatal error:  Using $this when not in object context in /home/devgranddubai/public_html/sensation/application/helpers/receipt_helper.php on line 63
+[24-Aug-2017 10:31:18 Asia/Dubai] PHP Fatal error:  Call to undefined function printr() in /home/devgranddubai/public_html/sensation/application/views/view_therapy_notes.php on line 7
+[24-Aug-2017 06:51:45 UTC] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 20
+[24-Aug-2017 06:52:54 UTC] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 20
+[24-Aug-2017 06:53:17 UTC] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 20
+[28-Aug-2017 12:08:19 UTC] PHP Fatal error:  Cannot use [] for reading in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 1589
+[28-Aug-2017 12:08:20 UTC] PHP Fatal error:  Cannot use [] for reading in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 1589
+[28-Aug-2017 12:08:22 UTC] PHP Fatal error:  Cannot use [] for reading in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 1589
+[28-Aug-2017 17:29:00 Asia/Dubai] PHP Fatal error:  Call to undefined function get_quotation_cancelled_status() in /home/devgranddubai/public_html/sensation/application/views/view_child_details.php on line 146
+[28-Aug-2017 17:29:04 Asia/Dubai] PHP Fatal error:  Call to undefined function get_quotation_cancelled_status() in /home/devgranddubai/public_html/sensation/application/views/view_child_details.php on line 146
+[28-Aug-2017 17:56:16 Asia/Dubai] PHP Fatal error:  Cannot use object of type stdClass as array in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 948
+[28-Aug-2017 17:56:48 Asia/Dubai] PHP Fatal error:  Cannot use object of type stdClass as array in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 948
+[28-Aug-2017 17:57:03 Asia/Dubai] PHP Fatal error:  Cannot use object of type stdClass as array in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 948
+[28-Aug-2017 17:57:38 Asia/Dubai] PHP Parse error:  syntax error, unexpected '/' in /home/devgranddubai/public_html/sensation/application/views/create_receipt.php on line 69
+[29-Aug-2017 08:59:44 Asia/Dubai] PHP Fatal error:  Cannot use object of type stdClass as array in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 948
+[29-Aug-2017 09:00:02 Asia/Dubai] PHP Fatal error:  Cannot use object of type stdClass as array in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 948
+[04-Sep-2017 08:58:00 Asia/Dubai] PHP Parse error:  syntax error, unexpected 'btn' (T_STRING), expecting ',' or ';' in /home/devgranddubai/public_html/sensation/application/views/view_subcategory.php on line 35
+[04-Sep-2017 10:31:08 Asia/Dubai] PHP Parse error:  syntax error, unexpected 'text' (T_STRING), expecting ',' or ';' in /home/devgranddubai/public_html/sensation/application/views/view_subcategory.php on line 35
+[04-Sep-2017 10:35:55 Asia/Dubai] PHP Parse error:  syntax error, unexpected '100' (T_LNUMBER), expecting ',' or ';' in /home/devgranddubai/public_html/sensation/application/views/view_subcategory.php on line 35
+[04-Sep-2017 08:57:11 UTC] PHP Fatal error:  Cannot redeclare Get_sub_category_list_by_id() (previously declared in /home/devgranddubai/public_html/sensation/application/helpers/common_helper.php:62) in /home/devgranddubai/public_html/sensation/application/helpers/common_helper.php on line 94
+[04-Sep-2017 08:57:25 UTC] PHP Fatal error:  Cannot redeclare Get_sub_category_list_by_id() (previously declared in /home/devgranddubai/public_html/sensation/application/helpers/common_helper.php:62) in /home/devgranddubai/public_html/sensation/application/helpers/common_helper.php on line 94
+[06-Sep-2017 12:05:58 Asia/Dubai] PHP Parse error:  syntax error, unexpected ')', expecting ';' in /home/devgranddubai/public_html/sensation/application/views/view_child_details.php on line 158
+[06-Sep-2017 12:19:16 Asia/Dubai] PHP Parse error:  syntax error, unexpected ''Add To Excess'' (T_CONSTANT_ENCAPSED_STRING), expecting ',' or ';' in /home/devgranddubai/public_html/sensation/application/views/view_child_details.php on line 172
+[06-Sep-2017 13:21:27 UTC] PHP Parse error:  syntax error, unexpected '>' in /home/devgranddubai/public_html/sensation/application/helpers/mail_html_helper.php on line 155
+[07-Sep-2017 10:54:39 UTC] PHP Parse error:  syntax error, unexpected '" OR C.update_status=1"' (T_CONSTANT_ENCAPSED_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Financial.php on line 20
+[09-Sep-2017 09:49:47 Asia/Dubai] PHP Fatal error:  Call to undefined function REPLACE() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 1407
+[09-Sep-2017 10:04:02 Asia/Dubai] PHP Fatal error:  Call to undefined function REPLACE() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 1408
+[09-Sep-2017 10:04:58 Asia/Dubai] PHP Fatal error:  Call to undefined function REPLACE() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 1408
+[09-Sep-2017 12:54:05 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 729
+[09-Sep-2017 12:55:15 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 729
+[09-Sep-2017 12:58:19 UTC] PHP Parse error:  syntax error, unexpected ';' in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 727
+[09-Sep-2017 17:36:49 Asia/Dubai] PHP Parse error:  syntax error, unexpected ';' in /home/devgranddubai/public_html/sensation/application/views/view_marketing.php on line 130
+[09-Sep-2017 17:37:07 Asia/Dubai] PHP Parse error:  syntax error, unexpected ';' in /home/devgranddubai/public_html/sensation/application/views/view_marketing.php on line 130
+[09-Sep-2017 13:40:52 UTC] PHP Parse error:  syntax error, unexpected '' </td>' (T_CONSTANT_ENCAPSED_STRING) in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 763
+[09-Sep-2017 13:40:57 UTC] PHP Parse error:  syntax error, unexpected '' </td>' (T_CONSTANT_ENCAPSED_STRING) in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 763
+[09-Sep-2017 13:41:01 UTC] PHP Parse error:  syntax error, unexpected '' </td>' (T_CONSTANT_ENCAPSED_STRING) in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 763
+[09-Sep-2017 13:41:11 UTC] PHP Parse error:  syntax error, unexpected '' </td>' (T_CONSTANT_ENCAPSED_STRING) in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 763
+[09-Sep-2017 13:41:40 UTC] PHP Parse error:  syntax error, unexpected '' </td>' (T_CONSTANT_ENCAPSED_STRING) in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 763
+[09-Sep-2017 13:41:46 UTC] PHP Parse error:  syntax error, unexpected '' </td>' (T_CONSTANT_ENCAPSED_STRING) in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 763
+[09-Sep-2017 13:45:05 UTC] PHP Parse error:  syntax error, unexpected '$d' (T_VARIABLE) in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 765
+[09-Sep-2017 13:45:05 UTC] PHP Parse error:  syntax error, unexpected '$d' (T_VARIABLE) in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 765
+[09-Sep-2017 13:45:09 UTC] PHP Parse error:  syntax error, unexpected '$d' (T_VARIABLE) in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 765
+[09-Sep-2017 13:45:10 UTC] PHP Parse error:  syntax error, unexpected '$d' (T_VARIABLE) in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 765
+[09-Sep-2017 13:45:13 UTC] PHP Parse error:  syntax error, unexpected '$d' (T_VARIABLE) in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 765
+[09-Sep-2017 13:45:13 UTC] PHP Parse error:  syntax error, unexpected '$d' (T_VARIABLE) in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 765
+[09-Sep-2017 13:45:18 UTC] PHP Parse error:  syntax error, unexpected '$d' (T_VARIABLE) in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 765
+[09-Sep-2017 13:45:18 UTC] PHP Parse error:  syntax error, unexpected '$d' (T_VARIABLE) in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 765
+[09-Sep-2017 13:45:18 UTC] PHP Parse error:  syntax error, unexpected '$d' (T_VARIABLE) in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 765
+[09-Sep-2017 13:45:18 UTC] PHP Parse error:  syntax error, unexpected '$d' (T_VARIABLE) in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 765
+[09-Sep-2017 13:45:18 UTC] PHP Parse error:  syntax error, unexpected '$d' (T_VARIABLE) in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 765
+[09-Sep-2017 13:45:18 UTC] PHP Parse error:  syntax error, unexpected '$d' (T_VARIABLE) in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 765
+[09-Sep-2017 13:45:20 UTC] PHP Parse error:  syntax error, unexpected '$d' (T_VARIABLE) in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 765
+[09-Sep-2017 13:45:30 UTC] PHP Parse error:  syntax error, unexpected '$d' (T_VARIABLE) in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 765
+[09-Sep-2017 13:45:34 UTC] PHP Parse error:  syntax error, unexpected '$d' (T_VARIABLE) in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 765
+[09-Sep-2017 13:45:37 UTC] PHP Parse error:  syntax error, unexpected '$d' (T_VARIABLE) in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 765
+[09-Sep-2017 13:45:39 UTC] PHP Parse error:  syntax error, unexpected '$d' (T_VARIABLE) in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 765
+[09-Sep-2017 13:45:39 UTC] PHP Parse error:  syntax error, unexpected '$d' (T_VARIABLE) in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 765
+[09-Sep-2017 13:45:42 UTC] PHP Parse error:  syntax error, unexpected '$d' (T_VARIABLE) in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 765
+[09-Sep-2017 13:45:48 UTC] PHP Parse error:  syntax error, unexpected '$d' (T_VARIABLE) in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 765
+[09-Sep-2017 13:45:52 UTC] PHP Parse error:  syntax error, unexpected '$d' (T_VARIABLE) in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 765
+[09-Sep-2017 13:46:06 UTC] PHP Parse error:  syntax error, unexpected '$d' (T_VARIABLE) in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 765
+[09-Sep-2017 13:46:07 UTC] PHP Parse error:  syntax error, unexpected '$d' (T_VARIABLE) in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 765
+[09-Sep-2017 13:46:08 UTC] PHP Parse error:  syntax error, unexpected '$d' (T_VARIABLE) in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 765
+[09-Sep-2017 13:46:08 UTC] PHP Parse error:  syntax error, unexpected '$d' (T_VARIABLE) in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 765
+[09-Sep-2017 13:46:10 UTC] PHP Parse error:  syntax error, unexpected '$d' (T_VARIABLE) in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 765
+[10-Sep-2017 04:35:42 UTC] PHP Parse error:  syntax error, unexpected '*', expecting function (T_FUNCTION) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 1966
+[10-Sep-2017 04:36:37 UTC] PHP Parse error:  syntax error, unexpected '*', expecting function (T_FUNCTION) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 1966
+[10-Sep-2017 04:36:41 UTC] PHP Parse error:  syntax error, unexpected '*', expecting function (T_FUNCTION) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 1966
+[10-Sep-2017 04:44:07 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 779
+[10-Sep-2017 04:44:09 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 779
+[10-Sep-2017 04:44:37 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 779
+[10-Sep-2017 04:45:38 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 779
+[10-Sep-2017 04:45:58 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 779
+[10-Sep-2017 12:10:28 UTC] PHP Parse error:  syntax error, unexpected '}' in /home/devgranddubai/public_html/sensation/application/helpers/mail_html_helper.php on line 222
+[10-Sep-2017 16:10:50 Asia/Dubai] PHP Fatal error:  Using $this when not in object context in /home/devgranddubai/public_html/sensation/application/helpers/mail_html_helper.php on line 216
+[10-Sep-2017 16:11:16 Asia/Dubai] PHP Fatal error:  Using $this when not in object context in /home/devgranddubai/public_html/sensation/application/helpers/mail_html_helper.php on line 216
+[10-Sep-2017 16:11:23 Asia/Dubai] PHP Fatal error:  Call to a member function userdata() on null in /home/devgranddubai/public_html/sensation/application/helpers/mail_html_helper.php on line 216
+[11-Sep-2017 04:45:01 UTC] PHP Parse error:  syntax error, unexpected ''E'' (T_CONSTANT_ENCAPSED_STRING) in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 764
+[12-Sep-2017 11:08:22 Asia/Dubai] PHP Parse error:  syntax error, unexpected '<' in /home/devgranddubai/public_html/sensation/application/views/view_therapy_notes.php on line 47
+[12-Sep-2017 11:10:42 Asia/Dubai] PHP Parse error:  syntax error, unexpected '')?>" class="stdtrpsebnt btn g' (T_CONSTANT_ENCAPSED_STRING) in /home/devgranddubai/public_html/sensation/application/views/view_therapy_notes.php on line 70
+[16-Sep-2017 11:11:57 Asia/Dubai] PHP Parse error:  syntax error, unexpected '<' in /home/devgranddubai/public_html/sensation/application/views/view_marketing.php on line 121
+[16-Sep-2017 11:24:28 Asia/Dubai] PHP Parse error:  syntax error, unexpected '?>' in /home/devgranddubai/public_html/sensation/application/views/view_therapy_notes.php on line 117
+[17-Sep-2017 12:07:13 Asia/Dubai] PHP Fatal error:  Call to undefined function explodeX() in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 286
+[17-Sep-2017 12:24:51 Asia/Dubai] PHP Fatal error:  Call to undefined function explodeX() in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 286
+[17-Sep-2017 08:51:31 UTC] PHP Parse error:  syntax error, unexpected ''</div>'' (T_CONSTANT_ENCAPSED_STRING) in /home/devgranddubai/public_html/sensation/application/helpers/calendar_helper.php on line 822
+[17-Sep-2017 14:45:57 Asia/Dubai] PHP Fatal error:  Call to a member function update() on null in /home/devgranddubai/public_html/sensation/application/helpers/common_helper.php on line 14
+[17-Sep-2017 14:46:28 Asia/Dubai] PHP Fatal error:  Call to a member function update() on null in /home/devgranddubai/public_html/sensation/application/helpers/common_helper.php on line 14
+[17-Sep-2017 14:47:08 Asia/Dubai] PHP Fatal error:  Call to a member function update() on null in /home/devgranddubai/public_html/sensation/application/helpers/common_helper.php on line 14
+[17-Sep-2017 15:55:33 Asia/Dubai] PHP Fatal error:  Call to undefined function iseet() in /home/devgranddubai/public_html/sensation/application/views/reg_add.php on line 847
+[17-Sep-2017 15:55:37 Asia/Dubai] PHP Fatal error:  Call to undefined function iseet() in /home/devgranddubai/public_html/sensation/application/views/reg_add.php on line 847
+[17-Sep-2017 15:55:40 Asia/Dubai] PHP Fatal error:  Call to undefined function iseet() in /home/devgranddubai/public_html/sensation/application/views/reg_add.php on line 847
+[17-Sep-2017 15:55:53 Asia/Dubai] PHP Fatal error:  Call to undefined function iseet() in /home/devgranddubai/public_html/sensation/application/views/reg_add.php on line 847
+[17-Sep-2017 15:56:18 Asia/Dubai] PHP Fatal error:  Call to undefined function iseet() in /home/devgranddubai/public_html/sensation/application/views/reg_add.php on line 847
+[17-Sep-2017 15:56:25 Asia/Dubai] PHP Fatal error:  Call to undefined function iseet() in /home/devgranddubai/public_html/sensation/application/views/reg_add.php on line 847
+[17-Sep-2017 15:56:33 Asia/Dubai] PHP Fatal error:  Call to undefined function iseet() in /home/devgranddubai/public_html/sensation/application/views/reg_add.php on line 847
+[17-Sep-2017 15:57:38 Asia/Dubai] PHP Fatal error:  Call to undefined function iseet() in /home/devgranddubai/public_html/sensation/application/views/reg_add.php on line 847
+[18-Sep-2017 12:55:50 Asia/Dubai] PHP Parse error:  syntax error, unexpected 'foreach' (T_FOREACH) in /home/devgranddubai/public_html/sensation/application/views/child_details.php on line 231
+[18-Sep-2017 12:56:21 Asia/Dubai] PHP Parse error:  syntax error, unexpected ':' in /home/devgranddubai/public_html/sensation/application/views/child_details.php on line 231
+[18-Sep-2017 11:45:17 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2146
+[18-Sep-2017 11:45:38 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:45:41 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:45:49 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:47:11 UTC] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:47:14 UTC] PHP Parse error:  syntax error, unexpected 'policy' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:47:45 UTC] PHP Parse error:  syntax error, unexpected 'policy' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:47:45 UTC] PHP Parse error:  syntax error, unexpected 'policy' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:47:45 UTC] PHP Parse error:  syntax error, unexpected 'policy' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:47:45 UTC] PHP Parse error:  syntax error, unexpected 'policy' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:47:45 UTC] PHP Parse error:  syntax error, unexpected 'policy' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:47:45 UTC] PHP Parse error:  syntax error, unexpected 'policy' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:47:45 UTC] PHP Parse error:  syntax error, unexpected 'policy' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:47:45 UTC] PHP Parse error:  syntax error, unexpected 'policy' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:47:45 UTC] PHP Parse error:  syntax error, unexpected 'policy' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:47:46 UTC] PHP Parse error:  syntax error, unexpected 'policy' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:47:46 UTC] PHP Parse error:  syntax error, unexpected 'policy' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:47:46 UTC] PHP Parse error:  syntax error, unexpected 'policy' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:47:46 UTC] PHP Parse error:  syntax error, unexpected 'policy' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:47:46 UTC] PHP Parse error:  syntax error, unexpected 'policy' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:47:46 UTC] PHP Parse error:  syntax error, unexpected 'policy' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:47:46 UTC] PHP Parse error:  syntax error, unexpected 'policy' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:47:46 UTC] PHP Parse error:  syntax error, unexpected 'policy' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:47:46 UTC] PHP Parse error:  syntax error, unexpected 'policy' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:47:46 UTC] PHP Parse error:  syntax error, unexpected 'policy' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:47:46 UTC] PHP Parse error:  syntax error, unexpected 'policy' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:47:46 UTC] PHP Parse error:  syntax error, unexpected 'policy' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:47:46 UTC] PHP Parse error:  syntax error, unexpected 'policy' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:47:46 UTC] PHP Parse error:  syntax error, unexpected 'policy' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:47:46 UTC] PHP Parse error:  syntax error, unexpected 'policy' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:47:46 UTC] PHP Parse error:  syntax error, unexpected 'policy' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:47:47 UTC] PHP Parse error:  syntax error, unexpected 'policy' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:47:47 UTC] PHP Parse error:  syntax error, unexpected 'policy' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:47:47 UTC] PHP Parse error:  syntax error, unexpected 'policy' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:47:47 UTC] PHP Parse error:  syntax error, unexpected 'policy' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:47:47 UTC] PHP Parse error:  syntax error, unexpected 'policy' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:47:47 UTC] PHP Parse error:  syntax error, unexpected 'policy' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:47:47 UTC] PHP Parse error:  syntax error, unexpected 'policy' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:47:55 UTC] PHP Parse error:  syntax error, unexpected 'policy' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:48:06 UTC] PHP Parse error:  syntax error, unexpected 'policy' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:48:18 UTC] PHP Parse error:  syntax error, unexpected 'policy' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:48:20 UTC] PHP Parse error:  syntax error, unexpected 'policy' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:48:24 UTC] PHP Parse error:  syntax error, unexpected 'policy' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:48:52 UTC] PHP Parse error:  syntax error, unexpected 'base_url' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:49:05 UTC] PHP Parse error:  syntax error, unexpected 'base_url' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:49:07 UTC] PHP Parse error:  syntax error, unexpected 'base_url' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:49:08 UTC] PHP Parse error:  syntax error, unexpected 'base_url' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:49:49 UTC] PHP Parse error:  syntax error, unexpected 'base_url' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:49:51 UTC] PHP Parse error:  syntax error, unexpected 'base_url' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[18-Sep-2017 11:50:16 UTC] PHP Parse error:  syntax error, unexpected 'base_url' (T_STRING) in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2144
+[19-Sep-2017 11:51:41 Asia/Dubai] PHP Fatal error:  Call to undefined function location_drop_down() in /home/devgranddubai/public_html/sensation/application/views/calender_view.php on line 111
+[19-Sep-2017 11:51:47 Asia/Dubai] PHP Fatal error:  Call to undefined function location_drop_down() in /home/devgranddubai/public_html/sensation/application/views/calender_view.php on line 111
+[19-Sep-2017 11:51:51 Asia/Dubai] PHP Fatal error:  Call to undefined function location_drop_down() in /home/devgranddubai/public_html/sensation/application/views/calender_view.php on line 111
+[19-Sep-2017 15:59:24 Asia/Dubai] PHP Parse error:  syntax error, unexpected ':', expecting ';' in /home/devgranddubai/public_html/sensation/application/views/child_details.php on line 250
+[20-Sep-2017 12:23:12 Asia/Dubai] PHP Fatal error:  Call to undefined function pribnt_r() in /home/devgranddubai/public_html/sensation/application/controllers/Home.php on line 2135
+[23-Sep-2017 09:09:21 Asia/Dubai] PHP Fatal error:  Call to undefined function say() in /home/devgranddubai/public_html/sensation/application/views/edit_marketing.php on line 7
+[23-Sep-2017 10:06:15 Asia/Dubai] PHP Parse error:  syntax error, unexpected '=' in /home/devgranddubai/public_html/sensation/application/views/edit_marketing.php on line 258
+[23-Sep-2017 10:06:17 Asia/Dubai] PHP Parse error:  syntax error, unexpected '=' in /home/devgranddubai/public_html/sensation/application/views/edit_marketing.php on line 258
+[23-Sep-2017 10:06:43 Asia/Dubai] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in /home/devgranddubai/public_html/sensation/application/views/edit_marketing.php on line 258
+[23-Sep-2017 10:07:21 Asia/Dubai] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in /home/devgranddubai/public_html/sensation/application/views/edit_marketing.php on line 267
+[24-Sep-2017 14:47:19 Asia/Dubai] PHP Parse error:  syntax error, unexpected '<' in /home/demosoftwarecomp/public_html/sensation/application/views/therapy_note_view.php on line 30
+[25-Sep-2017 11:31:43 Asia/Dubai] PHP Parse error:  syntax error, unexpected '?>' in /home/demosoftwarecomp/public_html/sensation/application/views/reg_add.php on line 339
+[26-Sep-2017 10:49:24 Asia/Dubai] PHP Parse error:  syntax error, unexpected '_url' (T_STRING), expecting ',' or ';' in /home/demosoftwarecomp/public_html/sensation/application/views/all_therapy_notes.php on line 101
+[01-Oct-2017 10:56:55 Asia/Dubai] PHP Fatal error:  Call to undefined function get_category_details_with_report() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 108
+[01-Oct-2017 10:57:00 Asia/Dubai] PHP Fatal error:  Call to undefined function get_category_details_with_report() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 108
+[01-Oct-2017 10:57:27 Asia/Dubai] PHP Fatal error:  Call to undefined function get_category_details_with_report() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 108
+[01-Oct-2017 10:57:29 Asia/Dubai] PHP Fatal error:  Call to undefined function get_category_details_with_report() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 108
+[01-Oct-2017 10:57:29 Asia/Dubai] PHP Fatal error:  Call to undefined function get_category_details_with_report() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 108
+[01-Oct-2017 10:57:29 Asia/Dubai] PHP Fatal error:  Call to undefined function get_category_details_with_report() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 108
+[01-Oct-2017 10:57:29 Asia/Dubai] PHP Fatal error:  Call to undefined function get_category_details_with_report() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 108
+[01-Oct-2017 10:57:30 Asia/Dubai] PHP Fatal error:  Call to undefined function get_category_details_with_report() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 108
+[01-Oct-2017 10:57:30 Asia/Dubai] PHP Fatal error:  Call to undefined function get_category_details_with_report() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 108
+[02-Oct-2017 11:15:14 Asia/Dubai] PHP Fatal error:  Call to undefined function Get_Nutrition_detail() in /home/demosoftwarecomp/public_html/sensation/application/views/therapy_history.php on line 636
+[02-Oct-2017 11:15:45 Asia/Dubai] PHP Fatal error:  Call to undefined function checked_status() in /home/demosoftwarecomp/public_html/sensation/application/views/therapy_history.php on line 747
+[02-Oct-2017 17:39:55 Asia/Dubai] PHP Fatal error:  Call to undefined function genrate_therapy_reports() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 125
+[02-Oct-2017 17:40:25 Asia/Dubai] PHP Fatal error:  Call to undefined function genrate_therapy_reports() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 125
+[04-Oct-2017 14:26:03 Asia/Dubai] PHP Fatal error:  Call to undefined function uppload_admin_profile_image() in /home/demosoftwarecomp/public_html/sensation/application/controllers/Home.php on line 85
+[07-Oct-2017 09:06:47 Asia/Dubai] PHP Parse error:  syntax error, unexpected '}' in /home/demosoftwarecomp/public_html/sensation/application/views/view_marketing.php on line 144
+[07-Oct-2017 17:13:41 Asia/Dubai] PHP Parse error:  syntax error, unexpected ']' in /home/demosoftwarecomp/public_html/sensation/application/views/view_marketing.php on line 101
+[10-Oct-2017 06:58:19 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/demosoftwarecomp/public_html/sensation/application/helpers/mail_html_helper.php on line 390
+[10-Oct-2017 15:30:29 Asia/Dubai] PHP Fatal error:  Call to undefined function iseet() in /home/demosoftwarecomp/public_html/sensation/application/views/view_therapy_notes.php on line 146
+[16-Oct-2017 11:44:32 Asia/Dubai] PHP Fatal error:  require(): Failed opening required '/home/demosoftwarecomp/public_html/sensation/application/third_party/PHPExcel-1.8\Classes\PHPExcel.php' (include_path='.:/opt/cpanel/ea-php56/root/usr/share/pear') in /home/demosoftwarecomp/public_html/sensation/application/helpers/common_helper.php on line 23
+[16-Oct-2017 11:45:37 Asia/Dubai] PHP Fatal error:  require(): Failed opening required '/home/demosoftwarecomp/public_html/sensation/application/third_party/PHPExcel-1.8\Classes\PHPExcel.php' (include_path='.:/opt/cpanel/ea-php56/root/usr/share/pear') in /home/demosoftwarecomp/public_html/sensation/application/helpers/common_helper.php on line 24
+[16-Oct-2017 11:50:14 Asia/Dubai] PHP Fatal error:  require(): Failed opening required '/home/demosoftwarecomp/public_html/sensation/application/third_party/PHPExcel-1.8/application/third_party/PHPExcel-1.8\Classes\PHPExcel.php' (include_path='.:/opt/cpanel/ea-php56/root/usr/share/pear') in /home/demosoftwarecomp/public_html/sensation/application/helpers/common_helper.php on line 24
+[16-Oct-2017 11:50:48 Asia/Dubai] PHP Fatal error:  require(): Failed opening required '/home/demosoftwarecomp/public_html/sensation/application/third_party/PHPExcel-1.8/application/third_party/PHPExcel-1.8/Classes\PHPExcel.php' (include_path='.:/opt/cpanel/ea-php56/root/usr/share/pear') in /home/demosoftwarecomp/public_html/sensation/application/helpers/common_helper.php on line 24
+[16-Oct-2017 11:51:26 Asia/Dubai] PHP Fatal error:  require(): Failed opening required '/home/demosoftwarecomp/public_html/sensation/application/third_party/PHPExcel-1.8/Classes\PHPExcel.php' (include_path='.:/opt/cpanel/ea-php56/root/usr/share/pear') in /home/demosoftwarecomp/public_html/sensation/application/helpers/common_helper.php on line 24
