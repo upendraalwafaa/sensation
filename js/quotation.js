@@ -571,13 +571,13 @@ $('body').on('change', '.discipline_type', function () {
     Get_All_session_price();
 });
 $('body').on('click', '.remove_session', function () {
-    var remove_id=$(this).attr('remove_id');
-        Lobibox.confirm({
+    var remove_id = $(this).attr('remove_id');
+    Lobibox.confirm({
         msg: 'Are You Sure Want Delete This Session ?',
-        title:'Quotation Session Delete ',
+        title: 'Quotation Session Delete ',
         callback: function ($this, type) {
             if (type === 'yes') {
-               $('#' + remove_id).remove();
+                $('#' + remove_id).remove();
                 Get_all_quotation_price();
             }
         }
@@ -1072,6 +1072,12 @@ $('body').on('click', '.dd-handle0', function () {
             var arr = d.date_of_birth.split('-');
             $('#date_of_birht').text(arr[2] + '/' + arr[1] + '/' + arr[0]);
             $('#gender').text(d.gender);
+            $('#father_mobile_no').text(d.father_mobile);
+            var email = d.father_personal_email;
+            if (email == '') {
+                email = d.mother_personal_email;
+            }
+            $('#father_email_id').text(email);
             $('#child_details').show(500);
             set_confirm_additional_details(d);
         }

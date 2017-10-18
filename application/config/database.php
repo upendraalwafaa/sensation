@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '139.162.5.237',
-	'username' => 'demosoft_sense',
-	'password' => 'rk^!ikeJ?{,F',
-	'database' => 'demosoft_sensation_new',
+	'hostname' => 'localhost',
+	'username' => 'root',
+	'password' => '',
+	'database' => 'demosoft_sensation',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

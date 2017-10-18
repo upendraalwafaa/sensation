@@ -7,6 +7,7 @@
   Project URI: http://demo.softwarecompany.ae/sensation/
   Description : It's every files
  */
+
 function load_Database() {
     $ci = & get_instance();
     $ci->load->model('Database');
@@ -500,6 +501,15 @@ function Get_same_row_session($array) {
                     </div>
                 </div>
                 <div class="col-md-2 "> 
+                    <?php
+                    if ($discipline_Arr[0]->sub_category_id == 16) {
+                        if($dd==0 && $i==0){
+                          
+                        }else{
+                             $discipline_fee=0; 
+                        }
+                    }
+                    ?>
                     <span class="quotation_price setpannel_price_<?= $div_id ?>" id="services_fee_<?= $row_id_cond ?>"><?= $discipline_fee ?></span></b>
 
                     <span style="display:<?= $add_class == '' ? 'none' : 'block'; ?>" id="tool_trip_<?= $row_id_cond ?>" data-toggle="tooltip" title="<?= $title_error ?>" class="fa fa-info-circle dlt btn btn-xs blue info_bntsp"> </span>

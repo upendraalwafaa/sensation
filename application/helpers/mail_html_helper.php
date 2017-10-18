@@ -1,4 +1,5 @@
 <?php
+
 /*
   Project Name : Sensation Sation
   Company Name : alwafaagroup
@@ -7,6 +8,7 @@
   Project URI: http://demo.softwarecompany.ae/sensation/
   Description : all mail html geting the data from this file and also PDF
  */
+
 function Get_html_for_reset_password($Arr, $password) {
     $html = '';
     $html = $html . ' <h2>&nbsp; &nbsp; &nbsp;</h2>';
@@ -137,7 +139,9 @@ function receipt_html_body($child_id = '', $electronic_link_id = '', $quotation_
         $qry_quo = "SELECT QS.*,D.description,E.employee_name FROM `quotation_session_details` QS LEFT JOIN employee_details E ON E.id=QS.staff_id LEFT JOIN disipline_details D ON D.id=QS.discipline_type_id WHERE QS.`quotation_id`=$quotation_details_id";
         $quotation_arr = $ci->Database->select_qry_array($qry_quo);
         $email_id = $chils_arr[0]->father_personal_email;
-
+        if ($email_id == '') {
+            $email_id = $chils_arr[0]->mother_personal_email;
+        }
 
         $subject = '' . $chils_arr[0]->child_name . ' quotation sensation sation&nbsp;';
         $html = '<p>Dear Parent,</p>

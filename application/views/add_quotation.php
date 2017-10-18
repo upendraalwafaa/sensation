@@ -194,6 +194,14 @@ $date = date('d-m-y');
                                                 <label id="father_mobile_no"><?= $child_arr == '' ? '' : $child_arr[0]->father_mobile ?></label>
                                             </div>
                                         </div>
+                                        <div class="col-sm-6">
+                                            <div class="col-sm-6">
+                                                <label><b>Email Id : </b></label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label id="father_email_id"><?= $child_arr == '' ? '' : $child_arr[0]->father_mobile ?></label>
+                                            </div>
+                                        </div>
 
                                     </div>
                                 </div>
