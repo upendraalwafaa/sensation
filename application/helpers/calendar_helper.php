@@ -7,6 +7,7 @@
   Project URI: http://demo.softwarecompany.ae/sensation/
   Description : It's only for child and employee calender
  */
+
 function search_employee_and_child_name($array) {
     $value = $array['value'];
     $db = load_Database();
@@ -70,8 +71,8 @@ function Get_quotation_details($Arr) {
                                         ?>
                                         <th   time="<?= date('H:i', $i) ?>" date="<?= $stop_date ?>" style="cursor: pointer;" class="create_session"></th>
                                         <?php
-                                    }
-                                    ?></tr>
+                                        }
+                                        ?></tr>
                                 <tr>
                                     <th class="fc-day-header fc-widget-header" style="width: 100px;">--</th><?php
                                     for ($i = $start; $i <= $end; $i = $i + 30 * 60) {
@@ -487,7 +488,7 @@ function get_event_every_day_html($metting_id = '', $currentDate = '', $ses_emp_
                                     <div class="form-group">
                                         <label>Location </label>
                                         <select id="event_location_<?= $metting_id ?>" class="form-control">
-                                            <?= location_drop_down(); ?>
+    <?= location_drop_down(); ?>
                                         </select>
 
                                     </div>
@@ -568,7 +569,7 @@ function get_event_every_day_html($metting_id = '', $currentDate = '', $ses_emp_
                                         <label>Start Time </label>
                                         <div class="input-group date form_datetime form_datetime bs-datetime">
                                             <select style="width: 270px;" class="form-control" id="start_time_<?= $metting_id ?>">
-                                                <?= print_time() ?>
+    <?= print_time() ?>
                                             </select>
                                         </div>
                                     </div>
@@ -579,7 +580,7 @@ function get_event_every_day_html($metting_id = '', $currentDate = '', $ses_emp_
                                         <label>End Time </label>
                                         <div class="input-group date form_datetime form_datetime bs-datetime">
                                             <select style="width: 270px;" class="form-control" id="end_time_<?= $metting_id ?>">
-                                                <?= print_time() ?>
+    <?= print_time() ?>
                                             </select>
                                         </div>
                                     </div>
@@ -629,7 +630,7 @@ function view_more_buttion_html_details($model_id, $currentDate, $calender_arr, 
                 <div class="modal-body"> 
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered table-hover">
-                            <?php if (count($calender_arr) > 0) { ?>
+    <?php if (count($calender_arr) > 0) { ?>
                                 <tr>
                                     <th   scope="col">#</th>
                                     <th   scope="col">Student</th>
@@ -698,7 +699,7 @@ function view_more_buttion_html_details($model_id, $currentDate, $calender_arr, 
                                     <?php
                                 }
                                 ?>
-                            <?php } ?>
+    <?php } ?>
                         </table>
                     </div>
 
@@ -735,8 +736,9 @@ function get_week_calender($array) {
                         $day_loopend = 2;
                         $last_sunday = $current_date;
                         $end_date = $current_date;
-                          $free_hou=get_worlking_houre_details($last_sunday, $end_date, $emp_id); 
-                        ?> <h2 class="headforcal">Today - <?= date('M d', strtotime($current_date)); ?>, Free Hour : <?= $free_hou ?></h2><?php
+                        $free_hou = get_worlking_houre_details($last_sunday, $end_date, $emp_id);
+                        ?> <h2 class="headforcal">Today - <?= date('M d', strtotime($current_date)); ?> </h2>
+                        <?php
                     } else if ($calendey_type == 'day') {
                         $export_tbl_id = 'day_export';
                         $day_loopend = 2;
@@ -758,8 +760,9 @@ function get_week_calender($array) {
                             <span style="cursor: pointer;" start_date="<?= $prev1_date ?>"   class="fc-icon fc-icon-left-single-arrow pervnext_day"></span>
                             <span style="cursor: pointer;" start_date="<?= $next1_date ?>"  class="fc-icon fc-icon-right-single-arrow pervnext_day"></span>
                         </div>
-                        <?php $free_hou=get_worlking_houre_details($last_sunday, $end_date, $emp_id); ?>
-                        <h2 class="headforcal" >Day - <?= date('M d', strtotime($last_sunday)); ?>, Free Hour : <?= $free_hou ?></h2><?php
+                        <?php $free_hou = get_worlking_houre_details($last_sunday, $end_date, $emp_id); ?>
+                        <h2 class="headforcal" >Day - <?= date('M d', strtotime($last_sunday)); ?> </h2>
+                        <?php
                     } else {
                         $day_loopend = 8;
                         $export_tbl_id = 'week_export';
@@ -785,12 +788,17 @@ function get_week_calender($array) {
                             <span start_date="<?= $prev7_date ?>"   class="fc-icon fc-icon-left-single-arrow pervnext_week"></span>
                             <span start_date="<?= $end_date_nxtbtn ?>"  class="fc-icon fc-icon-right-single-arrow pervnext_week"></span>
                         </div>
-                        <?php $free_hou= get_worlking_houre_details($last_sunday, $end_date, $emp_id); ?>
-                        <h2 class="headforcal">  <?= date('M d', strtotime($last_sunday)); ?>-<?= $last_d ?>  Free Hour : <?= $free_hou ?> </h2><?php
+                        <?php $free_hou = get_worlking_houre_details($last_sunday, $end_date, $emp_id); ?>
+                        <h2 class="headforcal">  <?= date('M d', strtotime($last_sunday)); ?>-<?= $last_d ?>   </h2>
+                        <?php
                     }
                     ?>
                 </div>
+
                 <div class="fc-center"></div>
+                <div class="working_hourse_cls">
+                    Free Hour : <?= $free_hou ?>
+                </div>
                 <div class="fc-clear"></div>
             </div>
             <div class="fc-view-container" style="">
@@ -877,7 +885,7 @@ function get_week_calender($array) {
                                                                     $style = "background-color:$color !important;border-color:$color ;$width";
                                                                     ?>
                                                                     <td <?= $popover . ' ' . $attr ?>  class="fc-widget-header <?= $add_class ?>" style="<?= $style ?>"> <?= $tmp_time ?> </td>
-                                                                <?php } ?>
+                                                            <?php } ?>
                                                             </tr>
                                                             <?php
                                                         }
@@ -925,7 +933,7 @@ function get_worlking_houre_details($start_date, $end_date, $staff_id) {
         $tatal_min = ($hou * 60) + $min;
         $total_min_per_day = $total_min_per_day + $tatal_min;
     }
-     $selected_h=($total_num_days*8)*60;
+    $selected_h = ($total_num_days * 8) * 60;
     $free_time = $selected_h - $total_min_per_day;
     return get_minutes_to_houre_for_calender($free_time);
 }
