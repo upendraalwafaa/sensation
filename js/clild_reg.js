@@ -482,7 +482,7 @@ $('#add_more_sibling').click(function () {
     var html = html + '      </div>';
         var html = html + '                           <div class="col-sm-1">';
     var html = html + '                                <br>';
-    var html = html + '                                <button type="button" div_id="' + more_sibling_counter + '" class="btn red btn-xs remove_sibling">Remove</button>';
+    var html = html + '                                <span  div_id="' + more_sibling_counter + '" class="fa fa-remove dlt btn btn-xs red remove_sibling"></span>';
     var html = html + '                           </div>';
     var html = html + '      </div>';
     $('#add_more_sibiling_details').append(html);
@@ -535,7 +535,7 @@ $('.add_more_child_authorisation_form').click(function () {
     
      var html = html + '                            <div class="col-sm-1">';
     var html = html + '                               <br>';
-    var html = html + '                        <button type="button" div_id="' + child_authorisation + '" class="btn red btn-xs remove_authorisation_form">Remove</button>';
+    var html = html + '                        <span div_id="' + child_authorisation + '" class="fa fa-remove dlt btn btn-xs red remove_authorisation_form"></span>';
     var html = html + '                      </div>';
     var html = html + '    </div>';
     $('#all_child_authorisation_form_details').append(html);
