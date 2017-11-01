@@ -71,8 +71,8 @@ function Get_quotation_details($Arr) {
                                         ?>
                                         <th   time="<?= date('H:i', $i) ?>" date="<?= $stop_date ?>" style="cursor: pointer;" class="create_session"></th>
                                         <?php
-                                        }
-                                        ?></tr>
+                                    }
+                                    ?></tr>
                                 <tr>
                                     <th class="fc-day-header fc-widget-header" style="width: 100px;">--</th><?php
                                     for ($i = $start; $i <= $end; $i = $i + 30 * 60) {
@@ -488,7 +488,7 @@ function get_event_every_day_html($metting_id = '', $currentDate = '', $ses_emp_
                                     <div class="form-group">
                                         <label>Location </label>
                                         <select id="event_location_<?= $metting_id ?>" class="form-control">
-    <?= location_drop_down(); ?>
+                                            <?= location_drop_down(); ?>
                                         </select>
 
                                     </div>
@@ -515,13 +515,13 @@ function get_event_every_day_html($metting_id = '', $currentDate = '', $ses_emp_
                                 <div class="  col-md-6">
                                     <div class="form-group">
                                         <label>Start Date </label>
-                                        <input value="<?= $currentDate ?>" id="event_startdate_<?= $metting_id ?>" type="text" class="datepicker form-control">
+                                        <input value="<?= $currentDate ?>" id="event_startdate_<?= $metting_id ?>" type="text" class="datepicker manage_zindex form-control">
                                     </div>
                                 </div>
                                 <div class="  col-md-6">
                                     <div class="form-group">
                                         <label>End Date </label><span class="pull-right"><input  event_id="<?= $metting_id ?>" class="event_add_all_day" type="checkbox"><b>Select Days</b></span>
-                                        <input value="<?= $currentDate ?>" id="event_endate_<?= $metting_id ?>" type="text" class="datepicker form-control">
+                                        <input value="<?= $currentDate ?>" id="event_endate_<?= $metting_id ?>" type="text" class="datepicker manage_zindex form-control">
                                     </div>
                                 </div>
                             </div>
@@ -569,7 +569,7 @@ function get_event_every_day_html($metting_id = '', $currentDate = '', $ses_emp_
                                         <label>Start Time </label>
                                         <div class="input-group date form_datetime form_datetime bs-datetime">
                                             <select style="width: 270px;" class="form-control" id="start_time_<?= $metting_id ?>">
-    <?= print_time() ?>
+                                                <?= print_time() ?>
                                             </select>
                                         </div>
                                     </div>
@@ -580,7 +580,7 @@ function get_event_every_day_html($metting_id = '', $currentDate = '', $ses_emp_
                                         <label>End Time </label>
                                         <div class="input-group date form_datetime form_datetime bs-datetime">
                                             <select style="width: 270px;" class="form-control" id="end_time_<?= $metting_id ?>">
-    <?= print_time() ?>
+                                                <?= print_time() ?>
                                             </select>
                                         </div>
                                     </div>
@@ -630,7 +630,7 @@ function view_more_buttion_html_details($model_id, $currentDate, $calender_arr, 
                 <div class="modal-body"> 
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered table-hover">
-    <?php if (count($calender_arr) > 0) { ?>
+                            <?php if (count($calender_arr) > 0) { ?>
                                 <tr>
                                     <th   scope="col">#</th>
                                     <th   scope="col">Student</th>
@@ -699,7 +699,7 @@ function view_more_buttion_html_details($model_id, $currentDate, $calender_arr, 
                                     <?php
                                 }
                                 ?>
-    <?php } ?>
+                            <?php } ?>
                         </table>
                     </div>
 
@@ -816,12 +816,25 @@ function get_week_calender($array) {
                                                         echo '<tr style="background: #9a12b3;">';
                                                         $reformate = '';
                                                         for ($dd = 0; $dd < $day_loopend; $dd++) {
+                                                            $th_style = '';
                                                             if ($dd != 0) {
                                                                 $reformate = date('Y-m-d', strtotime('+' . ($dd - 1) . ' day', strtotime($last_sunday)));
                                                             }
+                                                            $width_th = $dd == 0 ? '43px;' : '';
+                                                            $th_style = $th_style . "width:$width_th;";
+                                                            $default_th_color = 'background: #9a12b3 !important;';
+                                                            if ($reformate == date('Y-m-d')) {
+                                                                if ($calendey_type == '') {
+                                                                    $th_style = $th_style . 'background: #660079 !important;';
+                                                                } else {
+                                                                    $th_style = $th_style . $default_th_color;
+                                                                }
+                                                            } else {
+                                                                $th_style = $th_style . $default_th_color;
+                                                            }
                                                             ?>
 
-                                                        <th class="fc-widget-header time_view_cls" style="background: #9a12b3 !important;width: <?= $dd == 0 ? '43px;' : ''; ?>"><?= $dd == 0 ? '' : $reformate ?></th>
+                                                        <th class="fc-widget-header time_view_cls" style="<?= $th_style ?>"><?= $dd == 0 ? '' : $reformate ?></th>
                                                         <?php
                                                     }
                                                     echo '</tr>';
@@ -885,7 +898,7 @@ function get_week_calender($array) {
                                                                     $style = "background-color:$color !important;border-color:$color ;$width";
                                                                     ?>
                                                                     <td <?= $popover . ' ' . $attr ?>  class="fc-widget-header <?= $add_class ?>" style="<?= $style ?>"> <?= $tmp_time ?> </td>
-                                                            <?php } ?>
+                                                                <?php } ?>
                                                             </tr>
                                                             <?php
                                                         }

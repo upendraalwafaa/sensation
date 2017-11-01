@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
     <!--<![endif]-->
     <!-- BEGIN HEAD -->
@@ -30,12 +29,19 @@
         <link href="<?= base_url() ?>css/jquery-ui.css" rel="stylesheet" type="text/css" />
         <link href="<?= base_url() ?>assets/lobibox-master/dist/css/lobibox.min.css" rel="stylesheet"/>
         <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/css/consent_form.css">
-        <link rel="shortcut icon" href="<?= base_url() ?>files/images/favicon.ico" /> </head>
+        <link rel="stylesheet" href="<?= base_url() ?>css/bootstrap-select.css">
+        <link rel="shortcut icon" href="<?= base_url() ?>files/images/favicon.ico" /> 
+
+        <!-- BEGIN EDITOR LEVEL PLUGINS -->
+        <link href="<?= base_url() ?>assets/global/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css" rel="stylesheet" type="text/css" />
+        <!-- END PAGE LEVEL PLUGINS -->        
+
+    </head>
     <!-- END HEAD -->
     <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
         <?php
         $session_arr = $this->session->userdata('logged_in');
-        $db_session_ar=get_employee_arr_by_emp_id($session_arr[0]->id);
+        $db_session_ar = get_employee_arr_by_emp_id($session_arr[0]->id);
         ?>
         <div class="page-wrapper">
             <!-- BEGIN HEADER -->
@@ -98,7 +104,7 @@
                             <li class="dropdown dropdown-user">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                     <img alt="" class="img-circle" src="<?= base_url() . 'files/images/' . $session_arr[0]->image_name ?>" />
-                                    
+
                                     <input color_id="<?= $session_arr[0]->color_id ?>" employee_name="<?= $session_arr[0]->employee_name ?>" type="hidden" id="current_session_emp_id" value="<?= $session_arr[0]->id ?>">
                                     <span class="username username-hide-on-mobile"> <?= $session_arr[0]->employee_name ?> </span>
                                     <i class="fa fa-angle-down"></i>
@@ -136,211 +142,213 @@
                                 <h3 class="uppercase">Features</h3>
                             </li>
                             <?php if ($session_arr[0]->id == 17 && $session_arr[0]->employee_name == 'Admin') { ?>
+                                <li class="nav-item">
+                                    <a href="javascript:;" class="nav-link nav-toggle">
+                                        <i class="icon-settings"></i>
 
+                                        <span class="title">Manage Settings</span>
+                                        <span class="arrow"></span>
+                                    </a>
+                                    <ul class="sub-menu">
+
+                                        <li class="nav-item  ">
+                                            <a href="javascript:;" class="nav-link nav-toggle">
+                                               <!-- <i class="fa fa-cogs"></i> -->
+                                                <span class="title">Manage Category</span>
+                                                <span class="arrow"></span>
+                                            </a>
+                                            <ul class="sub-menu">
+                                                <li class="nav-item  ">
+                                                    <a href="<?= base_url('Home/add_category'); ?>" class="nav-link ">
+                                                        <span class="title">Add Category</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item  ">
+                                                    <a href="<?= base_url('Home/view_category'); ?>" class="nav-link ">
+                                                        <span class="title">View Category</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item  ">
+                                            <a href="javascript:;" class="nav-link nav-toggle">
+                                                <!-- <i class="fa fa-cogs"></i> -->
+                                                <span class="title">Manage Disipline</span>
+                                                <span class="arrow"></span>
+                                            </a>
+                                            <ul class="sub-menu">
+                                                <li class="nav-item  ">
+                                                    <a href="<?= base_url('Home/disipline'); ?>" class="nav-link ">
+                                                        <span class="title">Add Disipline</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item  ">
+                                                    <a href="<?= base_url('Home/view_disipline'); ?>" class="nav-link ">
+                                                        <span class="title">View Disipline</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item  ">
+                                            <a href="javascript:;" class="nav-link nav-toggle">
+                                                                                <!-- <i class="fa fa-cogs"></i> -->
+                                                <span class="title">Manage Designation</span>
+                                                <span class="arrow"></span>
+                                            </a>
+                                            <ul class="sub-menu">
+                                                <li class="nav-item  ">
+                                                    <a href="<?= base_url('Home/designation'); ?>" class="nav-link ">
+                                                        <span class="title">Add Designation</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item  ">
+                                                    <a href="<?= base_url('Home/view_designation'); ?>" class="nav-link ">
+                                                        <span class="title">View Designation</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item  ">
+                                            <a href="javascript:;" class="nav-link nav-toggle">
+                                                <!--  <i class="fa fa-cogs"></i> -->
+                                                <span class="title">Manage Sub Category</span>
+                                                <span class="arrow"></span>
+                                            </a>
+                                            <ul class="sub-menu">
+                                                <li class="nav-item  ">
+                                                    <a href="<?= base_url('Home/add_subcategory'); ?>" class="nav-link ">
+                                                        <span class="title">Add Sub Category</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item  ">
+                                                    <a href="<?= base_url('Home/view_subcategory'); ?>" class="nav-link ">
+                                                        <span class="title">View Sub Category</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item  ">
+                                            <a href="javascript:;" class="nav-link nav-toggle">
+                                                <!-- <i class="fa fa-cogs"></i> -->
+                                                <span class="title">Manage Services</span>
+                                                <span class="arrow"></span>
+                                            </a>
+                                            <ul class="sub-menu">
+                                                <li class="nav-item  ">
+                                                    <a href="<?= base_url('Home/add_service'); ?>" class="nav-link ">
+                                                        <span class="title">Add Service</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item  ">
+                                                    <a href="<?= base_url('Home/view_service'); ?>" class="nav-link ">
+                                                        <span class="title">View Service</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item  ">
+                                            <a href="javascript:;" class="nav-link nav-toggle">
+                                              <!--  <i class="fa fa-cogs"></i> -->
+                                                <span class="title">Manage Employee</span>
+                                                <span class="arrow"></span>
+                                            </a>
+                                            <ul class="sub-menu">
+                                                <li class="nav-item  ">
+                                                    <a href="<?= base_url('Home/add_employee'); ?>" class="nav-link ">
+                                                        <span class="title">Add Employee</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item  ">
+                                                    <a href="<?= base_url('Home/view_employee'); ?>" class="nav-link ">
+                                                        <span class="title">View Employee</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="nav-item  ">
+                                            <a href="javascript:;" class="nav-link nav-toggle">
+                                               <!-- <i class="fa fa-cogs"></i> -->
+                                                <span class="title"> Policy & Procedure</span>
+                                                <span class="arrow"></span>
+                                            </a>
+                                            <ul class="sub-menu">
+                                                <li class="nav-item  ">
+                                                    <a href="<?= base_url('Home/policy_procedure'); ?>" class="nav-link ">
+                                                        <span class="title">Add Policy Procedure</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="<?= base_url('Home/view_policy_procedure'); ?> " class="nav-link ">
+                                                        <span class="title">View Policy Procedure</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="<?= base_url('Home/view_policy_accepted_list'); ?> " class="nav-link ">
+                                                        <span class="title">Policy Accepted Lists</span>
+                                                    </a>
+                                                </li>                                        
+                                            </ul>
+                                        </li>                                 
+                                    </ul>
+
+                                    <?php
+                                }
+                                ?>
                             <li class="nav-item">
-                                <a href="javascript:;" class="nav-link nav-toggle">
-                                    <i class="icon-diamond"></i>
-                                    <span class="title">Manage Settings</span>
-                                    <span class="arrow"></span>
+                                <a href="<?= base_url('Home/child_details'); ?>" class="nav-link ">
+                                    <i class="fa fa-child"></i>
+                                    <span class="title">Manage Childs</span>
+                                    <!--<span class="arrow"></span>-->
                                 </a>
-                            <ul class="sub-menu">
-
-                                <li class="nav-item  ">
-                                    <a href="javascript:;" class="nav-link nav-toggle">
-                                        <i class="icon-diamond"></i>
-                                        <span class="title">Manage Category</span>
-                                        <span class="arrow"></span>
-                                    </a>
-                                    <ul class="sub-menu">
-                                        <li class="nav-item  ">
-                                            <a href="<?= base_url('Home/add_category'); ?>" class="nav-link ">
-                                                <span class="title">Add Category</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item  ">
-                                            <a href="<?= base_url('Home/view_category'); ?>" class="nav-link ">
-                                                <span class="title">View Category</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item  ">
-                                    <a href="javascript:;" class="nav-link nav-toggle">
-                                        <i class="icon-diamond"></i>
-                                        <span class="title">Manage Disipline</span>
-                                        <span class="arrow"></span>
-                                    </a>
-                                    <ul class="sub-menu">
-                                        <li class="nav-item  ">
-                                            <a href="<?= base_url('Home/disipline'); ?>" class="nav-link ">
-                                                <span class="title">Add Disipline</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item  ">
-                                            <a href="<?= base_url('Home/view_disipline'); ?>" class="nav-link ">
-                                                <span class="title">View Disipline</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    </li>
+                                <ul class="sub-menu">
                                     <li class="nav-item  ">
-                                    <a href="javascript:;" class="nav-link nav-toggle">
-                                        <i class="icon-diamond"></i>
-                                        <span class="title">Manage Designation</span>
-                                        <span class="arrow"></span>
-                                    </a>
-                                    <ul class="sub-menu">
-                                        <li class="nav-item  ">
-                                            <a href="<?= base_url('Home/designation'); ?>" class="nav-link ">
-                                                <span class="title">Add Designation</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item  ">
-                                            <a href="<?= base_url('Home/view_designation'); ?>" class="nav-link ">
-                                                <span class="title">View Designation</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item  ">
-                                    <a href="javascript:;" class="nav-link nav-toggle">
-                                        <i class="icon-puzzle"></i>
-                                        <span class="title">Manage Sub Category</span>
-                                        <span class="arrow"></span>
-                                    </a>
-                                    <ul class="sub-menu">
-                                        <li class="nav-item  ">
-                                            <a href="<?= base_url('Home/add_subcategory'); ?>" class="nav-link ">
-                                                <span class="title">Add Sub Category</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item  ">
-                                            <a href="<?= base_url('Home/view_subcategory'); ?>" class="nav-link ">
-                                                <span class="title">View Sub Category</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item  ">
-                                    <a href="javascript:;" class="nav-link nav-toggle">
-                                        <i class="icon-wrench"></i>
-                                        <span class="title">Manage Services</span>
-                                        <span class="arrow"></span>
-                                    </a>
-                                    <ul class="sub-menu">
-                                        <li class="nav-item  ">
-                                            <a href="<?= base_url('Home/add_service'); ?>" class="nav-link ">
-                                                <span class="title">Add Service</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item  ">
-                                            <a href="<?= base_url('Home/view_service'); ?>" class="nav-link ">
-                                                <span class="title">View Service</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item  ">
-                                    <a href="javascript:;" class="nav-link nav-toggle">
-                                        <i class="icon-bag"></i>
-                                        <span class="title">Manage Employee</span>
-                                        <span class="arrow"></span>
-                                    </a>
-                                    <ul class="sub-menu">
-                                        <li class="nav-item  ">
-                                            <a href="<?= base_url('Home/add_employee'); ?>" class="nav-link ">
-                                                <span class="title">Add Employee</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item  ">
-                                            <a href="<?= base_url('Home/view_employee'); ?>" class="nav-link ">
-                                                <span class="title">View Employee</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                
-                                <li class="nav-item  ">
-                                    <a href="javascript:;" class="nav-link nav-toggle">
-                                        <i class="fa icon-wrench" aria-hidden="true"></i>
-                                        <span class="title"> Policy & Procedure</span>
-                                        <span class="arrow"></span>
-                                    </a>
-                                    <ul class="sub-menu">
-                                        <li class="nav-item  ">
-                                            <a href="<?= base_url('Home/policy_procedure'); ?>" class="nav-link ">
-                                                <span class="title">Add Policy Procedure</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="<?= base_url('Home/view_policy_procedure'); ?> " class="nav-link ">
-                                                <span class="title">View Policy Procedure</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="<?= base_url('Home/view_policy_accepted_list'); ?> " class="nav-link ">
-                                                <span class="title">Policy Accepted Lists</span>
-                                            </a>
-                                        </li>                                        
-                                    </ul>
-                                </li>                                 
-                            </ul>
-                                <li class="nav-item  ">
-                                    <a href="<?= base_url('Home/child_details'); ?>" class="nav-link ">
-                                        <i class="icon-bag"></i>
-                                        <span class="title">Manage Childs</span>
-                                        <!--<span class="arrow"></span>-->
-                                    </a>
-                                    <ul class="sub-menu">
-                                        <li class="nav-item  ">
-                                            <a href="<?= base_url('Home/child_details'); ?>" class="nav-link ">
-                                                <span class="title">View Childs</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <?php
-                            }
-
+                                        <a href="<?= base_url('Home/child_details'); ?>" class="nav-link ">
+                                            <span class="title">View Childs</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <?php
                             if ($session_arr[0]->registration_form == 0) {
                                 ?>
-                                <li class="nav-item  ">
+                                <li class="nav-item" onclick="window.location = '<?= base_url('Home/reg_view'); ?>'">
                                     <a href="javascript:;" class="nav-link nav-toggle">
-                                        <i class="icon-direction"></i>
+                                        <i class="fa fa-plus-circle"></i>
                                         <span class="title">Registration Form</span>
                                         <span class="arrow"></span>
                                     </a>
-                                    <ul class="sub-menu">
-                                        <li class="nav-item  ">
-                                            <a href="<?= base_url('Home/reg_add'); ?>" class="nav-link ">
-                                                <span class="title">Add </span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item  ">
-                                            <a href="<?= base_url('Home/reg_view'); ?>" class="nav-link ">
-                                                <span class="title">View </span>
-                                            </a>
-                                        </li>
-                                    </ul>
+                                    <!--<ul class="sub-menu" >-->
+                                    <!--    <li class="nav-item  ">-->
+                                    <!--        <a href="<?= base_url('Home/reg_add'); ?>" class="nav-link ">-->
+                                    <!--            <span class="title">Add </span>-->
+                                    <!--        </a>-->
+                                    <!--    </li>-->
+                                    <!--    <li class="nav-item  ">-->
+                                    <!--        <a href="<?php // echo base_url('Home/reg_view');        ?>" class="nav-link ">-->
+                                    <!--            <span class="title">View </span>-->
+                                    <!--        </a>-->
+                                    <!--    </li>-->
+                                    <!--</ul>-->
                                 </li>
-                                 <li class="nav-item  ">
+                                <li class="nav-item" onclick="window.location = '<?= base_url('Home/view_outsidestudent'); ?>'">
                                     <a href="javascript:;" class="nav-link nav-toggle">
-                                        <i class="icon-direction"></i>
-                                        <span class="title">Add Out Side Student</span>
+                                        <i class="fa fa-external-link-square"></i>
+                                        <span class="title">Group/Camp/Training</span>
                                         <span class="arrow"></span>
                                     </a>
-                                    <ul class="sub-menu">
-                                        <li class="nav-item  ">
-                                            <a href="<?= base_url('Home/reg_outsidestudent'); ?>" class="nav-link ">
-                                                <span class="title">Add </span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item  ">
-                                            <a href="<?= base_url('Home/view_outsidestudent'); ?>" class="nav-link ">
-                                                <span class="title">View </span>
-                                            </a>
-                                        </li>
-                                    </ul>
+                                    <!--<ul class="sub-menu">-->
+                                    <!--    <li class="nav-item  ">-->
+                                    <!--        <a href="<?php // echo base_url('Home/reg_outsidestudent');        ?>" class="nav-link ">-->
+                                    <!--            <span class="title">Add </span>-->
+                                    <!--        </a>-->
+                                    <!--    </li>-->
+                                    <!--    <li class="nav-item  ">-->
+                                    <!--        <a href="<?php // echo base_url('Home/view_outsidestudent');        ?>" class="nav-link ">-->
+                                    <!--            <span class="title">View </span>-->
+                                    <!--        </a>-->
+                                    <!--    </li>-->
+                                    <!--</ul>-->
                                 </li>
                             <?php } ?>
                             <li class="nav-item  ">
@@ -388,86 +396,86 @@
                                     </ul>
                                 </li>
                             <?php } if ($session_arr[0]->electronic_link == 0) { ?>
-                                <li class="nav-item  ">
+                                <li class="nav-item" onclick="window.location = '<?= base_url('Home/electronic_quotation_details'); ?>'">
                                     <a href="javascript:;" class="nav-link nav-toggle">
-                                        <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+                                        <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
                                         <span class="title">Electronic Link</span>
                                         <span class="arrow"></span>
                                     </a>
-                                    <ul class="sub-menu">
-                                        <li class="nav-item  ">
-                                            <a href="<?= base_url('Home/add_quotation/add_electronic'); ?>" class="nav-link ">
-                                                <span class="title">Add New Electronic Link</span>
-                                            </a> 
-                                        </li>
-                                        <li class="nav-item  ">
-                                            <a href="<?= base_url('Home/electronic_quotation_details'); ?>" class="nav-link ">
-                                                <span class="title">Electronic Link Details</span>
-                                            </a>
-                                        </li>
-                                    </ul>
+                                    <!--<ul class="sub-menu">-->
+                                    <!--    <li class="nav-item  ">-->
+                                    <!--        <a href="<?php // echo base_url('Home/add_quotation/add_electronic');        ?>" class="nav-link ">-->
+                                    <!--            <span class="title">Add New Electronic Link</span>-->
+                                    <!--        </a> -->
+                                    <!--    </li>-->
+                                    <!--    <li class="nav-item  ">-->
+                                    <!--        <a href="<?php // echo base_url('Home/electronic_quotation_details');        ?>" class="nav-link ">-->
+                                    <!--            <span class="title">Electronic Link Details</span>-->
+                                    <!--        </a>-->
+                                    <!--    </li>-->
+                                    <!--</ul>-->
                                 </li>
                             <?php } if ($session_arr[0]->receipt == 0) { ?>
                                 <li class="nav-item  ">
                                     <a href="javascript:;" class="nav-link nav-toggle">
-                                        <i class="icon-briefcase" aria-hidden="true"></i>
+                                        <i class="fa fa-list-alt" aria-hidden="true"></i>
                                         <span class="title">Receipt Details</span>
                                         <span class="arrow"></span>
                                     </a>
                                     <ul class="sub-menu">
                                         <li class="nav-item  ">
                                             <a href="<?= base_url('Home/create_receipt'); ?>" class="nav-link ">
-                                                <span class="title">Create/Cancellation Receitpt</span>
+                                                <span class="title">Create/Cancellation Receipt</span>
                                             </a> 
                                         </li>
-                                        <li class="nav-item  ">
+                                        <li class="nav-item">
                                             <a href="<?= base_url('Home/view_child_details'); ?>" class="nav-link ">
-                                                <span class="title">Receitpt View</span>
+                                                <span class="title">Receipt View</span>
                                             </a>
                                         </li>
                                     </ul>
                                 </li>
-                                  <li class="nav-item  ">
+                                <li class="nav-item" onclick="window.location = '<?= base_url('Home/report_types'); ?>';">
                                     <a href="javascript:;" class="nav-link nav-toggle">
-                                        <i class="icon-briefcase" aria-hidden="true"></i>
+                                        <i class="fa fa-file-text" aria-hidden="true"></i>
                                         <span class="title">Reports</span>
                                         <span class="arrow"></span>
                                     </a>
-                                    <ul class="sub-menu">
-                                        <li class="nav-item  ">
-                                            <a href="<?= base_url('Home/create_reports'); ?>" class="nav-link ">
-                                                <span class="title">Therapy Reports</span>
-                                            </a> 
-                                        </li>
-                                        
-                                        <li class="nav-item  ">
-                                            <a href="<?= base_url('Home/registration_reports'); ?>" class="nav-link ">
-                                                <span class="title">Registration Reports</span>
-                                            </a> 
-                                        </li>
-                                        <li class="nav-item  ">
-                                            <a href="<?= base_url('Home/quotation_reports'); ?>" class="nav-link ">
-                                                <span class="title">Quotation Reports</span>
-                                            </a> 
-                                        </li>
-                                        <li class="nav-item  ">
-                                            <a href="<?= base_url('Home/receipt_reports'); ?>" class="nav-link ">
-                                                <span class="title">Receipt Reports</span>
-                                            </a> 
-                                        </li>
-                                         <li class="nav-item  ">
-                                            <a href="<?= base_url('Home/capacity_reports'); ?>" class="nav-link ">
-                                                <span class="title">Capacity Reports</span>
-                                            </a> 
-                                        </li>
-
-                                    </ul>
+                                    <!--                                    <ul class="sub-menu">
+                                                                            <li class="nav-item  ">
+                                                                                <a href="<?php // echo base_url('Home/create_reports');       ?>" class="nav-link ">
+                                                                                    <span class="title">Therapy Reports</span>
+                                                                                </a> 
+                                                                            </li>
+                                    
+                                                                            <li class="nav-item  ">
+                                                                                <a href="<?php // echo base_url('Home/registration_reports');       ?>" class="nav-link ">
+                                                                                    <span class="title">Registration Reports</span>
+                                                                                </a> 
+                                                                            </li>
+                                                                            <li class="nav-item  ">
+                                                                                <a href="<?php //echo base_url('Home/quotation_reports');       ?>" class="nav-link ">
+                                                                                    <span class="title">Quotation Reports</span>
+                                                                                </a> 
+                                                                            </li>
+                                                                            <li class="nav-item  ">
+                                                                                <a href="<?php // echo base_url('Home/receipt_reports');       ?>" class="nav-link ">
+                                                                                    <span class="title">Receipt Reports</span>
+                                                                                </a> 
+                                                                            </li>
+                                                                            <li class="nav-item  ">
+                                                                                <a href="<?php // echo base_url('Home/capacity_reports');       ?>" class="nav-link ">
+                                                                                    <span class="title">Capacity Reports</span>
+                                                                                </a> 
+                                                                            </li>
+                                    
+                                                                        </ul>-->
                                 </li>
                             <?php } if ($session_arr[0]->therapy_notes == 0) { ?>
-                           
+
                                 <li class="nav-item  ">
                                     <a href="<?= base_url('Home/list_therapy_notes'); ?>" class="nav-link ">
-                                        <i class="fa icon-wrench" aria-hidden="true"></i>
+                                        <i class="fa fa-sticky-note" aria-hidden="true"></i>
                                         <span class="title"> Therapy Notes</span>
                                         <!--<span class="arrow"></span>-->
                                     </a>
@@ -478,16 +486,17 @@
                                             </a>
                                         </li>
                                         <!--/*<li class="nav-item">
-                                            <a href="<?=base_url('Home/therapy_note_lists'); ?>" class="nav-link ">
-                                                <span class="title">View Therapy Notes</span>
+                                            <a href="<?= base_url('Home/therapy_note_lists'); ?>" class="nav-link ">
+                                                <span class="title">View Therapy Notes</span>     
                                             </a>
                                         </li>*/-->
                                     </ul>
-                                </li> 
+                                </li>
+
                             <?php } if ($session_arr[0]->marketing == 0) { ?>
                                 <li class="nav-item  ">
                                     <a href="javascript:;" class="nav-link nav-toggle">
-                                        <i class="fa fa-money" aria-hidden="true"></i>
+                                        <i class="fa fa-exchange" aria-hidden="true"></i>
                                         <span class="title">Manage Marketing</span>
                                         <span class="arrow"></span>
                                     </a>

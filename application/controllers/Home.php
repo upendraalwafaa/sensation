@@ -1,4 +1,5 @@
 <?php
+
 /*
   Project Name : Sensation Sation
   Company Name : alwafaagroup
@@ -31,9 +32,6 @@ class Home extends CI_Controller {
         $this->load->library('calendar');
     }
 
- 
-
-
     public function index() {
         $qry = "SELECT COUNT(*) as total FROM `employee_details` WHERE archive=0";
         $data['total_emp'] = $this->Database->select_qry_array($qry);
@@ -44,9 +42,9 @@ class Home extends CI_Controller {
         $this->load->view('include/footer');
     }
 
-       public function php_excel() {
+    public function php_excel() {
         PHPExcel();
-       $objPHPExcel = new PHPExcel();
+        $objPHPExcel = new PHPExcel();
         $objPHPExcel = PHPExcel_IOFactory::load("assets/load_excel.xlsx");
         $objPHPExcel->setActiveSheetIndex(0);
         $rowCount = 2;
@@ -54,7 +52,7 @@ class Home extends CI_Controller {
         $objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, 'Kumar Prasad Load File');
         $rowCount++;
         $objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
-          unlink('assets/some_excel_file.xlsx');
+        unlink('assets/some_excel_file.xlsx');
         $objWriter->save('assets/some_excel_file.xlsx');
         echo 'File Saved';
     }
@@ -71,8 +69,9 @@ class Home extends CI_Controller {
         $pdf->Output();
     }
 
-    public function view_pdf_quotation($quotation_id) {
-        $mail_html = genrate_quotation_html_mail($quotation_id);
+    public function view_pdf_quotation($quotation_id, $electronic_link_id = 'NA', $add_receipt = '') {
+        $electronic_link_id = $electronic_link_id == 'NA' ? '' : $electronic_link_id;
+        $mail_html = genrate_quotation_html_mail($quotation_id, $electronic_link_id, $add_receipt);
         $this->load->library('pdf');
         $pdf = $this->pdf->load();
         $pdf->debug = true;
@@ -145,15 +144,14 @@ class Home extends CI_Controller {
                 $_REQUEST['status']($_REQUEST);
         }
     }
-    
-       public function report_helper() {
+
+    public function report_helper() {
         $status = $_REQUEST['status'];
         switch ($status) {
             default :
                 $_REQUEST['status']($_REQUEST);
         }
     }
-
 
     public function disipline($disipline_id = '') {
         if (isset($_REQUEST['json'])) {
@@ -359,7 +357,7 @@ class Home extends CI_Controller {
                 $qry = "SELECT sub.*,C.category_name FROM `subcategory` sub INNER JOIN sen_category_details C ON C.id=sub.category_id where sub.id=" . $subcategory_id;
                 $data['sub_category_Arr'] = $this->Database->select_qry_array($qry);
             }
-            $data['categories'] =$this->Database->select_qry_array('SELECT category_name,id FROM  sen_category_details WHERE archive=0');
+            $data['categories'] = $this->Database->select_qry_array('SELECT category_name,id FROM  sen_category_details WHERE archive=0');
             $this->load->view('include/header');
             $this->load->view('add_subcategory', $data);
             $this->load->view('include/footer');
@@ -472,7 +470,7 @@ class Home extends CI_Controller {
                 'discipline_id' => $json['discipline_id'],
                 'school_attinding' => $json['school_attinding'],
                 'school_name' => $json['school_name'],
-                'form_accept_status'=>$json['accept_pt_btn'],
+                'form_accept_status' => $json['accept_pt_btn'],
             ];
             $child_id = $json['child_id'];
             if ($child_id == '') {
@@ -517,6 +515,7 @@ class Home extends CI_Controller {
                 'father_personal_email' => $json['father_email'],
                 'mother_personal_email' => $json['mother_email'],
                 'marital_status' => $json['father_marital_status'],
+                'marital_status_other' => $json['marital_status_other']
             ];
 
             $prenatal_history = [];
@@ -802,7 +801,7 @@ class Home extends CI_Controller {
     }
 
     public function view_outsidestudent() {
-        $qry = "SELECT Q.*,C.child_name,P.father_name FROM quotation_details Q LEFT JOIN parent_details P ON P.child_id=Q.student_id LEFT JOIN child_details C ON Q.student_id=C.id WHERE Q.outside_school=1";
+        $qry = "SELECT Q.*,C.child_name,P.father_name FROM quotation_details Q LEFT JOIN parent_details P ON P.child_id=Q.student_id LEFT JOIN child_details C ON Q.student_id=C.id WHERE Q.outside_school=1 ORDER BY Q.timestamp DESC";
         $quotation_details = $this->Database->select_qry_array($qry);
         $main_arr = array();
         for ($i = 0; $i < count($quotation_details); $i++) {
@@ -828,7 +827,7 @@ class Home extends CI_Controller {
     }
 
     public function reg_view() {
-        $qry = "SELECT C.*,C.id as child_tbl_id,P.* FROM child_details C LEFT JOIN parent_details P ON C.id=P.child_id";
+        $qry = "SELECT C.*,C.id as child_tbl_id,P.* FROM child_details C LEFT JOIN parent_details P ON C.id=P.child_id ORDER BY C.timestamp DESC";
         $child_details = $this->Database->select_qry_array($qry);
         $data['child_Arr'] = $child_details;
 
@@ -1029,7 +1028,9 @@ class Home extends CI_Controller {
                     $footer_html = receipt_footer_html();
                     // $pdf->SetHTMLFooter($footer_html, 'O');
                     $pdf->Output($file_path);
-                    send_mail($mail_body[1], $mail_body[2], $mail_body[0], $file_path);
+
+                    $admin_emial = get_admin_email_id();
+                    send_mail($mail_body[1], $mail_body[2], $mail_body[0], $file_path, $admin_emial);
                 }
                 if ($quotation_details_id >= 0) {
                     $json = '{"status":"success","last_insert_id":"' . $quotation_details_id . '"}';
@@ -1190,8 +1191,27 @@ class Home extends CI_Controller {
         }
     }
 
-    public function view_quotation() {
-         $qry = "SELECT Q.*,C.child_name FROM `quotation_details` Q LEFT JOIN child_details C ON Q.student_id=C.id WHERE Q.electronic_link=0 AND  Q.camp_reports=0 AND Q.outside_school=0 ORDER BY Q.quotation_id DESC";
+    public function view_quotation($child_id = '') {
+        $limit = 300;
+        $hide_data = 0;
+        if (isset($_REQUEST['prev']) || isset($_REQUEST['next'])) {
+            $offset = $_REQUEST['offset'];
+            if (isset($_REQUEST['prev'])) {
+                $offset--;
+            }
+            if (isset($_REQUEST['next'])) {
+                $offset++;
+            }
+            $hide_data = $limit * $offset;
+        } else {
+            $offset = 0;
+        }
+        $data['offset'] = $offset;
+        $cond_q = '';
+        if ($child_id != '') {
+            $cond_q = "AND Q.student_id=$child_id";
+        }
+        $qry = "SELECT Q.*,C.child_name FROM `quotation_details` Q LEFT JOIN child_details C ON Q.student_id=C.id WHERE Q.electronic_link=0 AND  Q.camp_reports=0 AND Q.outside_school=0 $cond_q  ORDER BY Q.timestamp DESC LIMIT $hide_data, $limit";
         $data['quotation_details'] = $this->Database->select_qry_array($qry);
         $this->load->view('include/header');
         $this->load->view('view_quotation', $data);
@@ -1319,11 +1339,11 @@ class Home extends CI_Controller {
         $this->load->view('include/footer');
     }
 
-     public function create_receipt($child_id = 'NA', $quotation_id = '') {
+    public function create_receipt($child_id = 'NA', $quotation_id = '') {
         $data['receipt_details'] = '';
         $data['child_id_quotation'] = '';
         if ($child_id != 'NA') {
-            $qry = "SELECT Q.*,E.employee_name,C.child_name FROM `quotation_details` Q LEFT JOIN child_details C ON C.id=Q.student_id LEFT JOIN employee_details E ON E.id=Q.`student_id` WHERE Q.accept_status='Accept' AND Q.`student_id` = $child_id ORDER BY Q.quotation_id DESC";
+            $qry = "SELECT Q.*,E.employee_name,C.child_name FROM `quotation_details` Q LEFT JOIN child_details C ON C.id=Q.student_id LEFT JOIN employee_details E ON E.id=Q.`student_id` WHERE Q.accept_status='Accept' AND Q.`student_id` = $child_id ORDER BY Q.timestamp DESC";
             $quotation_detaisl = $this->Database->select_qry_array($qry);
             $main_ar = array();
             for ($i = 0; $i < count($quotation_detaisl); $i++) {
@@ -1382,7 +1402,7 @@ class Home extends CI_Controller {
     public function electronic_quotation_details() {
         $data = [];
         //$query = "SELECT E.*,Q.* FROM `electronic_mail` E LEFT JOIN quotation_details Q ON Q.electronic_link_id=E.id";
-        $query = "SELECT E.*,Q.*,CD.enrolment_status FROM `electronic_mail` E LEFT JOIN quotation_details Q ON Q.electronic_link_id=E.id LEFT JOIN child_details CD ON CD.id=Q.student_id";
+        $query = "SELECT E.*,Q.*,CD.enrolment_status FROM `electronic_mail` E LEFT JOIN quotation_details Q ON Q.electronic_link_id=E.id LEFT JOIN child_details CD ON CD.id=Q.student_id ORDER BY E.timestamp DESC";
         $data['results'] = $this->Database->select_qry_array($query);
         $this->load->view('include/header');
         $this->load->view('electronic_link_details', $data);
@@ -1392,7 +1412,7 @@ class Home extends CI_Controller {
     public function view_child_details($child_id = '') {
         $data['main_arr'] = '';
         if ($child_id != '') {
-            $qry = "SELECT Q.*,C.child_name FROM `quotation_details` Q LEFT JOIN child_details C ON C.id=Q.student_id  WHERE Q.`accept_status` LIKE 'Accept' AND Q.student_id=$child_id ORDER BY Q.`quotation_id` DESC";
+            $qry = "SELECT Q.*,C.child_name FROM `quotation_details` Q LEFT JOIN child_details C ON C.id=Q.student_id  WHERE Q.`accept_status` LIKE 'Accept' AND Q.student_id=$child_id ORDER BY Q.`timestamp` DESC";
             $quotation_details = $this->Database->select_qry_array($qry);
 
             $main_array = array();
@@ -1439,9 +1459,10 @@ class Home extends CI_Controller {
         $this->load->view('my_profile', $data);
         $this->load->view('include/footer');
     }
-  
- public function create_reports() {
-        $data['view_data'] = '';
+
+    public function create_reports() {
+        $data['therapy_data'] = '';
+        $data['registration_data'] = '';
         if (isset($_REQUEST['theray_genrate_report'])) {
             extract($_REQUEST);
             $cond = '';
@@ -1464,24 +1485,45 @@ class Home extends CI_Controller {
                 $cond = substr($cond, 0, -4);
             }
             if ($cond == '') {
-                $cond = 'ORDER BY TH.t_id DESC LIMIT 1000';
+                $cond = 'ORDER BY TH.timestamp DESC LIMIT 1000';
             }
             $qry = "SELECT TH.*,C.child_name,Q.receipt_no FROM therapy_note TH LEFT JOIN child_details C ON C.id=TH.t_child_id LEFT JOIN quotation_details Q ON Q.quotation_id=TH.t_quotation_id  $cond";
             $array_new = $this->Database->select_qry_array($qry);
-            $data['view_data'] = $array_new;
+            $data['therapy_data'] = $array_new;
         }
         $emp_q = "SELECT * FROM employee_details WHERE archive=0";
         $ch_q = "SELECT * FROM child_details WHERE archive=0";
         $data['employee_details'] = $this->Database->select_qry_array($emp_q);
         $data['child_details'] = $this->Database->select_qry_array($ch_q);
         $this->load->view('include/header');
-        $this->load->view('create_reports', $data);
+        $this->load->view('report_types', $data);
         $this->load->view('include/footer');
     }
-    
-    
-      public function registration_reports() {
-        $data['view_data'] = '';
+
+    public function report_types() {
+        $ch_q = "SELECT * FROM disipline_details WHERE archive=0";
+        $data['disipline_details'] = $this->Database->select_qry_array($ch_q);
+        $data['therapy_data'] = '';
+        $data['registration_data'] = '';
+        $data['form_quot_data'] = '';
+        $data['quot_data'] = '';
+        $data['form_data_receipt'] = '';
+        $data['receipt_data'] = '';
+        $data['form_data_capi'] = '';
+        $data['data_capi'] = '';
+        $this->load->view('include/header');
+        $this->load->view('report_types', $data);
+        $this->load->view('include/footer');
+    }
+
+    public function registration_reports() {
+        $data['therapy_data'] = '';
+        $data['registration_data'] = '';
+        $data['form_quot_data'] = '';
+        $data['receipt_data'] = '';
+        $data['form_data_receipt'] = '';
+        $data['form_data_capi'] = '';
+        $data['data_capi'] = '';
         if (isset($_REQUEST['registraction_genrate_report'])) {
             $cond = '';
             $start_date = $_REQUEST['start_date'];
@@ -1501,62 +1543,78 @@ class Home extends CI_Controller {
             }
             $qry = "SELECT C.*,P.* FROM `child_details` C LEFT JOIN parent_details P ON P.child_id=C.id   $cond";
             $array_new = $this->Database->select_qry_array($qry);
-            $data['view_data'] = $array_new;
+            $data['registration_data'] = $array_new;
         }
         $ch_q = "SELECT * FROM disipline_details WHERE archive=0";
         $data['disipline_details'] = $this->Database->select_qry_array($ch_q);
         $this->load->view('include/header');
-        $this->load->view('registration_reports', $data);
+        $this->load->view('report_types', $data);
         $this->load->view('include/footer');
     }
-    
-    
- public function quotation_reports() {
-        $data['view_data'] = '';
-        $data['form_data'] = '';
+
+    public function quotation_reports() {
+        $data['therapy_data'] = '';
+        $data['registration_data'] = '';
+        $data['form_quot_data'] = '';
+        $data['quot_data'] = '';
+        $data['receipt_data'] = '';
+        $data['form_data_receipt'] = '';
+        $data['form_data_capi'] = '';
+        $data['data_capi'] = '';
         if (isset($_REQUEST['genrate_report'])) {
             $arr = get_quotation_report_array($_REQUEST);
-            $data['view_data'] = $arr['main_arr'];
+            $data['quot_data'] = $arr['main_arr'];
             $data['total_amount'] = $arr['total_amount'];
             $data['total_quo'] = $arr['total_quo'];
-            $data['form_data'] = $_REQUEST;
+            $data['form_quot_data'] = $_REQUEST;
         }
         $data['child_details'] = $this->Database->select_qry_array("SELECT * FROM child_details");
         $data['employee_details'] = $this->Database->select_qry_array("SELECT * FROM employee_details");
 
         $this->load->view('include/header');
-        $this->load->view('quotation_reports', $data);
+        $this->load->view('report_types', $data);
         $this->load->view('include/footer');
     }
-    
-        public function capacity_reports() {
-        $data['view_data'] = '';
-        $data['form_data'] = '';
+
+    public function capacity_reports() {
+        $data['therapy_data'] = '';
+        $data['registration_data'] = '';
+        $data['form_quot_data'] = '';
+        $data['quot_data'] = '';
+        $data['receipt_data'] = '';
+        $data['form_data_receipt'] = '';
+        $data['form_data_capi'] = '';
+        $data['data_capi'] = '';
         if (isset($_REQUEST['genrate_report'])) {
             $array = get_capacity_reports_array($_REQUEST);
-            $data['view_data'] = $array['array_new'];
-            $data['form_data'] = $array['form_data'];
+            $data['data_capi'] = $array['array_new'];
+            $data['form_data_capi'] = $array['form_data'];
             $data['total_h'] = $array['total_hourse'];
         }
         $data['employee_details'] = $this->Database->select_qry_array("SELECT * FROM employee_details");
         $this->load->view('include/header');
-        $this->load->view('capacity_reports', $data);
+        $this->load->view('report_types', $data);
         $this->load->view('include/footer');
     }
-    
-    
-  public function receipt_reports() {
-        $data['view_data'] = '';
-        $data['form_data'] = '';
+
+    public function receipt_reports() {
+        $data['therapy_data'] = '';
+        $data['registration_data'] = '';
+        $data['form_quot_data'] = '';
+        $data['quot_data'] = '';
+        $data['receipt_data'] = '';
+        $data['form_data_receipt'] = '';
+        $data['form_data_capi'] = '';
+        $data['data_capi'] = '';
         if (isset($_REQUEST['genrate_report'])) {
             $array = get_receipt_reports_array($_REQUEST);
-            $data['view_data'] = $array['array_new'];
-            $data['form_data'] = $array['form_data'];
+            $data['receipt_data'] = $array['array_new'];
+            $data['form_data_receipt'] = $array['form_data'];
         }
         $data['child_details'] = $this->Database->select_qry_array("SELECT * FROM child_details");
         $data['employee_details'] = $this->Database->select_qry_array("SELECT * FROM employee_details");
         $this->load->view('include/header');
-        $this->load->view('receipt_reports', $data);
+        $this->load->view('report_types', $data);
         $this->load->view('include/footer');
     }
 
@@ -1584,8 +1642,6 @@ class Home extends CI_Controller {
             $this->load->view('include/footer');
         }
     }
-    
-   
 
     public function add_therapy_note($therapy_id = '') {
 
@@ -1905,21 +1961,21 @@ class Home extends CI_Controller {
             $qry2 = "SELECT * FROM `parent_details` WHERE child_id =" . $id;
             $qry3 = "SELECT Q.quotation_id,Q.student_id,Q.erp_register_no,Q.receipt_no,Q.timestamp,QD.id as qd_id, QD.quotation_id as qd_id, SUBQ.sub_category_name,CAT.category_name,COUNT(QSES.id) AS tot_ses, COUNT(CASE WHEN QSES.completion_status != 0 THEN 1 END) as completed_ses,
             SUM(CASE
-                WHEN QSES.completion_status = 2 || QSES.completion_status = 5 || QSES.completion_status = 6 || QSES.completion_status = 8 || QSES.completion_status = 9  THEN 1 ELSE 0 END) AS 'cancl_sess' FROM `quotation_details` Q LEFT JOIN quotation_discipline_details QD ON Q.quotation_id=QD.quotation_id LEFT JOIN subcategory SUBQ ON QD.category_id= SUBQ.category_id AND QD.sub_category_id=SUBQ.id LEFT JOIN sen_category_details CAT ON CAT.id=QD.category_id LEFT JOIN quotation_session_details QSES ON QSES.quotation_discipline_id=QD.id WHERE Q.accept_status='Accept' AND Q.student_id=" . $id . " GROUP BY Q.quotation_id";
+                WHEN QSES.completion_status = 2 || QSES.completion_status = 5 || QSES.completion_status = 6 || QSES.completion_status = 8 || QSES.completion_status = 9  THEN 1 ELSE 0 END) AS 'cancl_sess' FROM `quotation_details` Q LEFT JOIN quotation_discipline_details QD ON Q.quotation_id=QD.quotation_id LEFT JOIN subcategory SUBQ ON QD.category_id= SUBQ.category_id AND QD.sub_category_id=SUBQ.id LEFT JOIN sen_category_details CAT ON CAT.id=QD.category_id LEFT JOIN quotation_session_details QSES ON QSES.quotation_discipline_id=QD.id WHERE Q.accept_status='Accept' AND Q.student_id=" . $id . " GROUP BY Q.quotation_id ORDER BY Q.timestamp DESC";
 
             $qry4 = "SELECT THN.t_id,Q.quotation_id,THN.t_session_id FROM `therapy_note` as THN LEFT JOIN quotation_details as Q ON Q.quotation_id=THN.t_quotation_id   WHERE THN.t_therapy_note='' and THN.t_child_id=" . $id;
 
             $qry5 = "SELECT Q.quotation_id,QSD.id FROM `quotation_session_details` as QSD LEFT JOIN quotation_details as Q ON Q.quotation_id=QSD.quotation_id WHERE QSD.completion_status=0 AND Q.student_id=" . $id . " AND QSD.staff_id=" . $staff_id . " GROUP BY Q.quotation_id";
 
 
-            $qry6 = "SELECT external_triggers_desc,disorders_in_fm_desc FROM `medical_history` WHERE child_id =" . $id;            
-            
+            $qry6 = "SELECT external_triggers_desc,disorders_in_fm_desc FROM `medical_history` WHERE child_id =" . $id;
+
             $data['child_details']['information'] = $this->Database->select_qry_array($qry1);
             $data['child_details']['parent_information'] = $this->Database->select_qry_array($qry2);
             $data['child_details']['quatation_details'] = $this->Database->select_qry_array($qry3);
             $data['child_details']['therapy_notes'] = $this->Database->select_qry_array($qry4);
             $data['child_details']['q_sessions'] = $this->Database->select_qry_array($qry5);
-            $data['child_details']['allergies'] = $this->Database->select_qry_array($qry6);            
+            $data['child_details']['allergies'] = $this->Database->select_qry_array($qry6);
             // echo "<pre>";            
             // print_r($data['child_details']['q_sessions']);
             // exit;
@@ -2205,33 +2261,30 @@ class Home extends CI_Controller {
         echo json_encode($data['childnames']);
     }
 
-    public function therapy_note_lists($id="",$qt_id="") {
+    public function therapy_note_lists($id = "", $qt_id = "") {
 
         if ($id != '') {
             $data['logged_in'] = $this->session->userdata('logged_in');
             $staff_id = $data['logged_in'][0]->id;
-                if($qt_id == ''){
-                    $qry1 = "SELECT TN.*,Q.receipt_no,EMP.employee_name,(SELECT TH.therapy_note FROM therapy_note_history as TH LEFT JOIN  therapy_note as T ON TH.therapy_id=T.t_id WHERE TH.therapy_id=TN.t_id  ORDER BY TH.id DESC LIMIT 1 ) as latest_note FROM `therapy_note` as TN 
+            if ($qt_id == '') {
+                $qry1 = "SELECT TN.*,Q.receipt_no,EMP.employee_name,(SELECT TH.therapy_note FROM therapy_note_history as TH LEFT JOIN  therapy_note as T ON TH.therapy_id=T.t_id WHERE TH.therapy_id=TN.t_id  ORDER BY TH.id DESC LIMIT 1 ) as latest_note FROM `therapy_note` as TN 
                     LEFT JOIN quotation_details as Q ON TN.t_quotation_id=Q.quotation_id 
                     LEFT JOIN employee_details as EMP ON EMP.id=TN.t_staff   
                     LEFT JOIN therapy_note_history as TNH ON TNH.therapy_id=TN.t_id                                                       
                     WHERE TN.t_child_id=" . $id . " AND TN.t_therapy_note !='' GROUP BY TN.t_id";
-                } else {
-                    
-                 $qry1 = "SELECT TN.*,Q.receipt_no,EMP.employee_name,(SELECT TH.therapy_note FROM therapy_note_history as TH LEFT JOIN  therapy_note as T ON TH.therapy_id=T.t_id WHERE TH.therapy_id=TN.t_id  ORDER BY TH.id DESC LIMIT 1 ) as latest_note FROM `therapy_note` as TN 
+            } else {
+
+                $qry1 = "SELECT TN.*,Q.receipt_no,EMP.employee_name,(SELECT TH.therapy_note FROM therapy_note_history as TH LEFT JOIN  therapy_note as T ON TH.therapy_id=T.t_id WHERE TH.therapy_id=TN.t_id  ORDER BY TH.id DESC LIMIT 1 ) as latest_note FROM `therapy_note` as TN 
                     LEFT JOIN quotation_details as Q ON TN.t_quotation_id=Q.quotation_id 
                     LEFT JOIN employee_details as EMP ON EMP.id=TN.t_staff   
                     LEFT JOIN therapy_note_history as TNH ON TNH.therapy_id=TN.t_id                                                       
-                    WHERE TN.t_child_id=" . $id . " AND TN.t_therapy_note !='' AND Q.quotation_id=".$qt_id." GROUP BY TN.t_id"; 
-                
-                  
-                    
-                }
-                
-            
-             $qry2 = "SELECT child_name FROM `child_details` WHERE id=" . $id;
-   
-            
+                    WHERE TN.t_child_id=" . $id . " AND TN.t_therapy_note !='' AND Q.quotation_id=" . $qt_id . " GROUP BY TN.t_id";
+            }
+
+
+            $qry2 = "SELECT child_name FROM `child_details` WHERE id=" . $id;
+
+
             $data['therapy']['information'] = $this->Database->select_qry_array($qry1);
             $data['therapy']['childdetails'] = $this->Database->select_qry_array($qry2);
 
@@ -2242,7 +2295,6 @@ class Home extends CI_Controller {
             $this->load->view('include/header');
             $this->load->view('all_therapy_notes', $data);
             $this->load->view('include/footer');
-            
         } else {
             $this->load->view('include/header');
             $this->load->view('all_therapy_notes');
@@ -2319,7 +2371,7 @@ class Home extends CI_Controller {
             $qry3 = "SELECT Q.quotation_id,Q.student_id,QS.discipline_type_id,EMP.employee_name,DD.disipline_name FROM `quotation_details` Q LEFT JOIN quotation_session_details QS ON QS.quotation_id=Q.quotation_id LEFT JOIN employee_details EMP ON QS.staff_id=EMP.id LEFT JOIN disipline_details DD ON DD.id=QS.discipline_type_id WHERE Q.student_id =" . $id . " GROUP BY employee_name";
             $qry4 = "SELECT Q.quotation_id,Q.student_id,QS.discipline_type_id,EMP.employee_name,DD.disipline_name FROM `quotation_details` Q LEFT JOIN quotation_session_details QS ON QS.quotation_id=Q.quotation_id LEFT JOIN employee_details EMP ON QS.staff_id=EMP.id LEFT JOIN disipline_details DD ON DD.id=QS.discipline_type_id WHERE Q.student_id =" . $id . " GROUP BY disipline_name";
             $qry5 = "SELECT * FROM `child_doc` WHERE child_id =" . $id;
-            $qry6 = "SELECT external_triggers_desc,disorders_in_fm_desc FROM `medical_history` WHERE child_id =" . $id;            
+            $qry6 = "SELECT external_triggers_desc,disorders_in_fm_desc FROM `medical_history` WHERE child_id =" . $id;
             $data['child_details']['information'] = $this->Database->select_qry_array($qry1);
             $data['child_details']['parent_information'] = $this->Database->select_qry_array($qry2);
             $data['child_details']['service_information'] = $this->Database->select_qry_array($qry3);
@@ -2334,6 +2386,10 @@ class Home extends CI_Controller {
             $this->load->view('child_details');
             $this->load->view('include/footer');
         }
+
+        //      echo '<pre>';
+        //   print_r($data);
+        //     echo '</pre>';
     }
 
     public function search_child_full_details() {
@@ -2572,36 +2628,49 @@ class Home extends CI_Controller {
 
     public function view_all_therapy_notes($id = '') {
         if ($id != '') {
-            $sql = "SELECT T.*,T.t_therapy_note as therapy_note ,T.t_note_pdf as therapy_note_pdf,E.employee_name FROM `therapy_note` T LEFT JOIN employee_details E ON T.t_staff=E.id WHERE t_id=" . $id;
+            $sql = "SELECT T.*,T.t_therapy_note as therapy_note ,T.t_note_pdf as therapy_note_pdf,E.employee_name FROM `therapy_note` T LEFT JOIN employee_details E ON T.t_staff=E.id WHERE t_id=" . $id . " ORDER BY T.timestamp DESC";
             $data['therapy']['view_notes'] = $this->Database->select_qry_array($sql);
-            $sql = "SELECT TH.*,E.employee_name,TH.timestamp as t_created_date FROM `therapy_note_history` TH LEFT JOIN employee_details E ON TH.edited_by=E.id  WHERE 	therapy_id=" . $id;
+            $sql = "SELECT TH.*,E.employee_name,TH.timestamp as t_created_date FROM `therapy_note_history` TH LEFT JOIN employee_details E ON TH.edited_by=E.id  WHERE 	therapy_id=" . $id . " ORDER BY TH.timestamp DESC";
             $data['therapy']['view_his_notes'] = $this->Database->select_qry_array($sql);
         }
         $data['therapy'] = array_merge($data['therapy']['view_notes'], $data['therapy']['view_his_notes']);
 
 
+        usort($data['therapy'], function($a, $b) {
+            $ad = new DateTime($a->timestamp);
+            $bd = new DateTime($b->timestamp);
+            if ($ad == $bd) {
+                return 0;
+            }
+            return $ad < $bd ? 1 : -1;
+        });
+
+
+        // echo '<pre>';
+        // print_r($data);
+        //  echo '</pre>';
         $this->load->view('include/header');
         $this->load->view('view_all_therapy_notes', $data);
         $this->load->view('include/footer');
     }
-    
-    public function strike_note(){
+
+    public function strike_note() {
         error_reporting(0);
         if (isset($_REQUEST['json'])) {
             $js = json_decode($_REQUEST['json'], true);
             $strike_note = $js['strike_note'];
             $strike_id = $js['strike_id'];
-            $sess_id = $js['sess_id'];            
-            
+            $sess_id = $js['sess_id'];
 
-            if($strike_note == '1'){
+
+            if ($strike_note == '1') {
                 $dd = [];
                 $dd = [
                     'strike_note' => 'Yes',
                 ];
                 $cond = "t_id=" . $strike_id;
                 $result = $this->Database->update($cond, $dd, 'therapy_note');
-                $json = '{"status":"success","message":"Successfuly striked","session":"'.$sess_id.'"}'; 
+                $json = '{"status":"success","message":"Successfuly striked","session":"' . $sess_id . '"}';
                 echo $json;
             } else {
                 $data = [];
@@ -2609,14 +2678,12 @@ class Home extends CI_Controller {
                     'strike_note' => 'Yes',
                 ];
                 $cond = "id=" . $strike_id;
-                $result = $this->Database->update($cond, $data, 'therapy_note_history'); 
-                $json = '{"status":"success","message":"Successfuly striked","session":"'.$sess_id.'"}'; 
-                echo $json;                
+                $result = $this->Database->update($cond, $data, 'therapy_note_history');
+                $json = '{"status":"success","message":"Successfuly striked","session":"' . $sess_id . '"}';
+                echo $json;
             }
-                
         }
-        
-    }    
+    }
 
     /*
       Therapy Notes Section End

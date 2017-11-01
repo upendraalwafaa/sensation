@@ -31,6 +31,9 @@ if ($elec_details != '') {
                         <div class="caption font-green">
                             <span class="caption-subject bold uppercase"> REGISTRATION FORM</span>
                         </div>
+                        <div class="qtarea">
+                            <a href="<?= base_url('Home/reg_view'); ?>">View Registration</a>
+                        </div>
                         <div class="clearfix"></div>
                     </div>
                     <div class="portlet-body form">
@@ -44,7 +47,7 @@ if ($elec_details != '') {
                                         <label>Child Name&nbsp;<span style="color:red
                                                                      ">*</span></label>
                                         <input value="<?= $child_details == '' ? '' : $child_details[0]->child_name ?><?= $elec_details == '' ? '' : $elec_details[0]->child_name ?>" type="text" id="child_name" class="form-control">
-                                        <span class="help-block">Ex :-Rahul Kumar</span>
+
                                     </div>
                                 </div>
                             </div>
@@ -55,7 +58,7 @@ if ($elec_details != '') {
                                         <label>Date Of Birth&nbsp;<span style="color:red
                                                                         ">*</span></label>
                                         <input value="<?= $date_birth ?><?= $date_birthe ?>" type="text" id="date_of_birth" class="form-control date-picker datepicker">
-                                        <span class="help-block">Ex :-20/05/1994</span>
+
                                     </div>
                                 </div>
                             </div>
@@ -96,7 +99,7 @@ if ($elec_details != '') {
                                         <label>Address&nbsp;<span style="color:red
                                                                   ">*</span></label>
                                         <textarea id="address" class="form-control" rows="3" style=""><?= $child_details == '' ? '' : $child_details[0]->address ?></textarea>
-                                        <span class="help-block">Ex :-Thomas Nolan Kaszas 5322 Otter Ln Middleberge</span>
+
                                     </div>
                                 </div>
 
@@ -204,11 +207,10 @@ if ($elec_details != '') {
                                 <div class="col-sm-6">
 
                                     <div class="col-sm-6">
-                                        <br>
-                                        <label><b>Session Type&nbsp;<span style="color:red
-                                                                          ">*</span> :  </b></label>
+                                        <br/>
+                                        <label><b>Session Type&nbsp;<span style="color:red; ">*</span> : </b></label>
                                     </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-lg-3 col-xs-12 col-sm-12">
                                         <?php $checked = 'checked=""'; ?>
                                         <div class="form-group form-md-line-input has-success">
                                             <div class="md-radio"> 
@@ -220,7 +222,7 @@ if ($elec_details != '') {
                                             </div> 
                                         </div>
                                     </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-lg-3 col-xs-12 col-sm-12">
                                         <div class="form-group form-md-line-input has-success">
                                             <div class="md-radio"> 
                                                 <input  <?= $elec_details == '' ? '' : $elec_details[0]->session_type == 'Center' ? $checked : '' ?><?= $child_details == '' ? '' : $child_details[0]->session_type == 'Center' ? $checked : '' ?> type="radio" value="Center"   id="session_center" name="session_type" class="md-radiobtn">
@@ -247,250 +249,170 @@ if ($elec_details != '') {
                                 </div>
                                 <div class="portlet-body form">
                                     <form role="form">
-                                        <div class=" ">
-                                            <div class="medical-tab-head">
-                                                <div class="col-lg-2 col-xs-0 col-sm-0">
-                                                    <span class="caption-subject bold uppercase"> </span>
-                                                </div>
-                                                <div class="col-lg-5 col-xs-5 col-sm-5 text-center">
-                                                    <span class="caption-subject bold uppercase"> Father</span>
-                                                    <div class="col-sm-2"></div>
-                                                </div>
-                                                <div class="col-lg-5 col-xs-5 col-sm-5 text-center">
-                                                    <span class="caption-subject bold uppercase"> Mother</span>
-                                                </div>
-                                                <div class="clearfix"></div>
-                                            </div>
 
-                                            <div class="row">
-                                                <div class="col-lg-2 col-xs-2 col-sm-2">
-                                                    <br>
-                                                    <label>Name&nbsp;<span style="color:red
-                                                                           ">*</span></label>
+                                        <div class="row">
+                                            <div class="col-lg-6 col-xs-12 col-sm-6 partofgroup">
+                                                <div class="medical-tab-head">
+                                                    FATHER 
                                                 </div>
 
-                                                <div class="col-lg-5 col-xs-5 col-sm-5">
-                                                    <div class="form-group form-md-line-input has-success">
-                                                        <div class="input-icon">
-                                                            <input value="<?= $elec_details == '' ? '' : $elec_details[0]->father_name ?><?= $parent_details == '' ? '' : $parent_details[0]->father_name ?>" type="text" class="form-control" id="father_name">
-                                                            <span class="help-block">Ex :-Rahul Kumar</span>
-                                                        </div>
-                                                    </div>
+                                                <div class="form-group form-md-line-input has-success">
+                                                    <label>Name <span style="color:red;">*</span></label>
+                                                    <input value="<?= $elec_details == '' ? '' : $elec_details[0]->father_name ?><?= $parent_details == '' ? '' : $parent_details[0]->father_name ?>" type="text" class="form-control" id="father_name">
+
                                                 </div>
 
-                                                <div class="col-lg-5 col-xs-5 col-sm-5">
-                                                    <div class="form-group form-md-line-input has-success">
-                                                        <div class="input-icon">
-                                                            <input value="<?= $elec_details == '' ? '' : $elec_details[0]->mother_name ?><?= $parent_details == '' ? '' : $parent_details[0]->mother_name ?>" type="text" class="form-control" id="mother_name">
-                                                            <span class="help-block">Ex :-Gita Devi</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                <div class="form-group form-md-line-input has-success">
+                                                    <label>Nationality <span style="color:red;">*</span></label>
+                                                    <input value="<?= $parent_details == '' ? '' : $parent_details[0]->father_nationality ?>" type="text" class="form-control" id="father_nationality">
 
-                                            <div class="row">
-                                                <div class="col-lg-2 col-xs-2 col-sm-2 span-row-in">
-                                                    <br>
-                                                    <label>Nationality&nbsp;<span style="color:red
-                                                                                  ">*</span></label>
-                                                </div>
-                                                <div class="col-lg-5 col-xs-5 col-sm-5">
-                                                    <div class="form-group form-md-line-input has-success">
-                                                        <div class="input-icon">
-                                                            <input value="<?= $parent_details == '' ? '' : $parent_details[0]->father_nationality ?>" type="text" class="form-control" id="father_nationality">
-                                                            <span class="help-block">Ex :-UAE,India</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-5 col-xs-5 col-sm-5">
-                                                    <div class="form-group form-md-line-input has-success">
-                                                        <div class="input-icon">
-                                                            <input value="<?= $parent_details == '' ? '' : $parent_details[0]->mother_nationality ?>" type="text" class="form-control" id="mother_nationality">
-                                                            <span class="help-block">Ex :-UAE,India</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="row">
-                                                <div class="col-lg-2 col-xs-2 col-sm-2 span-row-in">
-                                                    <br>
-                                                    <label>Occupation&nbsp;<span style="color:red
-                                                                                 ">*</span></label>
-                                                </div>
-                                                <div class="col-lg-5 col-xs-5 col-sm-5">
-                                                    <div class="form-group form-md-line-input has-success">
-                                                        <div class="input-icon">
-                                                            <input value="<?= $parent_details == '' ? '' : $parent_details[0]->father_occupation ?>" type="text" id="father_occupation" class="form-control">
-                                                            <span class="help-block">Ex :- Doctor , lifeguarding</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-5 col-xs-5 col-sm-5">
-                                                    <div class="form-group form-md-line-input has-success">
-                                                        <div class="input-icon">
-                                                            <input type="text" class="form-control" value="<?= $parent_details == '' ? '' : $parent_details[0]->mother_occupation ?>" id="mother_occupation">
-                                                            <span class="help-block">Ex :-House Wife , Doctor</span>
-                                                        </div>
-                                                    </div>
                                                 </div>
 
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-2 col-xs-2 col-sm-2 span-row-in">
-                                                    <br>
-                                                    <label>Mobile Number&nbsp;<span style="color:red
-                                                                                    ">*</span></label>
+                                                <div class="form-group form-md-line-input has-success">
+                                                    <label>Occupation <span style="color:red; ">*</span></label>
+                                                    <input value="<?= $parent_details == '' ? '' : $parent_details[0]->father_occupation ?>" type="text" id="father_occupation" class="form-control">
+
                                                 </div>
-                                                <div class="col-lg-5 col-xs-5 col-sm-5">
-                                                    <div class="form-group form-md-line-input has-success">
-                                                        <div class="input-icon">
-                                                            <input value="<?= $parent_details == '' ? '' : $parent_details[0]->father_mobile ?><?= $elec_details == '' ? '' : $elec_details[0]->father_name != '' ? $elec_details[0]->father_phone : '' ?>" type="text" class="form-control" id="father_mobile">
-                                                            <span class="help-block">Ex :- +971508897435,+917009876567</span>
-                                                        </div>
-                                                    </div>
+
+                                                <div class="form-group form-md-line-input has-success">
+                                                    <label>Mobile Number <span style="color:red;">*</span></label>
+                                                    <input value="<?= $parent_details == '' ? '' : $parent_details[0]->father_mobile ?><?= $elec_details == '' ? '' : $elec_details[0]->father_name != '' ? $elec_details[0]->father_phone : '' ?>" type="text" class="form-control only_number" maxlength="15" id="father_mobile">
+
                                                 </div>
-                                                <div class="col-lg-5 col-xs-5 col-sm-5">
-                                                    <div class="form-group form-md-line-input has-success">
-                                                        <div class="input-icon">
-                                                            <input value="<?= $parent_details == '' ? '' : $parent_details[0]->mother_mobile ?><?= $elec_details == '' ? '' : $elec_details[0]->mother_name != '' ? $elec_details[0]->father_phone : '' ?>" type="text" class="form-control" id="mother_mobile">
-                                                            <span class="help-block">Ex :- +971508897435,+917009876567</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-2 col-xs-2 col-sm-2 span-row-in">
-                                                    <br>
+
+                                                <div class="form-group form-md-line-input has-success">
                                                     <label>Work Number</label>
+                                                    <input value="<?= $parent_details == '' ? '' : $parent_details[0]->father_work_number ?>" type="text" class="form-control only_number" maxlength="15" id="father_work_number">
+
                                                 </div>
-                                                <div class="col-lg-5 col-xs-5 col-sm-5">
-                                                    <div class="form-group form-md-line-input has-success">
-                                                        <div class="input-icon">
-                                                            <input value="<?= $parent_details == '' ? '' : $parent_details[0]->father_work_number ?>" type="text" class="form-control" id="father_work_number">
-                                                            <span class="help-block">Ex :- 508897435</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-5 col-xs-5 col-sm-5">
-                                                    <div class="form-group form-md-line-input has-success">
-                                                        <div class="input-icon">
-                                                            <input value="<?= $parent_details == '' ? '' : $parent_details[0]->mother_work_number ?>" type="text" class="form-control" id="mother_work_number">
-                                                            <span class="help-block">Ex :- 508897435</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-2 col-xs-2 col-sm-2 span-row-in">
-                                                    <br>
+
+                                                <div class="form-group form-md-line-input has-success">
                                                     <label>Home Number</label>
+                                                    <input value="<?= $parent_details == '' ? '' : $parent_details[0]->father_home_number ?>" type="text" id="father_home_number" maxlength="15" class="form-control only_number">
+
                                                 </div>
-                                                <div class="col-lg-5 col-xs-5 col-sm-5">
-                                                    <div class="form-group form-md-line-input has-success">
-                                                        <div class="input-icon">
-                                                            <input value="<?= $parent_details == '' ? '' : $parent_details[0]->father_home_number ?>" type="text" id="father_home_number" class="form-control">
-                                                            <span class="help-block">Ex :- 97435</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-5 col-xs-5 col-sm-5">
-                                                    <div class="form-group form-md-line-input has-success">
-                                                        <div class="input-icon">
-                                                            <input value="<?= $parent_details == '' ? '' : $parent_details[0]->mother_home_number ?>" type="text" id="mother_home_number" class="form-control">
-                                                            <span class="help-block">Ex :- 97435</span>
-                                                        </div>
-                                                    </div>
+
+                                                <div class="form-group form-md-line-input has-success">
+                                                    <label>Personal Email <span style="color:red;">*</span></label> 
+                                                    <input value="<?= $elec_details == '' ? '' : $elec_details[0]->father_email ?><?= $parent_details == '' ? '' : $parent_details[0]->father_personal_email ?>" id="father_email" type="text" class="form-control">
+
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-lg-2 col-xs-2 col-sm-2 span-row-in">
-                                                    <br>
-                                                    <label>Personal Email&nbsp;<span style="color:red
-                                                                                     ">*</span></label>
-                                                </div>
-                                                <div class="col-lg-5 col-xs-5 col-sm-5">
-                                                    <div class="form-group form-md-line-input has-success">
-                                                        <div class="input-icon">
-                                                            <input value="<?= $elec_details == '' ? '' : $elec_details[0]->father_email ?><?= $parent_details == '' ? '' : $parent_details[0]->father_personal_email ?>" id="father_email" type="text" class="form-control">
-                                                            <span class="help-block">Ex :- jumbian@google.com</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-5 col-xs-5 col-sm-5">
-                                                    <div class="form-group form-md-line-input has-success">
-                                                        <div class="input-icon">
-                                                            <input value="<?= $parent_details == '' ? '' : $parent_details[0]->mother_personal_email ?>" id="mother_email" type="text" class="form-control">
-                                                            <span class="help-block">Ex :- jumbian@google.com</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-
-                                                <div class="col-lg-2 col-xs-3 col-sm-2">
-                                                    <br>
-                                                    <label id="marital_staus_display">Marital Status&nbsp;<span style="color:red
-                                                                                                                ">*</span></label>
-                                                </div>
-
-                                                <div class="col-lg-2 col-xs-3 col-sm-2">
-                                                    <div class="form-group form-md-line-input has-success">
-                                                        <div class="md-radio">
-                                                            <input  <?= $parent_details == '' ? '' : $parent_details[0]->marital_status == 'Marred' ? 'checked="checked"' : '' ?> type="radio" value="Marred" id="Marred" name="father_mother_marital_status" class="md-radiobtn">
-                                                            <label for="Marred">
-                                                                <span class="inc">Married</span>
-                                                                <span class="check"></span>
-                                                                <span class="box"></span> Married </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-lg-2 col-xs-3 col-sm-2">
-                                                    <div class="form-group form-md-line-input has-success">
-                                                        <div class="md-radio">
-                                                            <input <?= $parent_details == '' ? '' : $parent_details[0]->marital_status == 'Divorced' ? 'checked="checked"' : '' ?> type="radio" value="Divorced" id="Divorced" name="father_mother_marital_status" class="md-radiobtn">
-                                                            <label for="Divorced">
-                                                                <span class="inc">Divorced</span>
-                                                                <span class="check"></span>
-                                                                <span class="box"></span> Divorced </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-lg-2 col-xs-3 col-sm-2">
-                                                    <div class="form-group form-md-line-input has-success">
-                                                        <div class="md-radio">
-                                                            <input <?= $parent_details == '' ? '' : $parent_details[0]->marital_status == 'Other' ? 'checked="checked"' : '' ?> type="radio" id="Other" value="Other" name="father_mother_marital_status" class="md-radiobtn">
-                                                            <label for="Other">
-                                                                <span class="inc">Other</span>
-                                                                <span class="check"></span>
-                                                                <span class="box"></span> Other </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="clearfix"></div>
-
-                                                <div class="col-lg-2 col-xs-2 col-sm-2 span-row-in">
-                                                    <br>
-                                                    <label>Please specify</label>
-                                                </div>
-
-                                                <div class="col-lg-5 col-xs-10 col-sm-5">
-                                                    <div class="form-group form-md-line-input has-success">
-                                                        <div class="input-icon">
-
-                                                            <input value="<?= $parent_details == '' ? '' : $parent_details[0]->marital_status ?>" type="text" id="other_marital_status" class="form-control">
-                                                            <span class="help-block">Please specify</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
 
 
+                                            <div class="col-lg-6 col-xs-12 col-sm-6 partofgroup">
+
+                                                <div class="medical-tab-head">
+                                                    MOTHER 
+                                                </div>
+
+                                                <div class="form-group form-md-line-input has-success">
+
+                                                    <label>Name <span style="color:red;">*</span></label>
+                                                    <input value="<?= $elec_details == '' ? '' : $elec_details[0]->mother_name ?><?= $parent_details == '' ? '' : $parent_details[0]->mother_name ?>" type="text" class="form-control" id="mother_name">
+
+
+                                                </div>
+
+                                                <div class="form-group form-md-line-input has-success">
+                                                    <label>Nationality <span style="color:red;">*</span></label>
+                                                    <input value="<?= $parent_details == '' ? '' : $parent_details[0]->mother_nationality ?>" type="text" class="form-control" id="mother_nationality">
+
+
+                                                </div>
+
+                                                <div class="form-group form-md-line-input has-success">
+                                                    <label>Occupation <span style="color:red ">*</span></label>
+                                                    <input value="<?= $parent_details == '' ? '' : $parent_details[0]->mother_occupation ?>" type="text" id="mother_occupation" class="form-control">
+
+                                                </div>
+
+                                                <div class="form-group form-md-line-input has-success">
+                                                    <label>Mobile Number&nbsp;<span style="color:red;">*</span></label>
+                                                    <input value="<?= $parent_details == '' ? '' : $parent_details[0]->mother_mobile ?><?= $elec_details == '' ? '' : $elec_details[0]->father_name != '' ? $elec_details[0]->father_phone : '' ?>" type="text" class="form-control only_number" maxlength="15" id="mother_mobile">
+
+                                                </div>
+
+                                                <div class="form-group form-md-line-input has-success">
+                                                    <label>Work Number</label>
+                                                    <input value="<?= $parent_details == '' ? '' : $parent_details[0]->mother_work_number ?>" type="text" class="form-control only_number" maxlength="15" id="mother_work_number">
+
+                                                </div>
+
+                                                <div class="form-group form-md-line-input has-success">
+
+                                                    <label>Home Number</label>
+                                                    <input value="<?= $parent_details == '' ? '' : $parent_details[0]->mother_home_number ?>" type="text" id="mother_home_number" maxlength="15" class="form-control only_number">
+
+                                                </div>
+
+                                                <div class="form-group form-md-line-input has-success">
+                                                    <label>Personal Email <span style="color:red;">*</span></label> 
+                                                    <input value="<?= $parent_details == '' ? '' : $parent_details[0]->mother_personal_email ?>" id="mother_email" type="text" class="form-control" >
+
+                                                </div>
 
                                             </div>
                                         </div>
+
+
+
+                                        <div class="clearfix"></div>
+
+                                        <div class="row">
+
+
+                                            <div class="col-lg-6 col-xs-12 col-sm-6">
+                                                <div class="form-group form-md-line-input has-success">
+                                                    <label id="marital_staus_display">Marital Status &nbsp;<span style="color:red;">*</span></label>
+
+                                                    <div class="md-radio">
+                                                        <input  <?= $parent_details == '' ? '' : $parent_details[0]->marital_status == 'Marred' ? 'checked="checked"' : '' ?> type="radio" value="Marred" id="Marred" name="father_mother_marital_status" class="md-radiobtn">
+                                                        <label for="Marred">
+                                                            <span class="inc">Married</span>
+                                                            <span class="check"></span>
+                                                            <span class="box"></span> Married 
+                                                        </label>
+                                                    </div>
+                                                    <div class="md-radio">
+                                                        <input <?= $parent_details == '' ? '' : $parent_details[0]->marital_status == 'Divorced' ? 'checked="checked"' : '' ?> type="radio" value="Divorced" id="Divorced" name="father_mother_marital_status" class="md-radiobtn">
+                                                        <label for="Divorced">
+                                                            <span class="inc">Divorced</span>
+                                                            <span class="check"></span>
+                                                            <span class="box"></span> Divorced 
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="md-radio">
+                                                        <input <?= $parent_details == '' ? '' : $parent_details[0]->marital_status == 'Other' ? 'checked="checked"' : '' ?> type="radio" id="Other" value="Other" name="father_mother_marital_status" class="md-radiobtn">
+                                                        <label for="Other">
+                                                            <span class="inc">Other</span>
+                                                            <span class="check"></span>
+                                                            <span class="box"></span> Other </label>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <?php
+                                            $disp = 'none';
+                                            if ($parent_details != '') {
+                                                if ($parent_details[0]->marital_status == 'Other') {
+                                                    $disp = 'block';
+                                                }
+                                            }
+                                            ?>
+                                            <div id="father_mother_marital_status_div" class="col-lg-6 col-xs-6 col-sm-12" style="display: <?= $disp ?>;">
+                                                <div class="form-group form-md-line-input has-success">
+                                                    <label>Please specify</label>
+
+                                                    <input value="<?= $parent_details == '' ? '' : $parent_details[0]->marital_status_other ?>" type="text" id="other_marital_status" class="form-control">
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
                                     </form>
                                 </div>
                             </div>
@@ -549,7 +471,7 @@ if ($elec_details != '') {
                                         <div class="col-lg-4 col-xs-4 col-sm-4">
                                             <div class="form-group form-md-line-input has-success">
                                                 <div class="input-icon">
-                                                    <input value="<?= $child_details == '' ? '' : isset($emergency_contact_number_Arr[0]) ? $emergency_contact_number_Arr[0] : '' ?>" type="text"  class="form-control emergency_contact_number">
+                                                    <input value="<?= $child_details == '' ? '' : isset($emergency_contact_number_Arr[0]) ? $emergency_contact_number_Arr[0] : '' ?>" type="text" maxlength="15"  class="form-control emergency_contact_number only_number">
                                                     <span class="help-block"></span>
                                                 </div>
                                             </div>
@@ -583,7 +505,7 @@ if ($elec_details != '') {
                                         <div class="col-lg-4 col-xs-4 col-sm-4">
                                             <div class="form-group form-md-line-input has-success">
                                                 <div class="input-icon">
-                                                    <input type="text" value="<?= $child_details == '' ? '' : isset($emergency_contact_number_Arr[1]) ? $emergency_contact_number_Arr[1] : '' ?>" class="form-control emergency_contact_number">
+                                                    <input type="text" value="<?= $child_details == '' ? '' : isset($emergency_contact_number_Arr[1]) ? $emergency_contact_number_Arr[1] : '' ?>" maxlength="15" class="form-control emergency_contact_number only_number">
                                                     <span class="help-block"></span>
                                                 </div>
                                             </div>
@@ -638,15 +560,15 @@ if ($elec_details != '') {
                                                 <div class="form-group form-md-line-input has-success">
                                                     <div class="input-icon">
                                                         <input value="<?= $sibling_details == '' ? '' : $sibling_details[$i]->sibling_name ?>" type="text" class="form-control sibling_name">
-                                                        <span class="help-block">Ex :-Rahul Kumar</span>
+
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-xs-4 col-sm-4">
                                                 <div class="form-group form-md-line-input has-success">
                                                     <div class="input-icon">
-                                                        <input value="<?= $sibling_details == '' ? '' : $sibling_details[$i]->age ?>" type="text" class="form-control sibling_age">
-                                                        <span class="help-block">Ex :-10</span>
+                                                        <input value="<?= $sibling_details == '' ? '' : $sibling_details[$i]->age ?>" type="text" maxlength="2" class="form-control sibling_age only_number">
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -677,7 +599,7 @@ if ($elec_details != '') {
                                             <div class="col-lg-1 col-xs-1 col-sm-1">
                                                 <br>
                                                 <?php if ($i != 0) {
-                                                    ?><button type="button" div_id="1" class="btn red btn-xs remove_sibling">Remove</button><?php }
+                                                    ?><span  div_id="1" class="red btn-xs remove_sibling">Remove</span><?php }
                                                 ?>
                                             </div>
                                         </div>
@@ -773,7 +695,7 @@ if ($elec_details != '') {
                                                         <div class="form-group form-md-line-input has-success">
                                                             <div class="input-icon">
                                                                 <input type="text" value="<?= $authorisation_detail == '' ? '' : $authorisation_detail[$i]->name ?>" class="form-control child_authorisation_name">
-                                                                <span class="help-block">Ex :-Rahul Kumar</span>
+
                                                             </div>
                                                         </div>
                                                     </div>
@@ -781,15 +703,15 @@ if ($elec_details != '') {
                                                         <div class="form-group form-md-line-input has-success">
                                                             <div class="input-icon">
                                                                 <input value="<?= $authorisation_detail == '' ? '' : $authorisation_detail[$i]->relationship ?>" type="text" class="form-control child_authorisation_relationship">
-                                                                <span class="help-block">Ex :- Uncle,Friend</span>
+
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <div class="form-group form-md-line-input has-success">
                                                             <div class="input-icon">
-                                                                <input value="<?= $authorisation_detail == '' ? '' : $authorisation_detail[$i]->mobile ?>" type="text" class="form-control child_authorisation_mobile">
-                                                                <span class="help-block">Ex :-  +97150887453</span>
+                                                                <input value="<?= $authorisation_detail == '' ? '' : $authorisation_detail[$i]->mobile ?>" type="text" maxlength="15" class="form-control child_authorisation_mobile only_number">
+
                                                             </div>
                                                         </div>
                                                     </div>
@@ -797,7 +719,7 @@ if ($elec_details != '') {
                                                         <div class="form-group form-md-line-input has-success">
                                                             <div class="input-icon">
                                                                 <input value="<?= $authorisation_detail == '' ? '' : $authorisation_detail[$i]->id_card ?>" type="text" class="form-control child_authorisation_id_provided">
-                                                                <span class="help-block">Ex :-  556466666</span>
+
                                                             </div>
                                                         </div>
                                                     </div>  
@@ -918,7 +840,7 @@ if ($elec_details != '') {
                                                 <div class="form-group form-md-line-input has-success">
                                                     <div class="input-icon">
                                                         <input value="<?= isset($medical_history[0]->diagnosis) && $medical_history[0]->diagnosis == 'Yes' ? $medical_history[0]->diagnosis_desc : ''; ?>" type="text" class="form-control" id="diagnosis_extra_details">
-                                                        <span class="help-block">Ex :- Any Char</span>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -954,7 +876,7 @@ if ($elec_details != '') {
                                                 <div class="form-group form-md-line-input has-success">
                                                     <div class="input-icon">
                                                         <input type="text" id="hospitalisation_extra_details" value="<?= isset($medical_history[0]->hospitalisation) && $medical_history[0]->hospitalisation == 'Yes' ? $medical_history[0]->hospitalisation_desc : ''; ?>" class="form-control">
-                                                        <span class="help-block">Ex :- Any Char</span>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -990,7 +912,7 @@ if ($elec_details != '') {
                                                 <div class="form-group form-md-line-input has-success">
                                                     <div class="input-icon">
                                                         <input value="<?= isset($medical_history[0]->breastfed) && $medical_history[0]->breastfed == 'Yes' ? $medical_history[0]->breastfed_desc : ''; ?>" id="breastfed_extra_details" type="text" class="form-control">
-                                                        <span class="help-block">Ex :- Any Char</span>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -1027,7 +949,7 @@ if ($elec_details != '') {
                                                 <div class="form-group form-md-line-input has-success">
                                                     <div class="input-icon">
                                                         <input value="<?= isset($medical_history[0]->external_triggers) && $medical_history[0]->external_triggers == 'Yes' ? $medical_history[0]->external_triggers_desc : ''; ?>" id="external_triggers_extra_details" type="text" class="form-control">
-                                                        <span class="help-block">Ex :- Any Char</span>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -1063,7 +985,7 @@ if ($elec_details != '') {
                                                 <div class="form-group form-md-line-input has-success">
                                                     <div class="input-icon">
                                                         <input value="<?= isset($medical_history[0]->disorders_in_fm) && $medical_history[0]->disorders_in_fm == 'Yes' ? $medical_history[0]->disorders_in_fm_desc : ''; ?>" type="text" id="disorders_in_fm_extra_details" class="form-control">
-                                                        <span class="help-block">Ex :- Any Char</span>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -1101,7 +1023,7 @@ if ($elec_details != '') {
                                                 <div class="form-group form-md-line-input has-success">
                                                     <div class="input-icon">
                                                         <input value="<?= isset($medical_history[0]->child_medication_history) && $medical_history[0]->child_medication_history == 'Yes' ? $medical_history[0]->child_medication_history_desc : ''; ?>" type="text" id="child_medication_history_extra_details" class="form-control">
-                                                        <span class="help-block">Ex :- Any Char</span>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -1139,7 +1061,7 @@ if ($elec_details != '') {
                                                 <div class="form-group form-md-line-input has-success">
                                                     <div class="input-icon">
                                                         <input value="<?= isset($medical_history[0]->extended_periods) && $medical_history[0]->extended_periods == 'Yes' ? $medical_history[0]->extended_periods_desc : ''; ?>" type="text" id="extended_periods_extra_Details" class="form-control">
-                                                        <span class="help-block">Ex :- Any Char</span>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -1343,7 +1265,7 @@ if ($elec_details != '') {
                                                     <div class="input-icon">
                                                         <label for="">Other (Please specify)</label>
                                                         <input value="<?= $illness_other_specify ?>" type="text" id="illnesses_other_details" class="form-control">
-                                                        <span class="help-block">Ex :- Any Char</span>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -1377,7 +1299,7 @@ if ($elec_details != '') {
                                                         <label>Mothers’ and Father’s age at  time of delivery?  </label>
 
                                                         <input value="<?= $child_details == '' ? '' : isset($prenatal_history[0]->mother_father_age) ? $prenatal_history[0]->mother_father_age : '' ?>" id="mother_father_age_deliver_time" type="text" class="form-control">
-                                                        <span class="help-block">Ex :- 10,20</span>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -1387,7 +1309,7 @@ if ($elec_details != '') {
                                                         <label>Pregnancy history: </label>
 
                                                         <input value="<?= $child_details == '' ? '' : isset($prenatal_history[0]->pregnancy_history) ? $prenatal_history[0]->pregnancy_history : '' ?>"   id="pregnancy_history" type="text" class="form-control">
-                                                        <span class="help-block">Ex :- complications, illness, medication, vaccines, trauma</span>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -1397,7 +1319,7 @@ if ($elec_details != '') {
                                                         <label>TYPE OF DELIVERY </label>
 
                                                         <input value="<?= $child_details == '' ? '' : isset($prenatal_history[0]->delivery_type) ? $prenatal_history[0]->delivery_type : '' ?>"      id="delivery_type" type="text" class="form-control">
-                                                        <span class="help-block">Ex :- </span>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -1407,7 +1329,7 @@ if ($elec_details != '') {
                                                         <label>Comment </label>
 
                                                         <input value="<?= $child_details == '' ? '' : isset($prenatal_history[0]->comment) ? $prenatal_history[0]->comment : '' ?>"  id="prenatal_history_comment" type="text" class="form-control">
-                                                        <span class="help-block">Ex :- </span>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -1417,7 +1339,7 @@ if ($elec_details != '') {
                                                         <label>APGAR scores </label>
 
                                                         <input   value="<?= $child_details == '' ? '' : isset($prenatal_history[0]->apgar_scores) ? $prenatal_history[0]->apgar_scores : '' ?>"      id="apgar_scores" type="text" class="form-control">
-                                                        <span class="help-block">Ex :- </span>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -1427,7 +1349,7 @@ if ($elec_details != '') {
 
                                                         <label>Presentation straight after birth</label>
                                                         <input  value="<?= $child_details == '' ? '' : isset($prenatal_history[0]->presentation_straight) ? $prenatal_history[0]->presentation_straight : '' ?>"       id="presentation_straight" type="text" class="form-control">
-                                                        <span class="help-block">Ex :- Jaundice / Colic / any known health issues in early weeks </span>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -1642,7 +1564,7 @@ function Get_Nutrition_detail($nutrition_Arr) {
                 <div class="form-group form-md-line-input has-success">
                     <div class="input-icon">
                         <input id="<?= $New_Arr[$i][2] ?>" value="<?= $desc ?>" type="text" class="form-control">
-                        <span class="help-block">Ex :-Rahul Kumar</span>
+
                     </div>
                 </div>
             </div>

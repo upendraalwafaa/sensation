@@ -44,8 +44,8 @@ $('body').on('click', '.main_delete_category', function () {
     var category_name = $(this).attr('category_name');
     var data = {status: 'delete_main_category', category_id: category_id};
     Lobibox.confirm({
-        msg: 'Are You Sure Want To Delete This Category : ' + category_name+'.<small>Once again you delete this category then also deleted the sub category</small>',
-        title: 'Delete Category',
+        msg: 'Are you sure you want to delete this item? ',
+        title: 'Note : Subcategory also get delete if you confirm',
         callback: function ($this, type) {
             if (type === 'yes') {
                 $.ajax({
@@ -551,36 +551,46 @@ $('body').on('click', '#update_password', function () {
     });
 
 });
-
+$('.therapy_history_rdm').click(function () {
+    var more = $(this).attr('data-con');
+    Lobibox.window({
+        title: 'Note History',
+        content: more
+    });
+});
 $('body').on('click', '#send_reset_password', function () {
     var emp_id = $(this).attr('emp_id');
     var data = {emp_id: emp_id, status: 'send_reset_password'};
-    $.ajax({
-        url: "common",
-        async: true,
-        type: 'POST',
-        data: data,
-        success: function (data) {
-            var json = jQuery.parseJSON(data);
-            if (json.status == 'success') {
-                $('#success-message').html('Subcategory Added Successfully');
-                $('.alert-success').show();
-                $('.alert-success').slideDown(500);
-                setTimeout(function () {
-                    $('.alert-danger').slideUp(500);
-                    window.location = '';
-                }, 2000);
-            } else {
-                $('.alert-danger').show();
-                $('#success-error').html('Try Again')
-                $('.alert-danger').slideDown(500);
-                setTimeout(function () {
-                    $('.alert-danger').slideUp(500);
-                }, 2000);
-            }
+    Lobibox.confirm({
+        msg: 'Do you want to send mail for password reset ',
+        title: 'Reset Password',
+        callback: function ($this, type) {
+            if (type === 'yes') {
+                $.ajax({
+                    url: "common",
+                    async: true,
+                    type: 'POST',
+                    data: data,
+                    success: function (data) {
+                        var json = jQuery.parseJSON(data);
+                        if (json.status == 'success') {
+                            window.location = '';
+                        } else {
+                            $('.alert-danger').show();
+                            $('#success-error').html('Try Again')
+                            $('.alert-danger').slideDown(500);
+                            setTimeout(function () {
+                                $('.alert-danger').slideUp(500);
+                            }, 2000);
+                        }
 
+                    }
+                });
+            }
         }
     });
+
+
 });
 
 $('body ').on('keydown', '.only_number', function () {
@@ -708,6 +718,10 @@ $(function () {
         $(this).removeClass('datepicker');
     });
 });
+function replace_special_char(string) {
+    var temp_s = string.replace('"', ' ').replace("'", ' ');
+    return temp_s;
+}
 var sensation = {
     callajax: function (url, data) {
         var msg = $.ajax({type: "POST", data: data, url: url, async: false}).responseText;

@@ -23,6 +23,8 @@
                             </div>
                             <div class="panel-body">
                                 <div class="row qut_null">
+
+
                                     <div class="col-sm-6">
                                         <div class="col-sm-6">
                                             <label><b>Name Of Child&nbsp;<span style="color:red;">*</span> : </b></label>
@@ -56,7 +58,7 @@
                                                 }
                                             }
                                             ?>
-                                            <select class="form-control" id="parent_type">
+                                            <select class="form-control selectpicker" data-live-search="true" id="parent_type">
                                                 <option  value="">Select Parent </option>
                                                 <option <?= $selected_f ?> value="Father">Father</option>
                                                 <option <?= $selected_m ?> value="Mother">Mother</option>
@@ -251,12 +253,12 @@
 
                                 <?php
                                 $ses = 0;
-                              
+
                                 if ($quotation_descipline != '') {
-                            $qdespline = $quotation_descipline['descipline'];
-                            $category = $quotation_descipline['category'];
-                            $subcategory = $quotation_descipline['subcategory'];
-                         $emp_details = $quotation_descipline['emp_details'];
+                                    $qdespline = $quotation_descipline['descipline'];
+                                    $category = $quotation_descipline['category'];
+                                    $subcategory = $quotation_descipline['subcategory'];
+                                    $emp_details = $quotation_descipline['emp_details'];
                                     for ($ses = 0; $ses < count($qdespline); $ses++) {
                                         $md = $qdespline[$ses];
                                         $attr = 'div_id="' . $ses . '" ';
@@ -297,21 +299,21 @@
                                                             <div class="form-group form-md-line-input has-success">
                                                                 <label for="service_details">Services</label>
                                                                 <div id="subcategory_details_<?= $div_id ?>">
-                                                                <select class="form-control" id="subcategory_change_<?= $div_id ?>">
-                                                                    <option value="">--select--</option>
-                                                                    <?php
-                                                                    for ($scat = 0; $scat < count($subcategory); $scat++) {
-                                                                        $d = $subcategory[$scat];
-                                                                        $selected = '';
-                                                                        if ($md->category_id == $d->category_id) {
-                                                                            if ($d->id == $md->sub_category_id) {
-                                                                                $selected = 'selected="selected"';
+                                                                    <select class="form-control" id="subcategory_change_<?= $div_id ?>">
+                                                                        <option value="">--select--</option>
+                                                                        <?php
+                                                                        for ($scat = 0; $scat < count($subcategory); $scat++) {
+                                                                            $d = $subcategory[$scat];
+                                                                            $selected = '';
+                                                                            if ($md->category_id == $d->category_id) {
+                                                                                if ($d->id == $md->sub_category_id) {
+                                                                                    $selected = 'selected="selected"';
+                                                                                }
+                                                                                ?> <option <?= $selected ?> value="<?= $d->id ?>"><?= $d->sub_category_name ?></option> <?php
                                                                             }
-                                                                            ?> <option <?= $selected ?> value="<?= $d->id ?>"><?= $d->sub_category_name ?></option> <?php
                                                                         }
-                                                                    }
-                                                                    ?>
-                                                                </select>
+                                                                        ?>
+                                                                    </select>
                                                                 </div>
                                                             </div>
                                                         </div>

@@ -1,30 +1,32 @@
-$('body').on('keyup', '#receipt_by_name', function () {
+$('body').on('change', '#receipt_by_name', function () {
     var value = $(this).val();
-    if (value == '') {
-        $('.alldropdown').hide(500);
-        $('.dd-list-3').empty();
-        return false;
-    }
-    var data = {status: 'search_child_name', value: value};
-    $.ajax({
-        url: base_url + "Home/common",
-        async: true,
-        type: 'POST',
-        data: data,
-        success: function (data) {
-            var json = jQuery.parseJSON(data);
-            console.log(json);
-            var html = '';
-            $('.dd-list-3').empty();
-            for (var i = 0; i < json.length; i++) {
-                var d = json[i];
-                var href = base_url + 'Home/create_receipt/' + d.id;
-                html = html + '  <a href="' + href + '" title="Child Name : ' + d.child_name + ' Parent Name : ' + d.father_name + '"> <li >' + d.child_name + ' [ ' + d.father_name + ' ]</li></a>';
-            }
-            $('.dd-list-3').append(html);
-            $('.alldropdown').show(500);
-        }
-    });
+    var href = base_url + 'Home/create_receipt/' + value;
+    window.location = href;
+//    if (value == '') {
+//        $('.alldropdown').hide(500);
+//        $('.dd-list-3').empty();
+//        return false;
+//    }
+//    var data = {status: 'search_child_name', value: value};
+//    $.ajax({
+//        url: base_url + "Home/common",
+//        async: true,
+//        type: 'POST',
+//        data: data,
+//        success: function (data) {
+//            var json = jQuery.parseJSON(data);
+//            console.log(json);
+//            var html = '';
+//            $('.dd-list-3').empty();
+//            for (var i = 0; i < json.length; i++) {
+//                var d = json[i];
+//                var href = base_url + 'Home/create_receipt/' + d.id;
+//                html = html + '  <a href="' + href + '" title="Child Name : ' + d.child_name + ' Parent Name : ' + d.father_name + '"> <li >' + d.child_name + ' [ ' + d.father_name + ' ]</li></a>';
+//            }
+//            $('.dd-list-3').append(html);
+//            $('.alldropdown').show(500);
+//        }
+//    });
 });
 $('body').on('click', '.selected_checkbox', function () {
     var total_length = $('input:checkbox.selected_checkbox:checked').length;
@@ -180,33 +182,35 @@ $('#quotation_cancel_btn').click(function () {
         }
     });
 });
-$('body').on('keyup', '#input_student_name', function () {
+$('body').on('change', '#input_student_name', function () {
     var value = $(this).val();
-    if (value == '') {
-        $('.dd-list-na').empty();
-        $('.alldropdown').hide(500);
-        return false;
-    }
-    var data = {status: 'search_child_name', value: value};
-    $.ajax({
-        url: base_url + "Home/common",
-        async: true,
-        type: 'POST',
-        data: data,
-        success: function (data) {
-            var json = jQuery.parseJSON(data);
-            console.log(json);
-            var html = '';
-            $('.dd-list-na').empty();
-            for (var i = 0; i < json.length; i++) {
-                var d = json[i];
-                var href = base_url + 'Home/view_child_details/' + d.id;
-                html = html + '  <a href="' + href + '" title="Child Name : ' + d.child_name + ' Parent Name : ' + d.father_name + '"> <li >' + d.child_name + ' [ ' + d.father_name + ' ]</li></a>';
-            }
-            $('.alldropdown').show(500);
-            $('.dd-list-na').append(html);
-        }
-    });
+    var href = base_url + 'Home/view_child_details/' + value;
+    window.location = href;
+//    if (value == '') {
+//        $('.dd-list-na').empty();
+//        $('.alldropdown').hide(500);
+//        return false;
+//    }
+//    var data = {status: 'search_child_name', value: value};
+//    $.ajax({
+//        url: base_url + "Home/common",
+//        async: true,
+//        type: 'POST',
+//        data: data,
+//        success: function (data) {
+//            var json = jQuery.parseJSON(data);
+//            console.log(json);
+//            var html = '';
+//            $('.dd-list-na').empty();
+//            for (var i = 0; i < json.length; i++) {
+//                var d = json[i];
+//                var href = base_url + 'Home/view_child_details/' + d.id;
+//                html = html + '  <a href="' + href + '" title="Child Name : ' + d.child_name + ' Parent Name : ' + d.father_name + '"> <li >' + d.child_name + ' [ ' + d.father_name + ' ]</li></a>';
+//            }
+//            $('.alldropdown').show(500);
+//            $('.dd-list-na').append(html);
+//        }
+//    });
 });
 $('body').on('click', '.view_payment_histody', function () {
     var quotation_id = $(this).attr('quotation_id');

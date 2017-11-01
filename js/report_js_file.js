@@ -1,4 +1,51 @@
 $('#collection_div').text($('#total_collection').val());
+$('.therapy_report_read_more').click(function () {
+    var more = $(this).attr('full_history');
+    Lobibox.window({
+        title: 'Note History',
+        content: more
+    });
+});
+
+
+$("body input[name='reports']").click(function () {
+    var radio_val = $(this).val();
+    if (radio_val == 'therapy_reports') {
+        $('#tharapy_report_div').show();
+        $('#registration_reports_div').hide();
+        $('#capacity_reports_div').hide();
+        $('#receipt_reports_div').hide();
+        $('#quotation_reports_div').hide();
+    }
+    if (radio_val == 'registration_reports') {
+        $('#registration_reports_div').show();
+        $('#receipt_reports_div').hide();
+        $('#capacity_reports_div').hide();
+        $('#tharapy_report_div').hide();
+        $('#quotation_reports_div').hide();
+    }
+    if (radio_val == 'quotation_reports') {
+        $('#quotation_reports_div').show();
+        $('#receipt_reports_div').hide();
+        $('#capacity_reports_div').hide();
+        $('#tharapy_report_div').hide();
+        $('#registration_reports_div').hide();
+    }
+    if (radio_val == 'receipt_reports') {
+        $('#receipt_reports_div').show();
+        $('#quotation_reports_div').hide();
+        $('#capacity_reports_div').hide();
+        $('#tharapy_report_div').hide();
+        $('#registration_reports_div').hide();
+    }
+    if (radio_val == 'capacity_reports') {
+        $('#capacity_reports_div').show();
+        $('#receipt_reports_div').hide();
+        $('#quotation_reports_div').hide();
+        $('#tharapy_report_div').hide();
+        $('#registration_reports_div').hide();
+    }
+});
 
 //<![CDATA[
 //<![CDATA[

@@ -16,7 +16,7 @@
                 <button type="button" style="display: none;" id="week_export_btn"  onclick="tableToExcel('week_export', '', 'week_calender')" class="btn green btn-sm">Export<i class="fa fa-external-link"></i> </button>
                 <button type="button" style="display: none;" id="today_export_btn"   onclick="tableToExcel('today_export', '', 'today_export')" class="btn green btn-sm">Export<i class="fa fa-external-link"></i> </button>
                 <button type="button" style="display: none;" id="day_export_btn"   onclick="tableToExcel('day_export', '', 'day_export')" class="btn green btn-sm">Export<i class="fa fa-external-link"></i> </button>
-                
+
                 <!--content Area  statrt-->
                 <div class="employer_search_wrap" id="search_employee_for_month_div"> 
                     <div class="form-group">
@@ -40,13 +40,15 @@
                 </div>
 
                 <div class="topemployerlist pull-left" id="selected_calender_employee" style="display:none;">
+
+                    <div class="clearfix"></div>
                 </div>
 
                 <div class="topemployerlist pull-left" id="selected_calender_employee_for_week" style="display: none;">
 
                 </div>
 
-                <div class="col-lg-12 col-lg-9 portlet light bordered">
+                <div class="col-lg-12 col-lg-9 portlet light bordered tabsitemainwrap">
                     <div class="row caltopwrap">
                         <div class="pull-left  " id="calendar_tab" style="display: none;">
                             <button onclick="get_month_calender_status()" type="button" id="month_btn" class="btn blue">
@@ -109,7 +111,7 @@
                             <input id="activity_subject" class="form-control spinner" type="text" placeholder="Subject"> 
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <div class="form-group">
                             <label>Location</label>
@@ -123,13 +125,13 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Start Date </label>
-                                <input value="" type="text" class="form-control datepicker" id="activity_start_date">
+                                <input value="" type="text" class="form-control manage_zindex datepicker" id="activity_start_date">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>End Date </label> <span class="pull-right"><input   class="activty_add_all_day" type="checkbox"><b>Select Days</b></span>
-                                <input type="text" class="form-control datepicker" id="activty_end_date">
+                                <input type="text" class="form-control manage_zindex datepicker" id="activty_end_date">
 
                             </div>
                         </div>

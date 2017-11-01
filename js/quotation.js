@@ -656,7 +656,7 @@ function Get_same_row_session(panel_id, div_id, descipline_id) {
             data: data,
             success: function (data) {
                 var html = '';
-                html = html + ' <div class="row " > ';
+                html = html + ' <div class="row tabtinnone" > ';
                 html = html + '<div class="col-md-2">  ';
                 html = html + '<h5 class="quotation_headeing">Discipline Type</h5>';
                 html = html + ' </div> ';
@@ -787,7 +787,7 @@ $('body').on('click', '#submit_btn', function () {
     json = json + '"sub_total":"' + $('#sub_total').text() + '",';
     json = json + '"discount":"' + $('#session_discount').val() + '",';
     json = json + '"total":"' + $('#total').text() + '",';
-    json = json + '"note":"' + $('#note').val() + '",';
+    json = json + '"note":"' + replace_special_char($('#note').val()) + '",';
     json = json + '"accept_status":"' + $('#accept_status').val() + '",';
     var mail_status = '';
     Lobibox.confirm({
@@ -819,7 +819,7 @@ $('body').on('click', '#submit_btn', function () {
                             if (electronic_link == 1) {
                                 window.location = base_url + 'Home/electronic_quotation_details';
                             } else {
-                                window.location = base_url + 'Home/view_quotation';
+                                window.location = base_url + 'Home/create_receipt/' + child_id;
                             }
                         }, 2000);
                     } else {
@@ -960,7 +960,7 @@ function Get_services_additional_details(div_id) {
     if (services_type.val() == 'Single') {
         temp["start_date"] = $('#single_quo__date_' + div_id).val();
         temp["end_date"] = $('#single_quo__date_' + div_id).val();
-    } else if (services_type.val() == 'Multiple') {
+    } else if (services_type.val() == 'Multiple' || services_type.val() == 'Year') {
         temp["start_date"] = $('#with_quo_start_date_' + div_id).val();
         temp["end_date"] = $('#with_quo_end_date_' + div_id).val();
     }
@@ -1119,6 +1119,14 @@ $('body').on('click', '#get_confirm_popup', function () {
         } else {
             $('#student_name').css('border-color', '');
         }
+        $('#c_child_name').text($('#student_name').val());
+        var parent_name = $('#father_name').text();
+        if (parent_name == '') {
+            parent_name = $('#mother_name').text();
+        }
+        $('#c_parent_name').text(parent_name);
+        $('#c_mobile_number').text($('#father_mobile_no').text());
+        $('#c_email_id').text($('#father_email_id').text())
     }
     $('.sl_no').each(function () {
         var sl_no = [];
@@ -1255,7 +1263,7 @@ $('body').on('click', '.edit_quotation', function () {
         name_html = 'Child Name';
     }
     Lobibox.confirm({
-        msg: 'Are You Sure Want To Manage Quotation No ' + receipt_no + '?',
+        msg: 'Are you sure to want to edit ' + receipt_no + '?',
         title: name_html + ' :- ' + child_name,
         callback: function ($this, type) {
             if (type === 'yes') {

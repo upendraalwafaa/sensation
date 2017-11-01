@@ -1,4 +1,5 @@
 <?php
+
 /*
   Project Name : Sensation Sation
   Company Name : alwafaagroup
@@ -6,6 +7,7 @@
   file Name : notifaction_helper.php(Helper)
   Project URI: http://demo.softwarecompany.ae/sensation/
  */
+
 function get_notification_details($array) {
     $ci = load_Database();
     $session_ar = get_session_array();
@@ -35,6 +37,7 @@ function get_notification_details($array) {
         $html = $html . ' </a>';
         $html = $html . '  </li>';
     }
+
     for ($i = 0; $i < count($notifaction_event); $i++) {
         $d = $notifaction_event[$i];
         $html = $html . '<li>';
@@ -51,7 +54,7 @@ function get_notification_details($array) {
         $time = date('H:i A', strtotime($d->start_time));
         $html = $html . '    <span class="label label-sm label-icon label-warning"> ';
         $html = $html . '       <i class="fa fa-bell-o"></i>';
-        $html = $html . '    </span> Event at ' . $time . ' With  ' . $d->employee_name . ' </span>';
+        $html = $html . '    </span> Appointment : ' . $time . ' With  ' . $d->subject . ' </span>';
         $html = $html . ' </a>';
         $html = $html . '  </li>';
     }

@@ -75,7 +75,7 @@ function send_mail($email_id, $subject, $messages, $file_path = '', $cc = '') {
     $ci = & get_instance();
     $ci->load->library('email');
     error_reporting(0);
-    $ci->email->from('alwafaagroups@hotmail.com', 'SENSATION');
+    $ci->email->from('admin@sensationstation.ae', 'Sensation station');
     $ci->email->to($email_id);
     if ($cc != '') {
         $ci->email->cc($cc);
@@ -384,6 +384,12 @@ function upate_quotation_accept($array) {
     echo '{"status":"success"}';
 }
 
+function get_quotation_receipt_genrate_status($quotation_id) {
+    $db = load_Database();
+    $qry = "SELECT * FROM `payment_details` WHERE `quotation_id` =$quotation_id";
+    return $db->Database->select_qry_array($qry);
+}
+
 function Get_same_row_session($array) {
     $db = load_Database();
     $start_date = $array['start_date'];
@@ -398,41 +404,37 @@ function Get_same_row_session($array) {
     $panel_id = $array['panel_id'];
     $div_id = $array['div_id'];
     $start = strtotime(date('Y-m-d', strtotime($start_date)));
-    $end = strtotime(date('Y-m-d', strtotime($end_date)));
-    $total_days = numWeekDays($start, $end, $days_name, false);
-    $start_days_name = date('l', strtotime($start_date));
-    if ($start_days_name == $days_name) {
-        $total_days = $total_days + 1;
-    }
+    $end = date('Y-m-d', strtotime($end_date));
 
+    $startDate = new DateTime($start_date);
+    $endDate = new DateTime($end_date);
+    $interval = $startDate->diff($endDate);
+    $total_days = (int) (($interval->days) / 7);
+
+    $start_days_name = date('l', strtotime($start_date));
     $day_inc = 0;
-    for ($i = 0; $i < $total_days; $i++) {
+    $dateloop1 = date('Y-m-d', strtotime('-1 days', strtotime($array['start_date'])));
+    for ($i = 0; $i <= $total_days; $i++) {
         $qry = "SELECT * FROM `employee_details` WHERE disipline_id LIKE '%" . $descipline_id . "%'";
         $price_q = "SELECT S.*,DI.disipline_name,DI.description,DI.id AS disipline_id FROM `service_details` S LEFT JOIN disipline_details DI ON S.`disipline`=DI.id WHERE `category_id` LIKE '" . $array['category_id'] . "' AND `sub_category_id` LIKE '" . $array['subcat_id'] . "' AND `disipline` =" . $descipline_id;
         $employee = $db->Database->select_qry_array($qry);
         $discipline_Arr = $db->Database->select_qry_array($price_q);
-        if ($i == 0 && $start_days_name == $days_name) {
-            $temp_d = date('Y-m-d', strtotime($start_date));
-            $day_inc = $day_inc + 7;
-        } else {
-            $temp_d = date('Y-m-d', strtotime('+' . $day_inc . ' days', strtotime($start_date)));
-            //  $date = date('Y-m-d', strtotime("next $days_name", strtotime($temp_d)));
-            $day_inc = $day_inc + 7;
+        if ($i != 0) {
+            $dateloop1 = date('Y-m-d', strtotime('+7 days', strtotime($dateloop1)));
         }
         for ($dd = 0; $dd < count($temp_day); $dd++) {
             $row_id_cond = $panel_id . '_' . $i . '_' . $dd;
-            $days_name = $temp_day[$dd];
-            if ($array['calendar_type'] != 'Single') {
-                $date = date('Y-m-d', strtotime("next $days_name", strtotime($temp_d)));
-                if ($end_date < $date) {
-                    continue;
-                }
-            } else {
-                $date = $array['start_date'];
+            $day_name = $temp_day[$dd];
+
+            $datefor = new DateTime($dateloop1);
+            $datefor->modify("next $day_name");
+            $date = $datefor->format('Y-m-d');
+            if ($date > $end) {
+                continue;
             }
             ?>
             <div class="row session_quo_cls row_id_<?= $panel_id ?>" div_id="<?= $div_id ?>" pannel_id="<?= $panel_id ?>" row_id="<?= $row_id_cond ?>" id="row_<?= $row_id_cond ?>"> 
-                <div class="col-md-2">  
+                <div class="col-md-2 mrg15">  
                     <!--if this drop down manual change then need to this service_id change (because its coming form services_details table and there is multiple discipline)-->
                     <select  class="form-control discipline_type edited" id="services_displine_id_<?= $row_id_cond ?>">
                         <option value="">--Select--</option>
@@ -468,7 +470,7 @@ function Get_same_row_session($array) {
                     $title_error = $decode_ar['employee_name'] . '  is busy ' . date('H:i', strtotime($decode_ar['start_time'])) . ' - ' . date('H:i', strtotime($decode_ar['end_time']));
                 }
                 ?>
-                <div class="col-md-2"> 
+                <div class="col-md-2 mrg15"> 
                     <select <?= $chnage_date_attr ?> class="form-control avility_show_msg_chnage <?= $add_class ?>" id="staff_id_<?= $row_id_cond ?>"> 
                         <option value="">--Select--</option>
                         <?php
@@ -483,30 +485,30 @@ function Get_same_row_session($array) {
                     </select> 
                 </div>
 
-                <div class="col-md-2"> 
+                <div class="col-md-2 mrg15"> 
                     <input <?= $chnage_date_attr ?>  id="session_date_<?= $row_id_cond ?>" class="datepicker_dsb form-control  quotation_calender avility_show_msg_chnage  <?= $add_class ?>" type="text" value="<?= $date ?>">
                 </div>
-                <div class="col-md-4" style="">
-                    <div class="col-sm-6"> 
+                <div class="col-md-4 tabpadnone" style="">
+                    <div class="col-sm-6 mrg15"> 
                         <select <?= $chnage_date_attr ?> class="form-control avility_show_msg_chnage <?= $add_class ?>" id="start_time_<?= $row_id_cond ?>"> 
                             <?= print_time($time); ?>
                         </select> 
                     </div>
 
-                    <div class="col-sm-6">
+                    <div class="col-sm-6 mrg15">
                         <select <?= $chnage_date_attr ?>  class="form-control avility_show_msg_chnage <?= $add_class ?>" id="end_time_<?= $row_id_cond ?>">  
                             <?= print_time($end_time); ?>
                         </select> 
 
                     </div>
                 </div>
-                <div class="col-md-2 "> 
+                <div class="col-md-2 mrg15 "> 
                     <?php
                     if ($discipline_Arr[0]->sub_category_id == 16) {
-                        if($dd==0 && $i==0){
-                          
-                        }else{
-                             $discipline_fee=0; 
+                        if ($dd == 0 && $i == 0) {
+                            
+                        } else {
+                            $discipline_fee = 0;
                         }
                     }
                     ?>
@@ -790,6 +792,7 @@ function get_quotation_month_colloction($array) {
 function get_home_page_details($status = '') {
     $value = '';
     $db = load_Database();
+    $session_ar = get_session_array_value();
     $today = date('Y-m-d');
     switch ($status) {
         case 'today_collection':
@@ -808,7 +811,7 @@ function get_home_page_details($status = '') {
             $value = $new_arr[0]->total;
             break;
         case 'today_appoinment':
-            $qry = "SELECT * FROM `event_schedule_details` WHERE event_date='$today' GROUP BY `event_id_grp`";
+            $qry = "SELECT * FROM `event_schedule_details` WHERE event_date='$today' AND staff_id='" . $session_ar[0]->id . "' GROUP BY `event_id_grp`";
             $new_arr = $db->Database->select_qry_array($qry);
             $value = count($new_arr);
             break;
@@ -849,5 +852,67 @@ function getMonthString($m) {
     } else if ($m == 12) {
         return "Dec";
     }
+}
+
+function get_dropdown_child_searchbox($id = '', $name = '', $redirurl = '', $class = '') {
+    $db = load_Database();
+    $qry = "SELECT C.*,P.*,C.id AS child_tbl_id FROM child_details C LEFT JOIN parent_details P ON P.child_id=C.id WHERE C.archive=0 ORDER BY C.child_name";
+    $child_details_all = $db->Database->select_qry_array($qry);
+    ?>
+    <select <?= $id != '' ? "id=$id" : '' ?> <?= $name != '' ? "name=$name" : '' ?> <?= $redirurl != '' ? "onchange=window.location=(base_url+'" . $redirurl . "/'+this.value)" : '' ?>  class="selectpicker form-control <?= $class ?>" data-live-search="true">
+        <option value="">searching for child..</option>
+        <?php
+        for ($cch = 0; $cch < count($child_details_all); $cch++) {
+            $d = $child_details_all[$cch];
+            $parent_name = $d->father_name;
+            if ($parent_name == '') {
+                $parent_name = $d->mother_name;
+            }
+            ?><option value="<?= $d->child_tbl_id ?>"><?= $d->child_name . ' [ ' . $parent_name . ' ]' ?></option><?php
+        }
+        ?>
+    </select>
+    <?php
+}
+
+function get_dropdown_employee_searchbox($id = '', $name = '', $redirurl = '', $class = '', $employee_id = '') {
+    $db = load_Database();
+    $qry = "SELECT * FROM employee_details";
+    $employee_details_all = $db->Database->select_qry_array($qry);
+    ?>
+    <select <?= $id != '' ? "id=$id" : '' ?> <?= $name != '' ? "name=$name" : '' ?> <?= $redirurl != '' ? "onchange=window.location=(base_url+'" . $redirurl . "/'+this.value)" : '' ?>  class="selectpicker form-control <?= $class ?>" data-live-search="true">
+        <option value="">searching for Employee..</option>
+        <?php
+        for ($cch = 0; $cch < count($employee_details_all); $cch++) {
+            $d = $employee_details_all[$cch];
+            $employee_name = $d->employee_name;
+            ?><option value="<?= $d->id ?>"><?= $employee_name ?></option><?php
+        }
+        ?>
+    </select>
+    <?php
+}
+
+function get_dropdown_disipline_searchbox($id = '', $name = '', $redirurl = '', $class = '', $disipline_id = '') {
+    $db = load_Database();
+    $qry = "SELECT * FROM disipline_details WHERE archive=0";
+    $disipline_details_all = $db->Database->select_qry_array($qry);
+    ?>
+    <select <?= $id != '' ? "id=$id" : '' ?> <?= $name != '' ? "name=$name" : '' ?> <?= $redirurl != '' ? "onchange=window.location=(base_url+'" . $redirurl . "/'+this.value)" : '' ?>  class="selectpicker form-control <?= $class ?>" data-live-search="true">
+        <option value="">searching for disipline..</option>
+        <?php
+        for ($cch = 0; $cch < count($disipline_details_all); $cch++) {
+            $d = $disipline_details_all[$cch];
+            $disipline_name = $d->disipline_name;
+            ?><option title="<?= $d->description ?>" value="<?= $d->id ?>"><?= $disipline_name ?></option><?php
+        }
+        ?>
+    </select>
+    <?php
+}
+
+function get_admin_email_id() {
+    $admin_email = 'admin@sensationstation.ae';
+    return $admin_email;
 }
 ?>

@@ -461,7 +461,7 @@ $('#therapy_case_history').click(function () {
     //     return false;
     // } else {
     //     $('#school').css('border-color', '');
-        json = json + '"school":"' + $('#school').val() + '",';
+    json = json + '"school":"' + $('#school').val() + '",';
     //}
 
     // if ($('#therapists').val() == '') {
@@ -479,9 +479,9 @@ $('#therapy_case_history').click(function () {
     //     $('#main_parental_concerns').css('border-color', 'red');
     //     return false;
     // } else {
-        //$('#main_parental_concerns').css('border-color', '');
-        json = json + '"main_parental_concerns":"' + $('#main_parental_concerns').val() + '",';
-   // }
+    //$('#main_parental_concerns').css('border-color', '');
+    json = json + '"main_parental_concerns":"' + $('#main_parental_concerns').val() + '",';
+    // }
 
     // if ($('#family_history').val() == '') {
     //     $('#family_history').focus();
@@ -498,7 +498,7 @@ $('#therapy_case_history').click(function () {
     //     return false;
     // }
     //if ($('input[name=review_registration_form]:checked').val() == 'Yes') {
-        json = json + '"review_registration_form":"' + $('#review_registration_form').val() + '",';
+    json = json + '"review_registration_form":"' + $('#review_registration_form').val() + '",';
     //}
     // if ($('input[name=perm_photographs]:checked').val() == '') {
     //     json = json + '"review_registration_form":"' + $('#review_registration_form').val() + '",';
@@ -509,8 +509,8 @@ $('#therapy_case_history').click(function () {
     //     $('#review_registration_form_details').css('border-color', 'red');
     //     return false;
     // } else {
-        //$('#review_registration_form_details').css('border-color', '');
-        json = json + '"review_registration_form_details":"' + $('#review_registration_form_details').val() + '",';
+    //$('#review_registration_form_details').css('border-color', '');
+    json = json + '"review_registration_form_details":"' + $('#review_registration_form_details').val() + '",';
     //}
 
 
@@ -580,16 +580,16 @@ $('#therapy_case_history').click(function () {
     //     return false;
     // } else {
     //     $('#age_in_years_months').css('border-color', '');
-        json = json + '"age_in_years_months":"' + $('#age_in_years_months').val() + '",';
-   // }
+    json = json + '"age_in_years_months":"' + $('#age_in_years_months').val() + '",';
+    // }
 
     // if ($('#sat_unsupported').val() == '') {
     //     $('#sat_unsupported').focus();
     //     $('#sat_unsupported').css('border-color', 'red');
     //     return false;
     // } else {
-        //$('#sat_unsupported').css('border-color', '');
-        json = json + '"sat_unsupported":"' + $('#sat_unsupported').val() + '",';
+    //$('#sat_unsupported').css('border-color', '');
+    json = json + '"sat_unsupported":"' + $('#sat_unsupported').val() + '",';
     //}
 
     // if ($('#crawled').val() == '') {
@@ -598,7 +598,7 @@ $('#therapy_case_history').click(function () {
     //     return false;
     // } else {
     //     $('#crawled').css('border-color', '');
-        json = json + '"crawled":"' + $('#crawled').val() + '",';
+    json = json + '"crawled":"' + $('#crawled').val() + '",';
     //}
 
     // if ($('#how').val() == '') {
@@ -607,7 +607,7 @@ $('#therapy_case_history').click(function () {
     //     return false;
     // } else {
     //     $('#how').css('border-color', '');
-        json = json + '"how":"' + $('#how').val() + '",';
+    json = json + '"how":"' + $('#how').val() + '",';
     //}
 
     // if ($('#walked_unsupported').val() == '') {
@@ -616,7 +616,7 @@ $('#therapy_case_history').click(function () {
     //     return false;
     // } else {
     //     $('#walked_unsupported').css('border-color', '');
-        json = json + '"walked_unsupported":"' + $('#walked_unsupported').val() + '",';
+    json = json + '"walked_unsupported":"' + $('#walked_unsupported').val() + '",';
     //}
 
     // if ($('#walking_backwards').val() == '') {
@@ -625,7 +625,7 @@ $('#therapy_case_history').click(function () {
     //     return false;
     // } else {
     //     $('#walking_backwards').css('border-color', '');
-        json = json + '"walking_backwards":"' + $('#walking_backwards').val() + '",';
+    json = json + '"walking_backwards":"' + $('#walking_backwards').val() + '",';
     //}
 
     // if ($('#jumped').val() == '') {
@@ -633,8 +633,8 @@ $('#therapy_case_history').click(function () {
     //     $('#jumped').css('border-color', 'red');
     //     return false;
     // } else {
-        //$('#jumped').css('border-color', '');
-        json = json + '"jumped":"' + $('#jumped').val() + '",';
+    //$('#jumped').css('border-color', '');
+    json = json + '"jumped":"' + $('#jumped').val() + '",';
     //}
 
     // if ($('#bicycle').val() == '') {
@@ -643,7 +643,7 @@ $('#therapy_case_history').click(function () {
     //     return false;
     // } else {
     //     $('#bicycle').css('border-color', '');
-        json = json + '"bicycle":"' + $('#bicycle').val() + '",';
+    json = json + '"bicycle":"' + $('#bicycle').val() + '",';
     //}
 
     // if ($('#independently_activities').val() == '') {
@@ -652,7 +652,7 @@ $('#therapy_case_history').click(function () {
     //     return false;
     // } else {
     //     $('#independently_activities').css('border-color', '');
-        json = json + '"independently_activities":"' + $('#independently_activities').val() + '",';
+    json = json + '"independently_activities":"' + $('#independently_activities').val() + '",';
     //}
 
     // if ($('#gross_motor').val() == '') {
@@ -679,7 +679,7 @@ $('#therapy_case_history').click(function () {
     //     return false;
     // } else {
     //     $('#feeding').css('border-color', '');
-        json = json + '"feeding":"' + $('#feeding').val() + '",';
+    json = json + '"feeding":"' + $('#feeding').val() + '",';
     //}
 
     json = json + '"toileting":"' + $('#toileting').val() + '",';
@@ -693,8 +693,8 @@ $('#therapy_case_history').click(function () {
     //     return false;
     // } else {
     //     $('#separation_issues').css('border-color', '');
-        json = json + '"separation_issues":"' + $('#separation_issues').val() + '",';
-   // }
+    json = json + '"separation_issues":"' + $('#separation_issues').val() + '",';
+    // }
 
     var checked = []
     $("input[name='sensory_processing[]']:checked").each(function ()
@@ -711,7 +711,7 @@ $('#therapy_case_history').click(function () {
     //     return false;
     // } else {
     //     $('#any_other_difficulties').css('border-color', '');
-        json = json + '"any_other_difficulties":"' + $('#any_other_difficulties').val() + '",';
+    json = json + '"any_other_difficulties":"' + $('#any_other_difficulties').val() + '",';
     //}
 
     // if ($('#presentation_nursery_school').val() == '') {
@@ -719,17 +719,17 @@ $('#therapy_case_history').click(function () {
     //     $('#presentation_nursery_school').css('border-color', 'red');
     //     return false;
     // } else {
-        //$('#presentation_nursery_school').css('border-color', '');
-        json = json + '"presentation_nursery_school":"' + $('#presentation_nursery_school').val() + '",';
-   // }
+    //$('#presentation_nursery_school').css('border-color', '');
+    json = json + '"presentation_nursery_school":"' + $('#presentation_nursery_school').val() + '",';
+    // }
 
     // if ($('#presentation_home').val() == '') {
     //     $('#presentation_home').focus();
     //     $('#presentation_home').css('border-color', 'red');
     //     return false;
     // } else {
-        $('#presentation_home').css('border-color', '');
-        json = json + '"presentation_home":"' + $('#presentation_home').val() + '",';
+    $('#presentation_home').css('border-color', '');
+    json = json + '"presentation_home":"' + $('#presentation_home').val() + '",';
     //}
 
     // if ($('#babble').val() == '') {
@@ -737,8 +737,8 @@ $('#therapy_case_history').click(function () {
     //     $('#babble').css('border-color', 'red');
     //     return false;
     // } else {
-       // $('#babble').css('border-color', '');
-        json = json + '"babble":"' + $('#babble').val() + '",';
+    // $('#babble').css('border-color', '');
+    json = json + '"babble":"' + $('#babble').val() + '",';
     //}
 
     // if ($('#say_first_words').val() == '') {
@@ -747,7 +747,7 @@ $('#therapy_case_history').click(function () {
     //     return false;
     // } else {
     //     $('#say_first_words').css('border-color', '');
-        json = json + '"say_first_words":"' + $('#say_first_words').val() + '",';
+    json = json + '"say_first_words":"' + $('#say_first_words').val() + '",';
     //}
 
     // if ($('#put_words_together').val() == '') {
@@ -756,7 +756,7 @@ $('#therapy_case_history').click(function () {
     //     return false;
     // } else {
     //     $('#put_words_together').css('border-color', '');
-        json = json + '"put_words_together":"' + $('#put_words_together').val() + '",';
+    json = json + '"put_words_together":"' + $('#put_words_together').val() + '",';
     //}
 
     // if ($('#speak_longer_sentences').val() == '') {
@@ -765,7 +765,7 @@ $('#therapy_case_history').click(function () {
     //     return false;
     // } else {
     //     $('#speak_longer_sentences').css('border-color', '');
-        json = json + '"speak_longer_sentences":"' + $('#speak_longer_sentences').val() + '",';
+    json = json + '"speak_longer_sentences":"' + $('#speak_longer_sentences').val() + '",';
     //}
 
     // if ($('#home_language').val() == '') {
@@ -774,7 +774,7 @@ $('#therapy_case_history').click(function () {
     //     return false;
     // } else {
     //     $('#home_language').css('border-color', '');
-        json = json + '"home_language":"' + $('#home_language').val() + '",';
+    json = json + '"home_language":"' + $('#home_language').val() + '",';
     //}
 
     // if ($('#other_languages').val() == '') {
@@ -783,7 +783,7 @@ $('#therapy_case_history').click(function () {
     //     return false;
     // } else {
     //     $('#other_languages').css('border-color', '');
-        json = json + '"other_languages":"' + $('#other_languages').val() + '",';
+    json = json + '"other_languages":"' + $('#other_languages').val() + '",';
     //}
 
     // if ($('#expressive_language').val() == '') {
@@ -792,7 +792,7 @@ $('#therapy_case_history').click(function () {
     //     return false;
     // } else {
     //     $('#expressive_language').css('border-color', '');
-        json = json + '"expressive_language":"' + $('#expressive_language').val() + '",';
+    json = json + '"expressive_language":"' + $('#expressive_language').val() + '",';
     //}
 
     // if ($('#receptive_language').val() == '') {
@@ -801,7 +801,7 @@ $('#therapy_case_history').click(function () {
     //     return false;
     // } else {
     //     $('#receptive_language').css('border-color', '');
-        json = json + '"receptive_language":"' + $('#receptive_language').val() + '",';
+    json = json + '"receptive_language":"' + $('#receptive_language').val() + '",';
     //}
 
     // if ($('#speech_articulation').val() == '') {
@@ -810,7 +810,7 @@ $('#therapy_case_history').click(function () {
     //     return false;
     // } else {
     //     $('#speech_articulation').css('border-color', '');
-        json = json + '"speech_articulation":"' + $('#speech_articulation').val() + '",';
+    json = json + '"speech_articulation":"' + $('#speech_articulation').val() + '",';
     //}
 
     // if ($('#playing_alongside').val() == '') {
@@ -819,7 +819,7 @@ $('#therapy_case_history').click(function () {
     //     return false;
     // } else {
     //     $('#playing_alongside').css('border-color', '');
-        json = json + '"playing_alongside":"' + $('#playing_alongside').val() + '",';
+    json = json + '"playing_alongside":"' + $('#playing_alongside').val() + '",';
     //}
 
     // if ($('#any_behavioral_issues').val() == '') {
@@ -828,35 +828,77 @@ $('#therapy_case_history').click(function () {
     //     return false;
     // } else {
     //     $('#any_behavioral_issues').css('border-color', '');
-        json = json + '"any_behavioral_issues":"' + $('#any_behavioral_issues').val() + '",';
+    json = json + '"any_behavioral_issues":"' + $('#any_behavioral_issues').val() + '",';
     //}
 
     // Naturation details get value start
     if ($('input[name=gluten_free]:checked').val() == 'Yes') {
+        if ($('#gluten_free_duration').val() == '') {
+            $('#gluten_free_duration').css('border-color', 'red');
+            $('#gluten_free_duration').focus();
+            return false;
+        } else {
+            $('#gluten_free_duration').css('border-color', '');
+        }
         json = json + '"gluten_free_duration":"' + $('#gluten_free_duration').val() + '",';
     }
     json = json + '"gluten_free":"' + $('input[name=gluten_free]:checked').val() + '",';
 
     if ($('input[name=dairy_free]:checked').val() == 'Yes') {
+        if ($('#dairy_free_duration').val() == '') {
+            $('#dairy_free_duration').css('border-color', 'red');
+            $('#dairy_free_duration').focus();
+            return false;
+        } else {
+            $('#dairy_free_duration').css('border-color', '');
+        }
         json = json + '"dairy_free_duration":"' + $('#dairy_free_duration').val() + '",';
     }
     json = json + '"dairy_free":"' + $('input[name=dairy_free]:checked').val() + '",';
 
     if ($('input[name=casein_free]:checked').val() == 'Yes') {
+        if ($('#casein_free_duration').val() == '') {
+            $('#casein_free_duration').css('border-color', 'red');
+            $('#casein_free_duration').focus();
+            return false;
+        } else {
+            $('#casein_free_duration').css('border-color', '');
+        }
         json = json + '"casein_free_duration":"' + $('#casein_free_duration').val() + '",';
     }
     json = json + '"casein_free":"' + $('input[name=casein_free]:checked').val() + '",';
 
     if ($('input[name=soya_free]:checked').val() == 'Yes') {
+        if ($('#soya_free_duration').val() == '') {
+            $('#soya_free_duration').css('border-color', 'red');
+            $('#soya_free_duration').focus();
+            return false;
+        } else {
+            $('#soya_free_duration').css('border-color', '');
+        }
         json = json + '"soya_free_duration":"' + $('#soya_free_duration').val() + '",';
     }
     json = json + '"soya_free":"' + $('input[name=soya_free]:checked').val() + '",';
 
     if ($('input[name=phenol_free]:checked').val() == 'Yes') {
+        if ($('#phenol_free_duration').val() == '') {
+            $('#phenol_free_duration').css('border-color', 'red');
+            $('#phenol_free_duration').focus();
+            return false;
+        } else {
+            $('#phenol_free_duration').css('border-color', '');
+        }
         json = json + '"phenol_free_duration":"' + $('#phenol_free_duration').val() + '",';
     }
     json = json + '"phenol_free":"' + $('input[name=phenol_free]:checked').val() + '",';
     if ($('input[name=nutrition_other_specify]:checked').val() == 'Yes') {
+        if ($('#nutrition_other_specify_duration').val() == '') {
+            $('#nutrition_other_specify_duration').css('border-color', 'red');
+            $('#nutrition_other_specify_duration').focus();
+            return false;
+        } else {
+            $('#nutrition_other_specify_duration').css('border-color', '');
+        }
         json = json + '"nutrition_other_specify_duration":"' + $('#nutrition_other_specify_duration').val() + '",';
     }
     json = json + '"nutrition_other_specify":"' + $('input[name=nutrition_other_specify]:checked').val() + '",';
@@ -868,7 +910,7 @@ $('#therapy_case_history').click(function () {
     //     return false;
     // } else {
     //     $('#any_behavioral_issues').css('border-color', '');
-        json = json + '"any_other_relevant_information":"' + $('#any_other_relevant_information').val() + '"';
+    json = json + '"any_other_relevant_information":"' + $('#any_other_relevant_information').val() + '"';
     //}
 
     json = json + '}';
