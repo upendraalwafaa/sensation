@@ -1,4 +1,5 @@
 <?php
+
 /*
   Project Name : Sensation Sation
   Company Name : alwafaagroup
@@ -7,6 +8,7 @@
   Project URI: http://demo.softwarecompany.ae/sensation/
   Description : It's only for out side child registraction
  */
+
 function get_category_show_status_array() {
     $return_ar = [5, 6, 7, 8, 9, 10];
     return $return_ar;
@@ -30,7 +32,7 @@ function get_sub_category_details($array) {
 
 function get_staff_details($array) {
     $db = load_Database();
-    $qry = "SELECT * FROM `employee_details`";
+    $qry = "SELECT * FROM `employee_details` WHERE archive =0";
     $cat_array = $db->Database->select_qry_array($qry);
     echo json_encode($cat_array);
 }

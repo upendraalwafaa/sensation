@@ -19,7 +19,11 @@ $('body').on('keyup', '#camp_report_search_name', function () {
                 var d = json[i];
                 var tmp = d.date_of_birth.split('-');
                 var date_of_birth = tmp[2] + '/' + tmp[1] + '/' + tmp[0];
-                var attr = 'child_id="' + d.id + '" child_name="' + d.child_name + '" father_name="' + d.father_name + '" mother_name="' + d.mother_name + '" date_of_birth="' + date_of_birth + '" gender="' + d.gender + '" father_mobile="' + d.father_mobile + '"';
+                var parent_email = d.father_personal_email;
+                if (parent_email == '') {
+                    parent_email = d.mother_personal_email;
+                }
+                var attr = 'child_id="' + d.id + '" parent_email="' + parent_email + '" child_name="' + d.child_name + '" father_name="' + d.father_name + '" mother_name="' + d.mother_name + '" date_of_birth="' + date_of_birth + '" gender="' + d.gender + '" father_mobile="' + d.father_mobile + '"';
                 html = html + '<a ' + attr + ' class="slectt_child_camp"  title="Child Name :  ' + d.child_name + ' Parent Name :  ' + d.father_name + '"> <li> ' + d.child_name + ' [  ' + d.father_name + ' ]</li></a>';
             }
             $('.dd-list-na1').append(html);
@@ -38,7 +42,8 @@ $('body').on('click', '.slectt_child_camp', function () {
     $('#date_of_birht').text($(this).attr('date_of_birth'));
     $('#gender').text($(this).attr('gender'));
     $('#father_mobile_no').text($(this).attr('father_mobile'));
-    $('#child_id').val($(this).attr('child_id'))
+    $('#child_id').val($(this).attr('child_id'));
+    $('#parent_email').text($(this).attr('parent_email'));
 });
 var newservice_div = $('#newservice_div').attr('last_id');
 $('body').on('click', '#newservice_div', function () {
@@ -198,7 +203,7 @@ $('body').on('click', '#save_enroll', function () {
                             $('.alert-success').slideDown(500);
                             setTimeout(function () {
                                 $('.alert-danger').slideUp(500);
-                                window.location = base_url + 'Home/view_camp_reports';
+                                //window.location = base_url + 'Home/view_camp_reports';
                             }, 2000);
                         } else {
                             $('.alert-danger').show();

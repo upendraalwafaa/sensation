@@ -1011,26 +1011,7 @@ class Home extends CI_Controller {
 
 
                 if ($json['mail_status'] == 'Yes') {
-                    $child_name = preg_replace('/\s+/', '', $json['child_name']);
-                    $file_name = $child_name . '_' . $json['receipt_no'];
-                    $mail_html = genrate_quotation_html_mail($quotation_details_id, $electronic_link_id);
-
-                    $file_path = $_SERVER['DOCUMENT_ROOT'] . '/sensation/receipt_details/' . $file_name . '.pdf';
-
-                    $mail_body = receipt_html_body($json['student_id'], $electronic_link_id, $quotation_details_id);
-
-                    if (is_file($file_path)) {
-                        unlink($file_path);
-                    }
-                    $this->load->library('pdf');
-                    $pdf = $this->pdf->load();
-                    $pdf->WriteHTML($mail_html);
-                    $footer_html = receipt_footer_html();
-                    // $pdf->SetHTMLFooter($footer_html, 'O');
-                    $pdf->Output($file_path);
-
-                    $admin_emial = get_admin_email_id();
-                    send_mail($mail_body[1], $mail_body[2], $mail_body[0], $file_path, $admin_emial);
+                 
                 }
                 if ($quotation_details_id >= 0) {
                     $json = '{"status":"success","last_insert_id":"' . $quotation_details_id . '"}';
@@ -1283,6 +1264,7 @@ class Home extends CI_Controller {
                     $this->Database->insert('quotation_session_details', $qses_insert);
                 }
                 if ($qdel_ins_id) {
+                    send_quotation_outside_student_registred_student($qdel_ins_id,$electronic_link_id='');
                     $json = '{"status":"success"}';
                 } else {
                     $json = '{"status":"error"}';
@@ -1463,6 +1445,12 @@ class Home extends CI_Controller {
     public function create_reports() {
         $data['therapy_data'] = '';
         $data['registration_data'] = '';
+        $data['form_quot_data'] = '';
+        $data['quot_data'] = '';
+        $data['form_data_receipt'] = '';
+        $data['receipt_data'] = '';
+        $data['form_data_capi'] = '';
+        $data['data_capi'] = '';
         if (isset($_REQUEST['theray_genrate_report'])) {
             extract($_REQUEST);
             $cond = '';
@@ -1999,7 +1987,7 @@ class Home extends CI_Controller {
             $tnid = $therapy['session_therpay_note_id'];
             $qt_session_fee = $therapy['recei_session_fee'];
             $child = $therapy['recei_child_id'];
-            //$therapy['recei_therapy_note'] = str_replace("'", "\\'", $therapy['recei_therapy_note']);
+            $therapy['recei_therapy_note'] = $_REQUEST['note'];
             $data = [];
             $data = [
                 't_child_id' => $therapy['recei_child_id'],

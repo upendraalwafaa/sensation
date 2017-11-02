@@ -74,3 +74,24 @@
         <!-- END CONTENT BODY -->
     </div>
 </div>
+<div class="modal fade emypopupmain in"  id="inactive_note_detals" tabindex="-1" role="basic" aria-hidden="true" style="display: block; padding-right: 17px;display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close inactive_model_hide"  aria-hidden="true"></button>
+                <h4 class="modal-title"><center><b metting_id="2017_11_02" class="select_close_area">Why <span id="chnage_inactive"></span></b></center></h4>
+            </div>
+            <div class="modal-body">  
+                <div class="form-group">
+                    <label>Notes</label>
+                    <textarea id="note_inactive" class="form-control" rows="2"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button child_id="" update_val="" id="submit_inactive_btn" type="button" class="btn green save_events">Save Events</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

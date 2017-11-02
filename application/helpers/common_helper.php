@@ -637,7 +637,7 @@ function get_partucular_staff_list($array) {
 function search_child_name($array) {
     $value = $array['value'];
     $db = load_Database();
-    $qry = "SELECT C.*,P.father_name,P.mother_name,P.father_mobile FROM `child_details` C LEFT JOIN parent_details P ON P.child_id=C.id WHERE C.`child_name` LIKE '%" . $value . "%' AND C.archive=0";
+    $qry = "SELECT C.*,P.father_name,P.mother_name,P.father_mobile,P.father_personal_email,P.mother_personal_email FROM `child_details` C LEFT JOIN parent_details P ON P.child_id=C.id WHERE C.`child_name` LIKE '%" . $value . "%' AND C.archive=0";
     $new_Arr = $db->Database->select_qry_array($qry);
     echo json_encode($new_Arr);
 }
@@ -646,7 +646,8 @@ function update_inactive_child_status($array) {
     $db = load_Database();
     $child_id = $array['child_id'];
     $update_val = $array['update_val'];
-    $update = ['archive' => $update_val];
+    $note_inactive = $_REQUEST['note_inactive'];
+    $update = ['archive' => $update_val, 'note_inactive' => $note_inactive];
     $cond = "id=" . $child_id;
     $result = $db->Database->update($cond, $update, 'child_details');
     if ($result > 0) {
@@ -856,7 +857,7 @@ function getMonthString($m) {
 
 function get_dropdown_child_searchbox($id = '', $name = '', $redirurl = '', $class = '') {
     $db = load_Database();
-    $qry = "SELECT C.*,P.*,C.id AS child_tbl_id FROM child_details C LEFT JOIN parent_details P ON P.child_id=C.id WHERE C.archive=0 ORDER BY C.child_name";
+    $qry = "SELECT C.*,P.*,C.id AS child_tbl_id FROM child_details C LEFT JOIN parent_details P ON P.child_id=C.id WHERE C.archive=0 AND C.enrolment_status=1 ORDER BY C.child_name";
     $child_details_all = $db->Database->select_qry_array($qry);
     ?>
     <select <?= $id != '' ? "id=$id" : '' ?> <?= $name != '' ? "name=$name" : '' ?> <?= $redirurl != '' ? "onchange=window.location=(base_url+'" . $redirurl . "/'+this.value)" : '' ?>  class="selectpicker form-control <?= $class ?>" data-live-search="true">
@@ -914,5 +915,25 @@ function get_dropdown_disipline_searchbox($id = '', $name = '', $redirurl = '', 
 function get_admin_email_id() {
     $admin_email = 'admin@sensationstation.ae';
     return $admin_email;
+}
+
+function send_quotation_outside_student_registred_student($quotation_details_id = '', $electronic_link_id = '') {
+    $db = load_Database();
+    $child_name = preg_replace('/\s+/', '', $json['child_name']);
+    $file_name = $child_name . '_' . $json['receipt_no'];
+    $mail_html = genrate_quotation_html_mail($quotation_details_id, $electronic_link_id);
+    $file_path = $_SERVER['DOCUMENT_ROOT'] . '/sensation/receipt_details/' . $file_name . '.pdf';
+    $mail_body = receipt_html_body($json['student_id'], $electronic_link_id, $quotation_details_id);
+    if (is_file($file_path)) {
+        unlink($file_path);
+    }
+    $this->load->library('pdf');
+    $pdf = $this->pdf->load();
+    $pdf->WriteHTML($mail_html);
+    $footer_html = receipt_footer_html();
+    // $pdf->SetHTMLFooter($footer_html, 'O');
+    $pdf->Output($file_path);
+    $admin_emial = get_admin_email_id();
+    send_mail($mail_body[1], $mail_body[2], $mail_body[0], $file_path, $admin_emial);
 }
 ?>

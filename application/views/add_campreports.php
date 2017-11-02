@@ -1,4 +1,3 @@
-  kfsjdfajklfklasdlaskdjkladjaskldjasjdkl
 <div class="page-content-wrapper">
     <div class="page-content">
         <div class="clearfix"></div>
@@ -74,6 +73,22 @@
                                             <label id="father_mobile_no"><?= $parent_details == '' ? '' : $parent_details[0]->father_mobile ?></label>
                                         </div>
                                     </div>
+                                    <div class="col-sm-6">
+                                        <div class="col-sm-6">
+                                            <label><b>Email : </b></label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label id="parent_email"><?php
+                                                if ($parent_details != '') {
+                                                    $parent_email = $parent_details[0]->father_personal_email;
+                                                    if ($parent_email == '') {
+                                                        $parent_email = $parent_details[0]->mother_personal_email;
+                                                    }
+                                                    echo $parent_email;
+                                                }
+                                                ?></label>
+                                        </div>
+                                    </div>
 
                                 </div>
                             </div>
@@ -102,7 +117,7 @@
                                                 <div class="panel-heading">
                                                     <?php if ($div_id != 0) {
                                                         ?> <span style="cursor:pointer;" <?= $attr ?> class="fa fa-remove pull-right remove_services_div"></span>
-                                                    <?php } ?>
+        <?php } ?>
                                                     <h3 class="panel-title">SL No :  &nbsp; <?= $sl ?> </h3>
                                                 </div>
                                                 <div class="panel-body">
@@ -121,8 +136,8 @@
                                                                             $selected = 'selected="selected"';
                                                                         }
                                                                         ?> <option <?= $selected ?> value="<?= $d->id ?>"><?= $d->category_name ?></option> <?php
-                                                                    }
-                                                                    ?>
+                                                        }
+                                                        ?>
                                                                 </select>
                                                             </div>
                                                         </div>

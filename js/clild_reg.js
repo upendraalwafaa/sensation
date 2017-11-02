@@ -52,7 +52,7 @@ $('#reg_form_submit').click(function () {
         return false;
     } else {
         $('#address').css('border-color', '');
-        json = json + '"address":"' + $('#address').val().replace(/"/g, '\'') + '",';
+        json = json + '"address":"' + replace_special_char($('#address').val()) + '",';
     }
     if ($('#father_name').val() == '') {
         $('#father_name').focus();
@@ -238,7 +238,7 @@ $('#reg_form_submit').click(function () {
     //     return false;
     // }
     json = json + '"sibling_gender":"' + sibling_gender_arr.join('~') + '",';
-    json = json + '"additional_sibling_details":"' + $('#additional_sibling_details').val() + '",';
+    json = json + '"additional_sibling_details":"' + replace_special_char($('#additional_sibling_details').val()) + '",';
 
     var child_authorisation_name = [];
     var tmp_val = 0;
@@ -371,7 +371,7 @@ $('#reg_form_submit').click(function () {
     json = json + '"external_triggers":"' + $('input[name=external_triggers]:checked').val() + '",';
 
     if ($('input[name=disorders_in_fm]:checked').val() == 'Yes') {
-         if ($('#disorders_in_fm_extra_details').val() == '') {
+        if ($('#disorders_in_fm_extra_details').val() == '') {
             $('#disorders_in_fm_extra_details').css('border-color', 'red');
             $('#disorders_in_fm_extra_details').focus();
             return false;
@@ -383,7 +383,7 @@ $('#reg_form_submit').click(function () {
     json = json + '"disorders_in_fm":"' + $('input[name=disorders_in_fm]:checked').val() + '",';
 
     if ($('input[name=child_medication_history]:checked').val() == 'Yes') {
-          if ($('#child_medication_history_extra_details').val() == '') {
+        if ($('#child_medication_history_extra_details').val() == '') {
             $('#child_medication_history_extra_details').css('border-color', 'red');
             $('#child_medication_history_extra_details').focus();
             return false;
@@ -395,7 +395,7 @@ $('#reg_form_submit').click(function () {
     json = json + '"child_medication_history":"' + $('input[name=child_medication_history]:checked').val() + '",';
 
     if ($('input[name=extended_periods]:checked').val() == 'Yes') {
-         if ($('#extended_periods_extra_Details').val() == '') {
+        if ($('#extended_periods_extra_Details').val() == '') {
             $('#extended_periods_extra_Details').css('border-color', 'red');
             $('#extended_periods_extra_Details').focus();
             return false;
@@ -446,7 +446,7 @@ $('#reg_form_submit').click(function () {
 
 
     json = json + '"child_id":"' + $('#child_id').val() + '",';
-    json = json + '"extra_information_child":"' + $('#extra_information_child').val() + '"';
+    json = json + '"extra_information_child":"' + replace_special_char($('#extra_information_child').val()) + '"';
 
 
     json = json + '}';
@@ -617,7 +617,21 @@ $('body').on('click', '.remove_authorisation_form', function () {
 $('body').on('dblclick', '.child_make_inactive', function () {
     var child_id = $(this).attr('child_id');
     var update_val = $(this).attr('update_val');
-    var data = {status: 'update_inactive_child_status', update_val: update_val, child_id: child_id};
+    $('#note_inactive').val('');
+    if (update_val == 1) {
+        $('#chnage_inactive').html('deactivate?');
+    } else {
+        $('#chnage_inactive').html('activate?');
+    }
+    $('#inactive_note_detals').show(500);
+    $('#submit_inactive_btn').attr('child_id', child_id);
+    $('#submit_inactive_btn').attr('update_val', update_val);
+});
+$('#submit_inactive_btn').click(function () {
+    var child_id = $(this).attr('child_id');
+    var update_val = $(this).attr('update_val');
+    var note_inactive = $('#note_inactive').val();
+    var data = {status: 'update_inactive_child_status', update_val: update_val, child_id: child_id, note_inactive: note_inactive};
     $.ajax({
         url: base_url + "Home/common",
         async: true,
@@ -631,4 +645,7 @@ $('body').on('dblclick', '.child_make_inactive', function () {
             }
         }
     });
+});
+$('.inactive_model_hide').click(function () {
+    $('#inactive_note_detals').hide(500);
 });
