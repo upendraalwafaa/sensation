@@ -1,5 +1,4 @@
 <?php
-
 /*
   Project Name : Sensation Sation
   Company Name : alwafaagroup
@@ -8,9 +7,8 @@
   Project URI: http://demo.softwarecompany.ae/sensation/
   Description : It's only for out side child registraction
  */
-
 function get_category_show_status_array() {
-    $return_ar = [5, 6, 7, 8, 9, 10];
+    $return_ar = [5, 6, 7, 8, 9, 10,21];
     return $return_ar;
 }
 

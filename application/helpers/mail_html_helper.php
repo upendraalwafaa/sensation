@@ -27,7 +27,7 @@ function genrate_quotation_html_mail($quotation_id = '', $electronic_link_id = '
     $quotation_details = $ci->Database->select_qry_array($qry);
     $qde = $quotation_details[0];
 
-    $qry2 = "SELECT QD.*,C.category_name FROM `quotation_discipline_details` QD LEFT JOIN sen_category_details C ON C.id=QD.category_id WHERE quotation_id=$quotation_id";
+    $qry2 = "SELECT QD.*,C.category_name,SC.sub_category_name FROM `quotation_discipline_details` QD LEFT JOIN sen_category_details C ON C.id=QD.category_id LEFT JOIN subcategory SC ON SC.id=QD.sub_category_id WHERE quotation_id=$quotation_id";
     $sess_Arr = $ci->Database->select_qry_array($qry2);
 
     $data['child_arr'] = '';
@@ -53,12 +53,12 @@ function genrate_quotation_html_mail($quotation_id = '', $electronic_link_id = '
         $grp_arr = $ci->Database->select_qry_array($qryses);
         $main_array[$ses]['descipline_details'] = $grp_arr;
     }
-    $session_qry = "SELECT QS.*,Q.category_id FROM `quotation_session_details` QS LEFT JOIN quotation_discipline_details Q ON Q.id=QS.quotation_discipline_id WHERE QS.`quotation_id` =$quotation_id";
+    $session_qry = "SELECT QS.*,Q.category_id,Q.start_date AS s_dt,Q.end_date AS e_dt FROM `quotation_session_details` QS LEFT JOIN quotation_discipline_details Q ON Q.id=QS.quotation_discipline_id WHERE QS.`quotation_id` =$quotation_id";
     $session_qryarr = $ci->Database->select_qry_array($session_qry);
     $data['all_details'] = $main_array;
     $data['sheduling'] = $session_qryarr;
     if ($add_receipt == 'Yes') {
-        $qry_his = "SELECT * FROM `payment_history` WHERE quotation_id=$quotation_id ORDER BY id DESC LIMIT 1";
+        $qry_his = "SELECT P.*,E.employee_name AS genrated_by FROM `payment_history` P LEFT JOIN employee_details E ON E.id=P.updated_by WHERE P.quotation_id=$quotation_id ORDER BY P.id DESC LIMIT 1";
         $data['payment_his'] = $ci->Database->select_qry_array($qry_his);
     }
     $view = $ci->load->view('receipt_pdf', $data, true);
@@ -73,7 +73,7 @@ function receipt_html_body($child_id = '', $electronic_link_id = '', $quotation_
         $electronic_link_arr = $ci->Database->select_qry_array($qryelc);
         $qquery = "SELECT QS.*,SB.sub_category_name  FROM `quotation_discipline_details` QS LEFT JOIN subcategory SB ON QS.category_id=SB.category_id AND SB.id=QS.sub_category_id  WHERE QS.`quotation_id`=$quotation_details_id";
         $subcat_arr = $ci->Database->select_qry_array($qquery);
-        $subject = '' . $subcat_arr[0]->sub_category_name . ' - Sensation Station&nbsp;';
+        $subject = '' . $subcat_arr[0]->sub_category_name . ' - Sensation Station';
 
         $qry_quo = "SELECT QS.*,D.description,E.employee_name FROM `quotation_session_details` QS LEFT JOIN employee_details E ON E.id=QS.staff_id LEFT JOIN disipline_details D ON D.id=QS.discipline_type_id WHERE QS.`quotation_id`=$quotation_details_id";
         $quotation_arr = $ci->Database->select_qry_array($qry_quo);
@@ -96,7 +96,7 @@ function receipt_html_body($child_id = '', $electronic_link_id = '', $quotation_
         $html = '';
         $html = $html . '<p>Dear Parent,</p>
 <p>Warm welcome from Sensation Station!</p>
-<p>Thank you for contacting our center, this email confirms that a ' . $subcat_arr[0]->sub_category_name . '&nbsp;<strong>(only parent/s need to be present)&nbsp;</strong>has been booked with&nbsp;<strong>' . $staff_desc . '&nbsp;</strong>with the details below.</p>';
+<p>Thank you for contacting our center, this email confirms that a ' . $subcat_arr[0]->sub_category_name . '&nbsp;<strong>(only parent/s need to be present)&nbsp;</strong>has been booked with&nbsp;<strong>' . $staff_desc . '&nbsp;</strong>,please see the details below.</p>';
         $html = $html . '<table style="height: 70px;border-color:blue;" border="1px;" width="609">
     <tbody>
     <tr>
@@ -120,6 +120,7 @@ function receipt_html_body($child_id = '', $electronic_link_id = '', $quotation_
         $html = $html . '</tbody>
     </table>';
         $html = $html . '<p>You will also be asked to provide us with a copy of the parent&rsquo;s Emirate&rsquo;s ID (copy for each parent/one parent), so please bring these documents with you on the day.</p>
+        <p><strong><u>Please note that the appointment will be confirmed only after completing the Registration form from the below link:</u></strong></p>
 <p><u>Payment options:</u>&nbsp;Cheque/Bank Transfer/Cash or Card. Please see attached invoice for billing reference.</p>
 <p>Please find below links for the location map and facilities picture guide of Sensation Station for your reference.&nbsp;Valet parking is available and is chargeable after the first 30 minutes. Also behind the building you will find free Robotic Parking.</p>
 <p>Kindly note, if you are unable to attend this meeting, and fail to inform us, we will re-allocate your referral to the bottom of the waiting list.</p>
@@ -143,7 +144,7 @@ function receipt_html_body($child_id = '', $electronic_link_id = '', $quotation_
             $email_id = $chils_arr[0]->mother_personal_email;
         }
 
-        $subject = '' . $chils_arr[0]->child_name . ' quotation sensation sation&nbsp;';
+        $subject = '' . $chils_arr[0]->child_name . ' quotation sensation sation';
         $html = '<p>Dear Parent,</p>
 <p>Hope you are well. Please see attached invoice for ' . $quotation_arr[0]->description . ' session with Masnoena for the dates mentioned in the invoice.</p>
 <p><strong>Payment options:</strong> Cash / Cheque / Bank Transfer / Credit Card.</p>
@@ -164,8 +165,15 @@ function send_mail_receipt_amount_paid($quotation_id = '') {
     <p>Receipt Amount &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;: ' . $qd->total . '</p>-->
     <p>Regards,</p>
     <p>Sensation Center</p>';
+    $admin_emial = get_admin_email_id();
+    $parent_email_id = $qd->father_personal_email;
+    if ($parent_email_id == '') {
+        $parent_email_id = $qd->mother_personal_email;
+    }
+
+
     $subject = $qd->child_name . ' Receipt – Sensation Station';
-    send_mail($qd->father_personal_email, $subject, $body_html, $file_path);
+    send_mail($parent_email_id, $subject, $body_html, $file_path, $admin_emial);
 }
 
 function send_mail_cancelled_session($quotation_id = '') {
@@ -179,7 +187,12 @@ function send_mail_cancelled_session($quotation_id = '') {
     <p>Regards,</p>
     <p>Sensation Center</p>';
     $subject = 'Sensation Session Cancelled Details';
-    send_mail($qd->father_personal_email, $subject, $body_html, $file_path);
+    $admin_emial = get_admin_email_id();
+    $parent_email_id = $qd->father_personal_email;
+    if ($parent_email_id == '') {
+        $parent_email_id = $qd->mother_personal_email;
+    }
+    send_mail($parent_email_id, $subject, $body_html, $file_path, $admin_emial);
 }
 
 function receipt_footer_html() {

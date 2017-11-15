@@ -190,6 +190,7 @@ $('body').on('click', '#save_enroll', function () {
         title: 'Out Side Student Registracion Details',
         callback: function ($this, type) {
             if (type === 'yes') {
+                $('#save_enroll').hide(500);
                 $.ajax({
                     url: base_url + "Home/add_campreports",
                     async: true,
@@ -203,7 +204,7 @@ $('body').on('click', '#save_enroll', function () {
                             $('.alert-success').slideDown(500);
                             setTimeout(function () {
                                 $('.alert-danger').slideUp(500);
-                                //window.location = base_url + 'Home/view_camp_reports';
+                                window.location = base_url + 'Home/view_camp_reports';
                             }, 2000);
                         } else {
                             $('.alert-danger').show();

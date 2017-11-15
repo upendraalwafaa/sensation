@@ -463,7 +463,7 @@ $date = date('d-m-y');
                                 $addition_hide = [4, 5, 6, 7, 8, 9, 10];
 //                                echo '<pre>';
 //                                print_r($main_arr);
-//                                echo '</pre>';
+//                                echo '</pre>';exit;
                                 if ($main_arr != '') {
                                     for ($sd = 0; $sd < count($main_arr); $sd++) {
                                         $div_id = $sd;
@@ -924,7 +924,7 @@ $date = date('d-m-y');
 
                                         <label for="child_name">Note</label>
 
-                                        <textarea class="form-control form-control-inline input" id="note"><?= $quotation_details == '' ? 0 : $quotation_details[0]->note ?></textarea>
+                                        <textarea class="form-control form-control-inline input" id="note"></textarea>
                                     </div>
                                 </div>
                             </div>

@@ -247,7 +247,24 @@ function session_reset_details($array) {
         echo '{"status":"error"}';
     }
 }
-
+ 
+ function get_paid_name_by_paid_id($paid_id=''){
+     $payment_mode_string='';
+        if ($paid_id == 0) {
+            $payment_mode_string =  'Cash ';
+        }
+        if ($paid_id == 1) {
+            $payment_mode_string =  'Cheque ';
+        }
+        if ($paid_id == 2) {
+            $payment_mode_string =  'Card ';
+        }
+        if ($paid_id == 3) {
+            $payment_mode_string = 'Bank Transfer ';
+        }
+        return $payment_mode_string;
+ }
+ 
 function make_it_child_not_attended($array) {
     $db_id = $array['db_id'];
     $db = load_Database();

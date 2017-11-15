@@ -117,7 +117,7 @@
                                                 <div class="panel-heading">
                                                     <?php if ($div_id != 0) {
                                                         ?> <span style="cursor:pointer;" <?= $attr ?> class="fa fa-remove pull-right remove_services_div"></span>
-        <?php } ?>
+                                                    <?php } ?>
                                                     <h3 class="panel-title">SL No :  &nbsp; <?= $sl ?> </h3>
                                                 </div>
                                                 <div class="panel-body">
@@ -136,8 +136,8 @@
                                                                             $selected = 'selected="selected"';
                                                                         }
                                                                         ?> <option <?= $selected ?> value="<?= $d->id ?>"><?= $d->category_name ?></option> <?php
-                                                        }
-                                                        ?>
+                                                                    }
+                                                                    ?>
                                                                 </select>
                                                             </div>
                                                         </div>

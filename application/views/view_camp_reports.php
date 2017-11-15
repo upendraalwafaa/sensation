@@ -13,7 +13,7 @@
                         </div>
 
                         <div class="qtarea">
-                            <a href="<?= base_url() . 'Home/reg_outsidestudent'; ?>">Add New Student</a>
+                            <a href="<?= base_url() . 'Home/add_campreports'; ?>">Add New</a>
                         </div>
 
                     </div>
@@ -50,7 +50,10 @@
                                                 <td > <?= date('d-m-Y H:i', strtotime($d->date_time)) ?> </td>
                                                 <td style=" vertical-align: middle; text-align: center;">
                                                     <a title="Edit" class="btn btn-xs green" href="add_campreports/<?= $d->quotation_id ?>"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
-                                                    <a title="Delete" father_name="<?= $d->father_name ?>" child_name="<?= $d->child_name ?>" quotation_id="<?= $d->quotation_id ?>" child_id="<?= $d->student_id ?>"  class="btn btn-xs red delete_outside_student"><i class="icon-trash"></i></a>
+                                                   <?php
+                                                   if($quotation_details[$i]['total_pay'] == ''){ ?>
+                                                   <a title="Delete" father_name="<?= $d->father_name ?>" child_name="<?= $d->child_name ?>" quotation_id="<?= $d->quotation_id ?>" child_id="<?= $d->student_id ?>"  class="btn btn-xs red delete_outside_student"><i class="icon-trash"></i></a>
+                                                  <?php }  ?> <a class="btn btn-xs yellow" target="_blank" href="<?= base_url().'Home/view_pdf_quotation/'.$d->quotation_id ?>" title="Download PDF"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>
                                                 </td>
                                             </tr> <?php
                                         }

@@ -9,7 +9,7 @@ $('#category_add').click(function () {
         $('#category_name').css('border-color', '');
         json = json + '"category_name":"' + $('#category_name').val() + '",';
     }
-
+    json = json + '"view_type":"' + $('input[name=view_type]:checked').val() + '",';
     json = json + '"category_id":"' + $('#category_id').val() + '"';
     var json = json + '}';
     $.ajax({
@@ -662,6 +662,14 @@ function get_quotation_cancelled_status(status_id) {
     }
     return messages;
 }
+function validateEmail(sEmail) {
+    var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+    if (filter.test(sEmail)) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 function print_time(time = '') {
     var html = '';
@@ -719,7 +727,11 @@ $(function () {
     });
 });
 function replace_special_char(string) {
-    var temp_s = string.replace('"', ' ').replace("'", ' ');
+    var temp_s = string.replace('"', ' ').replace("'", ' ').replace(/\\/g, '').replace(",", ' ').replace(/^[0-9\n]+$/);
+    return temp_s;
+}
+function replace_special_char_textarea(string) {
+    var temp_s = string.replace('"', ' ').replace("'", ' ').replace(/\\/g, '').replace(",", ' ').replace(/^[0-9\n]+$/).split(/[\n\r]/g);
     return temp_s;
 }
 var sensation = {
@@ -728,3 +740,6 @@ var sensation = {
         return msg;
     }
 };
+function goBack() {
+    window.history.back();
+}

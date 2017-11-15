@@ -816,6 +816,21 @@ function get_home_page_details($status = '') {
             $new_arr = $db->Database->select_qry_array($qry);
             $value = count($new_arr);
             break;
+        case 'total_no_outreach':
+            $qry = "SELECT * FROM `child_details` WHERE session_type='Out Reach' AND archive=0";
+            $new_arr = $db->Database->select_qry_array($qry);
+            $value = count($new_arr);
+            break;            
+        case 'total_no_centre':
+            $qry = "SELECT * FROM `child_details` WHERE session_type='Center' AND archive=0";
+            $new_arr = $db->Database->select_qry_array($qry);
+            $value = count($new_arr);
+            break; 
+        case 'total_no_inactive':
+            $qry = "SELECT * FROM `child_details` WHERE archive=1";
+            $new_arr = $db->Database->select_qry_array($qry);
+            $value = count($new_arr);
+            break;             
     }
     return $value;
 }
@@ -912,28 +927,53 @@ function get_dropdown_disipline_searchbox($id = '', $name = '', $redirurl = '', 
     <?php
 }
 
-function get_admin_email_id() {
-    $admin_email = 'admin@sensationstation.ae';
-    return $admin_email;
+function get_nationality_dropdow($id = '', $name = '',  $class = '',$redirurl='',$nationality_id='') {
+    $db = load_Database();
+    $qry = "SELECT * FROM countries ORDER BY country_name";
+    $array = $db->Database->select_qry_array($qry);
+     ?>
+      <select <?= $id != '' ? "id=$id" : '' ?> <?= $name != '' ? "name=$name" : '' ?> <?= $redirurl != '' ? "onchange=window.location=(base_url+'" . $redirurl . "/'+this.value)" : '' ?>  class="selectpicker form-control <?= $class ?>" data-live-search="true">
+        <option value="">searching for country..</option>
+        <?php
+        for ($cch = 0; $cch < count($array); $cch++) {
+            $select='';
+             $d = $array[$cch];
+            if($nationality_id==$d->id){
+            $select='selected="selected"';
+            }
+            $country_name = $d->country_name;
+            ?><option <?= $select ?> title="<?= $country_name ?>" value="<?= $d->id ?>"><?= $country_name ?></option><?php
+        }
+        ?>
+    </select> <?php
 }
+
+
 
 function send_quotation_outside_student_registred_student($quotation_details_id = '', $electronic_link_id = '') {
     $db = load_Database();
-    $child_name = preg_replace('/\s+/', '', $json['child_name']);
-    $file_name = $child_name . '_' . $json['receipt_no'];
+    $ci = & get_instance();
+    $qry="SELECT Q.*,C.child_name FROM quotation_details Q LEFT JOIN child_details C ON C.id=Q.student_id WHERE Q.quotation_id=$quotation_details_id";
+    $array_qty=$db->Database->select_qry_array($qry);
+    $child_name = preg_replace('/\s+/', '', $array_qty[0]->child_name);
+    $file_name = $child_name . '_' . $array_qty[0]->receipt_no;
     $mail_html = genrate_quotation_html_mail($quotation_details_id, $electronic_link_id);
     $file_path = $_SERVER['DOCUMENT_ROOT'] . '/sensation/receipt_details/' . $file_name . '.pdf';
-    $mail_body = receipt_html_body($json['student_id'], $electronic_link_id, $quotation_details_id);
+    $mail_body = receipt_html_body($array_qty[0]->student_id, $electronic_link_id, $quotation_details_id);
     if (is_file($file_path)) {
         unlink($file_path);
     }
-    $this->load->library('pdf');
-    $pdf = $this->pdf->load();
+    $ci->load->library('pdf');
+    $pdf = $ci->pdf->load();
     $pdf->WriteHTML($mail_html);
     $footer_html = receipt_footer_html();
     // $pdf->SetHTMLFooter($footer_html, 'O');
     $pdf->Output($file_path);
     $admin_emial = get_admin_email_id();
     send_mail($mail_body[1], $mail_body[2], $mail_body[0], $file_path, $admin_emial);
+}
+function get_admin_email_id() {
+    $admin_email = 'sensationstation123@gmail.com';
+    return $admin_email;
 }
 ?>

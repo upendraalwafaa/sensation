@@ -188,6 +188,7 @@
                                                 <th > Total Session</th>
                                                 <th > Total </th>
                                                 <th > Paid </th>
+                                                 <th > Date </th>
                                                 <th >  Due / Excess</th>
                                                 <th ></th>
 
@@ -199,6 +200,7 @@
                                                 $d = $main_arr[$i]['quotation_details'];
                                                 $tot_ses = $main_arr[$i]['quotation_total_session'];
                                                 $paid_amt = $main_arr[$i]['paid_total'];
+                                                $payment_h = $main_arr[$i]['payment_history'];
                                                 ?>
                                                 <tr>
                                                     <td><?= $i + 1; ?></td>
@@ -206,6 +208,9 @@
                                                     <td ><?= $tot_ses[0]->total_session ?> </td>
                                                     <td > <?= $d->total ?> </td>
                                                     <td><?= $paid_amt[0]->total_paid ?></td>
+                                                    <td><?php if(isset($payment_h[0]->timestamp)){
+                                                        echo date('d-m-Y',strtotime($payment_h[0]->timestamp));
+                                                        } ?></td>
                                                     <td>
                                                         <?php
                                                         $calculate = $d->total - $paid_amt[0]->total_paid;
@@ -219,7 +224,8 @@
                                                         ?>
                                                     </td>
                                                     <td style="text-align: center;"><a class="view_session_histody btn btn-xs green" quotation_id="<?= $d->quotation_id ?>" title="View More Details"><i class="fa fa-eye" aria-hidden="true"></i></a> 
-                                                        <a class="btn btn-xs yellow" target="_blank" href="<?= base_url() . 'Home/view_pdf_quotation/' . $d->quotation_id . '/NA/Yes' ?>" title="Download PDF"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>
+                                                    <?php if($paid_amt[0]->total_paid > 0){ ?>
+                                                        <a class="btn btn-xs yellow" target="_blank" href="<?= base_url() . 'Home/view_pdf_quotation/' . $d->quotation_id . '/NA/Yes' ?>" title="Download PDF"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a> <?php } ?>
 
                                                     </td>
                                                 </tr> 

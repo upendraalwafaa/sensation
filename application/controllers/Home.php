@@ -3,7 +3,7 @@
 /*
   Project Name : Sensation Sation
   Company Name : alwafaagroup
-  Author: Upendra Kumar Prasad
+  Author: Upendra Kumar Prasad, Bibin Mathew, Anfiya M H
   Project URI: http://demo.softwarecompany.ae/sensation/
   File Name  : Home.php
   Date : 16-08-2017
@@ -72,6 +72,7 @@ class Home extends CI_Controller {
     public function view_pdf_quotation($quotation_id, $electronic_link_id = 'NA', $add_receipt = '') {
         $electronic_link_id = $electronic_link_id == 'NA' ? '' : $electronic_link_id;
         $mail_html = genrate_quotation_html_mail($quotation_id, $electronic_link_id, $add_receipt);
+        echo $mail_html;exit;
         $this->load->library('pdf');
         $pdf = $this->pdf->load();
         $pdf->debug = true;
@@ -1011,7 +1012,7 @@ class Home extends CI_Controller {
 
 
                 if ($json['mail_status'] == 'Yes') {
-                 
+                    send_quotation_outside_student_registred_student($quotation_details_id, $electronic_link_id);
                 }
                 if ($quotation_details_id >= 0) {
                     $json = '{"status":"success","last_insert_id":"' . $quotation_details_id . '"}';
@@ -1067,7 +1068,7 @@ class Home extends CI_Controller {
                         $session_id = $arr[$t]->service_id;
                         $discpline_id = $arr[$t]->discipline_type_id;
                         $main_Arr[$i]['services_details'][$t]['services'] = $arr[$t];
-                        $qry_sess = "SELECT * FROM `quotation_session_details` WHERE `quotation_id` = $quotation_id AND `service_id` = $session_id";
+                        $qry_sess = "SELECT * FROM `quotation_session_details` WHERE `quotation_discipline_id` = $tmp->id AND `service_id` = $session_id";
                         $sessArr = $this->Database->select_qry_array($qry_sess);
                         $main_Arr[$i]['services_details'][$t]['session'] = $sessArr;
                         $staffqry = "SELECT * FROM `employee_details` WHERE disipline_id LIKE '%" . $discpline_id . "%'";
@@ -1264,7 +1265,7 @@ class Home extends CI_Controller {
                     $this->Database->insert('quotation_session_details', $qses_insert);
                 }
                 if ($qdel_ins_id) {
-                    send_quotation_outside_student_registred_student($qdel_ins_id,$electronic_link_id='');
+                    send_quotation_outside_student_registred_student($qdel_ins_id, $electronic_link_id = '');
                     $json = '{"status":"success"}';
                 } else {
                     $json = '{"status":"error"}';
@@ -1304,7 +1305,7 @@ class Home extends CI_Controller {
     }
 
     public function view_camp_reports() {
-        $qry = "SELECT Q.*,C.child_name,P.father_name FROM quotation_details Q LEFT JOIN parent_details P ON P.child_id=Q.student_id LEFT JOIN child_details C ON Q.student_id=C.id WHERE Q.camp_reports=1";
+        $qry = "SELECT Q.*,C.child_name,P.father_name FROM quotation_details Q LEFT JOIN parent_details P ON P.child_id=Q.student_id LEFT JOIN child_details C ON Q.student_id=C.id WHERE Q.camp_reports=1 ORDER BY Q.timestamp DESC";
         $quotation_details = $this->Database->select_qry_array($qry);
         $main_arr = array();
         for ($i = 0; $i < count($quotation_details); $i++) {
@@ -1442,6 +1443,53 @@ class Home extends CI_Controller {
         $this->load->view('include/footer');
     }
 
+    public function marketing_reports() {
+        $data['reports_marketing'] = '';
+        if (isset($_REQUEST['marketing_genrate_report'])) {
+            extract($_REQUEST);
+            $cond = '';
+            if ($start_date != '' && $end_date != '') {
+                $cond = $cond . '(DATE(timestamp) BETWEEN "' . date('Y-m-d', strtotime($start_date)) . '" AND "' . date('Y-m-d', strtotime($end_date)) . '") AND ';
+            } else if ($start_date != '') {
+                $cond = $cond . "DATE(timestamp) > '" . date('Y-m-d', strtotime($start_date)) . "' AND ";
+            }
+
+            if ($search_type == 'Caseloads' || $search_type == '') {
+                $cond = $cond . 'archive=0 OR archive=1';
+            }
+
+            if ($search_type == 'Active') {
+                $cond = $cond . 'archive=0';
+            }
+
+            if ($search_type == 'Out Reach') {
+                $cond = $cond . 'session_type="' . $search_type . '" AND archive=0';
+            }
+
+            if ($search_type == 'Center') {
+                $cond = $cond . 'session_type="' . $search_type . '" AND archive=0';
+            }
+            if ($search_type == 'Inactive') {
+                $cond = $cond . 'archive=1';
+            }
+
+            if ($cond != '' || $search_type != '') {
+                $cond = 'WHERE ' . $cond;
+            }
+
+
+            $qry = "SELECT * FROM child_details LEFT JOIN parent_details ON child_details.id=parent_details.child_id  $cond";
+
+            $array_new = $this->Database->select_qry_array($qry);
+            $data['reports_marketing'] = $array_new;
+        }
+
+
+        $this->load->view('include/header');
+        $this->load->view('marketing_reports', $data);
+        $this->load->view('include/footer');
+    }
+
     public function create_reports() {
         $data['therapy_data'] = '';
         $data['registration_data'] = '';
@@ -1455,9 +1503,9 @@ class Home extends CI_Controller {
             extract($_REQUEST);
             $cond = '';
             if ($start_date != '' && $end_date != '') {
-                $cond = $cond . '(TH.timestamp BETWEEN "' . date('Y-m-d', strtotime($start_date)) . '" AND "' . date('Y-m-d', strtotime($end_date)) . '") AND ';
+                $cond = $cond . '(DATE(TH.timestamp) BETWEEN "' . date('Y-m-d', strtotime($start_date)) . '" AND "' . date('Y-m-d', strtotime($end_date)) . '") AND ';
             } else if ($start_date != '') {
-                $cond = $cond . "TH.timestamp > '" . date('Y-m-d', strtotime($start_date)) . "' AND ";
+                $cond = $cond . "DATE(TH.timestamp) > '" . date('Y-m-d', strtotime($start_date)) . "' AND ";
             }
             if ($staff_id != '') {
                 $cond = $cond . 'TH.t_staff="' . $staff_id . '" AND ';
@@ -1475,7 +1523,9 @@ class Home extends CI_Controller {
             if ($cond == '') {
                 $cond = 'ORDER BY TH.timestamp DESC LIMIT 1000';
             }
+
             $qry = "SELECT TH.*,C.child_name,Q.receipt_no FROM therapy_note TH LEFT JOIN child_details C ON C.id=TH.t_child_id LEFT JOIN quotation_details Q ON Q.quotation_id=TH.t_quotation_id  $cond";
+
             $array_new = $this->Database->select_qry_array($qry);
             $data['therapy_data'] = $array_new;
         }
@@ -1518,9 +1568,10 @@ class Home extends CI_Controller {
             $end_date = $_REQUEST['end_date'];
             $discipline = $_REQUEST['discipline'];
             if ($start_date != '' && $end_date != '') {
-                $cond = $cond . '(C.timestamp BETWEEN "' . date('Y-m-d', strtotime($start_date)) . '" AND "' . date('Y-m-d', strtotime($end_date)) . '") AND ';
+                $cond = $cond . '(DATE(C.timestamp) BETWEEN "' . date('Y-m-d', strtotime($start_date)) . '" AND "' . date('Y-m-d', strtotime($end_date)) . '") AND ';
             } else if ($start_date != '') {
-                $cond = $cond . "C.timestamp > '" . date('Y-m-d', strtotime($start_date)) . "' AND ";
+                $cond = $cond . "DATE(C.timestamp)
+                > '" . date('Y-m-d', strtotime($start_date)) . "' AND ";
             }
             if ($discipline != '') {
                 $cond = $cond . "C.discipline_id LIKE '%$discipline%' AND ";
@@ -1947,14 +1998,22 @@ class Home extends CI_Controller {
 
             $qry1 = " SELECT * FROM `child_details` WHERE id =" . $id;
             $qry2 = "SELECT * FROM `parent_details` WHERE child_id =" . $id;
-            $qry3 = "SELECT Q.quotation_id,Q.student_id,Q.erp_register_no,Q.receipt_no,Q.timestamp,QD.id as qd_id, QD.quotation_id as qd_id, SUBQ.sub_category_name,CAT.category_name,COUNT(QSES.id) AS tot_ses, COUNT(CASE WHEN QSES.completion_status != 0 THEN 1 END) as completed_ses,
+            $qry3 = "SELECT Q.quotation_id,Q.student_id,Q.erp_register_no,Q.receipt_no,Q.timestamp,QD.id as qd_id, QD.quotation_id as qd_id, SUBQ.sub_category_name,CAT.category_name,COUNT(QSES.id) AS tot_ses, COUNT(
+                CASE WHEN 
+                   QSES.completion_status = 1 
+                OR QSES.completion_status = 2 
+                OR QSES.completion_status = 3
+                OR QSES.completion_status = 4
+                OR QSES.completion_status = 5
+                OR QSES.completion_status = 6
+                OR QSES.completion_status = 7
+                THEN 1 END) as completed_ses,
             SUM(CASE
-                WHEN QSES.completion_status = 2 || QSES.completion_status = 5 || QSES.completion_status = 6 || QSES.completion_status = 8 || QSES.completion_status = 9  THEN 1 ELSE 0 END) AS 'cancl_sess' FROM `quotation_details` Q LEFT JOIN quotation_discipline_details QD ON Q.quotation_id=QD.quotation_id LEFT JOIN subcategory SUBQ ON QD.category_id= SUBQ.category_id AND QD.sub_category_id=SUBQ.id LEFT JOIN sen_category_details CAT ON CAT.id=QD.category_id LEFT JOIN quotation_session_details QSES ON QSES.quotation_discipline_id=QD.id WHERE Q.accept_status='Accept' AND Q.student_id=" . $id . " GROUP BY Q.quotation_id ORDER BY Q.timestamp DESC";
+                WHEN QSES.completion_status = 1 || QSES.completion_status = 2 || QSES.completion_status = 5 || QSES.completion_status = 6 THEN 1 ELSE 0 END) AS 'cancl_sess' FROM `quotation_details` Q LEFT JOIN quotation_discipline_details QD ON Q.quotation_id=QD.quotation_id LEFT JOIN subcategory SUBQ ON QD.category_id= SUBQ.category_id AND QD.sub_category_id=SUBQ.id LEFT JOIN sen_category_details CAT ON CAT.id=QD.category_id LEFT JOIN quotation_session_details QSES ON QSES.quotation_discipline_id=QD.id WHERE Q.accept_status='Accept' AND Q.student_id=" . $id . " GROUP BY Q.quotation_id ORDER BY Q.timestamp DESC";
 
             $qry4 = "SELECT THN.t_id,Q.quotation_id,THN.t_session_id FROM `therapy_note` as THN LEFT JOIN quotation_details as Q ON Q.quotation_id=THN.t_quotation_id   WHERE THN.t_therapy_note='' and THN.t_child_id=" . $id;
 
-            $qry5 = "SELECT Q.quotation_id,QSD.id FROM `quotation_session_details` as QSD LEFT JOIN quotation_details as Q ON Q.quotation_id=QSD.quotation_id WHERE QSD.completion_status=0 AND Q.student_id=" . $id . " AND QSD.staff_id=" . $staff_id . " GROUP BY Q.quotation_id";
-
+            $qry5 = "SELECT Q.quotation_id,QSD.id FROM `quotation_session_details` as QSD LEFT JOIN quotation_details as Q ON Q.quotation_id=QSD.quotation_id WHERE Q.student_id=" . $id . " AND QSD.staff_id=" . $staff_id . " AND (QSD.completion_status=0 OR QSD.completion_status=9 OR QSD.completion_status=8) GROUP BY Q.quotation_id";
 
             $qry6 = "SELECT external_triggers_desc,disorders_in_fm_desc FROM `medical_history` WHERE child_id =" . $id;
 
@@ -2053,6 +2112,7 @@ class Home extends CI_Controller {
                     $tdata = [
                         'therapy_id' => $tnid,
                         'therapy_note' => $therapy['recei_therapy_note'],
+                        'therapy_status' => $therapy['recei_status'],
                         'edited_by' => $session_arr[0]->id,
                         'therapy_note_pdf' => $therapy['therapy_note_pdf']
                     ];
@@ -2088,79 +2148,88 @@ class Home extends CI_Controller {
                     't_note_update_time' => date('Y-m-d H:i:s'),
                 ];
 
+
                 $result = $this->Database->insert('therapy_note', $insdata);
-                $reschedule_date = $therapy['recei_rescheduled_date'];
-                $reschedule_start_time = $therapy['recei_rescheduled_session_time_start'];
-                $reschedule_end_time = $therapy['recei_rescheduled_session_time_end'];
+                if ($result) {
+                    $reschedule_date = $therapy['recei_rescheduled_date'];
+                    $reschedule_start_time = $therapy['recei_rescheduled_session_time_start'];
+                    $reschedule_end_time = $therapy['recei_rescheduled_session_time_end'];
 
-                if ($t_status == 10) {
-                    $data = [];
-                    $data = [
-                        'session_date' => $reschedule_date,
-                        'start_time' => $reschedule_start_time,
-                        'end_time' => $reschedule_end_time,
-                        'completion_status' => $t_status
-                    ];
-                } elseif ($t_status == 2) {
+                    if ($t_status == 10) {
+                        $data = [];
+                        $data = [
+                            'session_date' => $reschedule_date,
+                            'start_time' => $reschedule_start_time,
+                            'end_time' => $reschedule_end_time,
+                            'completion_status' => $t_status
+                        ];
+                    } elseif ($t_status == 2) {
 
-                    $subsql = "SELECT sub_total,discount,total FROM `quotation_details` WHERE quotation_id =" . $therapy['recei_no'];
-                    $data['quotation_amt_details'] = $this->Database->select_qry_array($subsql);
+                        $subsql = "SELECT sub_total,discount,total FROM `quotation_details` WHERE quotation_id =" . $therapy['recei_no'];
+                        $data['quotation_amt_details'] = $this->Database->select_qry_array($subsql);
 
-                    $subt = $data['quotation_amt_details'][0]->sub_total;
-                    $disc = $data['quotation_amt_details'][0]->discount;
-                    $total = $data['quotation_amt_details'][0]->total;
-                    $sub_total = (int) $subt - $refund;
-                    $total = (int) $sub_total - (int) $disc;
-                    $amt = [];
-                    $amt = [
-                        'sub_total' => $sub_total,
-                        'total' => $total,
-                    ];
-                    $cond = "quotation_id=" . $therapy['recei_no'];
-                    $result = $this->Database->update($cond, $amt, 'quotation_details');
-                    send_session_cancel_mail($qtno, $therapy['recei_child_id'], 'bibin.m@alwafaagroup.com', $logged_in[0]->id);
+                        $subt = $data['quotation_amt_details'][0]->sub_total;
+                        $disc = $data['quotation_amt_details'][0]->discount;
+                        $total = $data['quotation_amt_details'][0]->total;
+                        $sub_total = (int) $subt - $refund;
+                        $total = (int) $sub_total - (int) $disc;
+                        $amt = [];
+                        $amt = [
+                            'sub_total' => $sub_total,
+                            'total' => $total,
+                        ];
+                        $cond = "quotation_id=" . $therapy['recei_no'];
+                        $result = $this->Database->update($cond, $amt, 'quotation_details');
+                        send_session_cancel_mail($qtno, $therapy['recei_child_id'], 'bibin.m@alwafaagroup.com', $logged_in[0]->id);
 
-                    $data = [];
-                    $data = [
-                        'services_fee' => $refund,
-                        'completion_status' => $t_status,
-                        'cancelled_amount' => $refund
-                    ];
-                } elseif ($t_status == 5 || $t_status == 6 || $t_status == 8 || $t_status == 9) {
+                        $data = [];
+                        $data = [
+                            'services_fee' => $refund,
+                            'completion_status' => $t_status,
+                            'cancelled_amount' => $refund
+                        ];
+                    } elseif ($t_status == 5 || $t_status == 6) {
 
-                    $subsql = "SELECT sub_total,discount,total FROM `quotation_details` WHERE quotation_id =" . $therapy['recei_no'];
-                    $data['quotation_amt_details'] = $this->Database->select_qry_array($subsql);
-                    $subt = $data['quotation_amt_details'][0]->sub_total;
-                    $disc = $data['quotation_amt_details'][0]->discount;
-                    $total = $data['quotation_amt_details'][0]->total;
+                        $subsql = "SELECT sub_total,discount,total FROM `quotation_details` WHERE quotation_id =" . $therapy['recei_no'];
+                        $data['quotation_amt_details'] = $this->Database->select_qry_array($subsql);
+                        $subt = $data['quotation_amt_details'][0]->sub_total;
+                        $disc = $data['quotation_amt_details'][0]->discount;
+                        $total = $data['quotation_amt_details'][0]->total;
 
-                    $sub_total = (int) $subt - $refund;
-                    $total = (int) $sub_total - (int) $disc;
-                    $amt = [];
-                    $amt = [
-                        'sub_total' => $sub_total,
-                        'total' => $total,
-                    ];
+                        $sub_total = (int) $subt - $refund;
+                        $total = (int) $sub_total - (int) $disc;
+                        $amt = [];
+                        $amt = [
+                            'sub_total' => $sub_total,
+                            'total' => $total,
+                        ];
 
-                    $cond = "quotation_id=" . $therapy['recei_no'];
-                    $result = $this->Database->update($cond, $amt, 'quotation_details');
-                    send_session_cancel_mail($qtno, $therapy['recei_child_id'], 'bibin.m@alwafaagroup.com', $logged_in[0]->id);
-                    $data = [];
-                    $data = [
-                        'services_fee' => 0,
-                        'completion_status' => $t_status,
-                        'cancelled_amount' => $refund
-                    ];
-                } else {
+                        $cond = "quotation_id=" . $therapy['recei_no'];
+                        $result = $this->Database->update($cond, $amt, 'quotation_details');
+                        send_session_cancel_mail($qtno, $therapy['recei_child_id'], 'bibin.m@alwafaagroup.com', $logged_in[0]->id);
+                        $data = [];
+                        $data = [
+                            'services_fee' => 0,
+                            'completion_status' => $t_status,
+                            'cancelled_amount' => $refund
+                        ];
+                    } elseif ($t_status == 9 || $t_status == 8) {
+                        $data = [];
+                        $data = [
+                            'completion_status' => 0
+                        ];
+                    } else {
 
-                    $data = [];
-                    $data = [
-                        'completion_status' => $t_status
-                    ];
+                        $data = [];
+                        $data = [
+                            'completion_status' => $t_status
+                        ];
+                    }
+                    $cond = "id=" . $s_d;
+                    $result = $this->Database->update($cond, $data, 'quotation_session_details');
+                    $json = '{"status":"success","ch_id":"' . $child . '"}';
                 }
 
-                $cond = "id=" . $s_d;
-                $result = $this->Database->update($cond, $data, 'quotation_session_details');
 
 
                 /* if ($refund != '') {
@@ -2220,8 +2289,6 @@ class Home extends CI_Controller {
 
                   }
                   } */
-
-                $json = '{"status":"success","ch_id":"' . $child . '"}';
             }
             echo $json;
         }
@@ -2255,18 +2322,31 @@ class Home extends CI_Controller {
             $data['logged_in'] = $this->session->userdata('logged_in');
             $staff_id = $data['logged_in'][0]->id;
             if ($qt_id == '') {
-                $qry1 = "SELECT TN.*,Q.receipt_no,EMP.employee_name,(SELECT TH.therapy_note FROM therapy_note_history as TH LEFT JOIN  therapy_note as T ON TH.therapy_id=T.t_id WHERE TH.therapy_id=TN.t_id  ORDER BY TH.id DESC LIMIT 1 ) as latest_note FROM `therapy_note` as TN 
+                $qry1 = "SELECT TN.*,Q.receipt_no,EMP.employee_name,TN. t_therapy_note as latest_note,(SELECT count(TH.therapy_note) FROM therapy_note_history as TH LEFT JOIN  therapy_note as T ON TH.therapy_id=T.t_id WHERE TH.therapy_id=TN.t_id  ORDER BY TH.id DESC ) as countnotes FROM `therapy_note` as TN 
                     LEFT JOIN quotation_details as Q ON TN.t_quotation_id=Q.quotation_id 
                     LEFT JOIN employee_details as EMP ON EMP.id=TN.t_staff   
                     LEFT JOIN therapy_note_history as TNH ON TNH.therapy_id=TN.t_id                                                       
                     WHERE TN.t_child_id=" . $id . " AND TN.t_therapy_note !='' GROUP BY TN.t_id";
+
+                /* $qry1 = "SELECT TN.*,Q.receipt_no,EMP.employee_name,(SELECT TH.therapy_note FROM therapy_note_history as TH LEFT JOIN  therapy_note as T ON TH.therapy_id=T.t_id WHERE TH.therapy_id=TN.t_id  ORDER BY TH.id DESC LIMIT 1 ) as latest_note FROM `therapy_note` as TN 
+                  LEFT JOIN quotation_details as Q ON TN.t_quotation_id=Q.quotation_id
+                  LEFT JOIN employee_details as EMP ON EMP.id=TN.t_staff
+                  LEFT JOIN therapy_note_history as TNH ON TNH.therapy_id=TN.t_id
+                  WHERE TN.t_child_id=" . $id . " AND TN.t_therapy_note !='' GROUP BY TN.t_id"; */
             } else {
 
-                $qry1 = "SELECT TN.*,Q.receipt_no,EMP.employee_name,(SELECT TH.therapy_note FROM therapy_note_history as TH LEFT JOIN  therapy_note as T ON TH.therapy_id=T.t_id WHERE TH.therapy_id=TN.t_id  ORDER BY TH.id DESC LIMIT 1 ) as latest_note FROM `therapy_note` as TN 
+                $qry1 = "SELECT TN.*,Q.receipt_no,EMP.employee_name, TN.t_therapy_note as latest_note, (SELECT count(TH.therapy_note) FROM therapy_note_history as TH LEFT JOIN  therapy_note as T ON TH.therapy_id=T.t_id WHERE TH.therapy_id=TN.t_id  ORDER BY TH.id DESC ) as countnotes FROM `therapy_note` as TN 
                     LEFT JOIN quotation_details as Q ON TN.t_quotation_id=Q.quotation_id 
                     LEFT JOIN employee_details as EMP ON EMP.id=TN.t_staff   
-                    LEFT JOIN therapy_note_history as TNH ON TNH.therapy_id=TN.t_id                                                       
+                    LEFT JOIN therapy_note_history as TNH ON TNH.therapy_id=TN.t_id
                     WHERE TN.t_child_id=" . $id . " AND TN.t_therapy_note !='' AND Q.quotation_id=" . $qt_id . " GROUP BY TN.t_id";
+                /*
+                  $qry1 = "SELECT TN.*,Q.receipt_no,EMP.employee_name,(SELECT TH.therapy_note FROM therapy_note_history as TH LEFT JOIN  therapy_note as T ON TH.therapy_id=T.t_id WHERE TH.therapy_id=TN.t_id  ORDER BY TH.id DESC LIMIT 1 ) as latest_note FROM `therapy_note` as TN
+                  LEFT JOIN quotation_details as Q ON TN.t_quotation_id=Q.quotation_id
+                  LEFT JOIN employee_details as EMP ON EMP.id=TN.t_staff
+                  LEFT JOIN therapy_note_history as TNH ON TNH.therapy_id=TN.t_id
+                  WHERE TN.t_child_id=" . $id . " AND TN.t_therapy_note !='' AND Q.quotation_id=" . $qt_id . " GROUP BY TN.t_id";
+                 */
             }
 
 
@@ -2360,12 +2440,28 @@ class Home extends CI_Controller {
             $qry4 = "SELECT Q.quotation_id,Q.student_id,QS.discipline_type_id,EMP.employee_name,DD.disipline_name FROM `quotation_details` Q LEFT JOIN quotation_session_details QS ON QS.quotation_id=Q.quotation_id LEFT JOIN employee_details EMP ON QS.staff_id=EMP.id LEFT JOIN disipline_details DD ON DD.id=QS.discipline_type_id WHERE Q.student_id =" . $id . " GROUP BY disipline_name";
             $qry5 = "SELECT * FROM `child_doc` WHERE child_id =" . $id;
             $qry6 = "SELECT external_triggers_desc,disorders_in_fm_desc FROM `medical_history` WHERE child_id =" . $id;
+
+            $qry7 = "SELECT Q.quotation_id,Q.student_id,Q.erp_register_no,Q.receipt_no,Q.timestamp,QD.id as qd_id, QD.quotation_id as qd_id, SUBQ.sub_category_name,CAT.category_name,COUNT(QSES.id) AS tot_ses, COUNT(CASE WHEN QSES.completion_status != 0 THEN 1 END) as completed_ses,
+            SUM(CASE
+                WHEN QSES.completion_status = 2 || QSES.completion_status = 5 || QSES.completion_status = 6 || QSES.completion_status = 8 || QSES.completion_status = 9  THEN 1 ELSE 0 END) AS 'cancl_sess' FROM `quotation_details` Q LEFT JOIN quotation_discipline_details QD ON Q.quotation_id=QD.quotation_id LEFT JOIN subcategory SUBQ ON QD.category_id= SUBQ.category_id AND QD.sub_category_id=SUBQ.id LEFT JOIN sen_category_details CAT ON CAT.id=QD.category_id LEFT JOIN quotation_session_details QSES ON QSES.quotation_discipline_id=QD.id WHERE Q.accept_status='Accept' AND Q.student_id=" . $id . " GROUP BY Q.quotation_id ORDER BY Q.timestamp DESC";
+
+
+
+
+
+
             $data['child_details']['information'] = $this->Database->select_qry_array($qry1);
             $data['child_details']['parent_information'] = $this->Database->select_qry_array($qry2);
             $data['child_details']['service_information'] = $this->Database->select_qry_array($qry3);
             $data['child_details']['discipline_information'] = $this->Database->select_qry_array($qry4);
             $data['child_details']['documents'] = $this->Database->select_qry_array($qry5);
             $data['child_details']['allergies'] = $this->Database->select_qry_array($qry6);
+            $data['child_details']['quatation_details'] = $this->Database->select_qry_array($qry7);
+
+
+
+
+
             $this->load->view('include/header');
             $this->load->view('child_details', $data);
             $this->load->view('include/footer');
@@ -2402,13 +2498,36 @@ class Home extends CI_Controller {
             LEFT JOIN `therapy_note` AS tp_nt ON tp_nt.t_session_id = qt_sd.id             
             LEFT JOIN `disipline_details` AS ds_de ON ds_de.id = qt_sd.discipline_type_id  
             LEFT JOIN `employee_details` AS emp_de ON emp_de.id = qt_sd.staff_id   
+            WHERE qt.quotation_id =" . $qt_id . " GROUP BY qt_sd.id ";
+
+            $data['qt_session_details'] = $this->Database->select_qry_array($qry);
+// echo "<pre>";
+// print_r($data['qt_session_details']);
+// exit;
+
+            $this->load->view('include/header');
+            $this->load->view('view_sessions', $data);
+            $this->load->view('include/footer');
+        }
+    }
+
+    public function view_sessions_details($qt_id = "") {
+        error_reporting(0);
+        if ($qt_id != '') {
+            $qry = "SELECT qt.quotation_id, qt_ds.start_date,qt_ds.end_date,qt_sd.services_fee,qt_sd.id, qt_sd.session_date, 
+            qt_sd.discipline_type_id, qt_sd.start_time, qt_sd.end_time, qt_sd.staff_id,ds_de.disipline_name,emp_de.employee_name,tp_nt.t_status FROM `quotation_details` AS qt
+            LEFT JOIN `quotation_discipline_details` AS qt_ds ON qt.quotation_id = qt_ds.quotation_id 
+            LEFT JOIN `quotation_session_details` AS qt_sd ON qt.quotation_id = qt_sd.quotation_id 
+            LEFT JOIN `therapy_note` AS tp_nt ON tp_nt.t_session_id = qt_sd.id             
+            LEFT JOIN `disipline_details` AS ds_de ON ds_de.id = qt_sd.discipline_type_id  
+            LEFT JOIN `employee_details` AS emp_de ON emp_de.id = qt_sd.staff_id   
             WHERE qt.quotation_id =" . $qt_id;
 
             $data['qt_session_details'] = $this->Database->select_qry_array($qry);
 
 
             $this->load->view('include/header');
-            $this->load->view('view_sessions', $data);
+            $this->load->view('view_sessions_details', $data);
             $this->load->view('include/footer');
         }
     }
@@ -2430,12 +2549,28 @@ class Home extends CI_Controller {
             $view_session_details = $this->Database->select_qry_array($qry);
             $data['view_session_details'] = $this->Database->select_qry_array($qry);
 
-
-            $qry1 = "SELECT TN.t_id,TNH.*,EMP.employee_name FROM `therapy_note` as TN LEFT JOIN therapy_note_history as TNH ON TN.t_id=TNH.therapy_id LEFT JOIN employee_details as EMP ON TNH.edited_by=EMP.id WHERE TN.t_session_id=" . $s_session_id . " ORDER BY id DESC";
+            $qry1 = "SELECT TNH.id as t_id,TN.t_status,TN.t_created_date,TNH.therapy_note,TNH.timestamp,TNH.strike_note,TNH.notes_from,TNH.therapy_status as t_status,EMP.employee_name FROM `therapy_note` as TN LEFT JOIN therapy_note_history as TNH ON TN.t_id=TNH.therapy_id LEFT JOIN employee_details as EMP ON TNH.edited_by=EMP.id WHERE TN.t_session_id=" . $s_session_id . " AND TNH.therapy_note !='' ORDER BY TNH.id DESC";
 
             $data['therapy_notes']['all_edited_therapy_notes'] = $this->Database->select_qry_array($qry1);
-            $qry2 = "SELECT * FROM `therapy_note` WHERE t_session_id =" . $s_session_id;
+
+
+            $qry2 = "SELECT TN.t_id,TN.t_therapy_note therapy_note,TN.timestamp,TN.t_status,TN.strike_note as strike_note,TN.t_created_date,TN.notes_from, EMP.employee_name  FROM `therapy_note` TN LEFT JOIN employee_details EMP ON TN.t_staff=EMP.id WHERE t_session_id =" . $s_session_id;
+
             $data['therapy_notes']['first_therapy_notes'] = $this->Database->select_qry_array($qry2);
+
+            $data['therapy_notes']['all'] = array_merge($data['therapy_notes']['first_therapy_notes'], $data['therapy_notes']['all_edited_therapy_notes']);
+
+            usort($data['therapy_notes']['all'], function($a, $b) {
+                $ad = new DateTime($a->timestamp);
+                $bd = new DateTime($b->timestamp);
+                if ($ad == $bd) {
+                    return 0;
+                }
+                return $ad < $bd ? 1 : -1;
+            });
+            // echo "<pre>";
+            // print_r($data['therapy_notes']['all']);
+            // exit;
 
             $qry3 = "SELECT quotation_id FROM quotation_session_details WHERE id=" . $s_session_id;
             $data['quotation_id'] = $this->Database->select_qry_array($qry3);
@@ -2443,16 +2578,27 @@ class Home extends CI_Controller {
             $qry4 = "SELECT count(id) as count FROM quotation_session_details WHERE quotation_id=" . $qid;
             $data['sessions_count'] = $this->Database->select_qry_array($qry4);
             $data['sessions_count'] = $data['sessions_count'][0]->count;
-
-            if ($view_session_details[0]->completion_status == 0) {
-                $qry5 = "SELECT count(id) as scount FROM quotation_session_details WHERE quotation_id=$qid AND completion_status!=0";
-                $count_arr = $this->Database->select_qry_array($qry5);
-                $data['ses_comp_cnt'] = $count_arr[0]->scount + 1;
-            } else {
-                $qry6 = "SELECT COUNT(id) AS total_count FROM `quotation_session_details` WHERE `quotation_id`=$qid AND id <= $s_session_id";
-                $count_arr = $this->Database->select_qry_array($qry6);
-                $data['ses_comp_cnt'] = $count_arr[0]->total_count;
+            /* current session number */
+            $qry4 = "SELECT * FROM quotation_session_details WHERE quotation_id=" . $qid;
+            $data['sessions_t_count'] = $this->Database->select_qry_array($qry4);
+            $keys = '';
+            foreach ($data['sessions_t_count'] as $key => $val) {
+                if ($val->id === $s_session_id) {
+                    $keys = $key;
+                }
             }
+            $data['ses_comp_cnt'] = $keys + 1;
+            /* current session end */
+
+            // if ($view_session_details[0]->completion_status == 0) {
+            //     $qry5 = "SELECT count(id) as scount FROM quotation_session_details WHERE quotation_id=$qid AND completion_status!=0";
+            //     $count_arr = $this->Database->select_qry_array($qry5);
+            //     $data['ses_comp_cnt'] = $count_arr[0]->scount + 1;
+            // } else {
+            //     $qry6 = "SELECT COUNT(id) AS total_count FROM `quotation_session_details` WHERE `quotation_id`=$qid AND id <= $s_session_id";
+            //     $count_arr = $this->Database->select_qry_array($qry6);
+            //     $data['ses_comp_cnt'] = $count_arr[0]->total_count;
+            // }
 
             $sql = "SELECT * FROM `employee_details` WHERE `disipline_id` IN (1,2,3,4,5) AND archive=0 AND therapy_notes=0";
             $data['list_of_therapist'] = $this->Database->select_qry_array($sql);
@@ -2618,7 +2764,7 @@ class Home extends CI_Controller {
         if ($id != '') {
             $sql = "SELECT T.*,T.t_therapy_note as therapy_note ,T.t_note_pdf as therapy_note_pdf,E.employee_name FROM `therapy_note` T LEFT JOIN employee_details E ON T.t_staff=E.id WHERE t_id=" . $id . " ORDER BY T.timestamp DESC";
             $data['therapy']['view_notes'] = $this->Database->select_qry_array($sql);
-            $sql = "SELECT TH.*,E.employee_name,TH.timestamp as t_created_date FROM `therapy_note_history` TH LEFT JOIN employee_details E ON TH.edited_by=E.id  WHERE 	therapy_id=" . $id . " ORDER BY TH.timestamp DESC";
+            $sql = "SELECT TH.*,E.employee_name,TH.timestamp as t_created_date FROM `therapy_note_history` TH LEFT JOIN employee_details E ON TH.edited_by=E.id  WHERE  therapy_id=" . $id . " ORDER BY TH.timestamp DESC";
             $data['therapy']['view_his_notes'] = $this->Database->select_qry_array($sql);
         }
         $data['therapy'] = array_merge($data['therapy']['view_notes'], $data['therapy']['view_his_notes']);
@@ -2658,6 +2804,17 @@ class Home extends CI_Controller {
                 ];
                 $cond = "t_id=" . $strike_id;
                 $result = $this->Database->update($cond, $dd, 'therapy_note');
+
+                $qsdata = [];
+                $qsdata = [
+                    'completion_status' => 0
+                ];
+                $cond = "id=" . $sess_id;
+                $result = $this->Database->update($cond, $qsdata, 'quotation_session_details');
+
+
+
+
                 $json = '{"status":"success","message":"Successfuly striked","session":"' . $sess_id . '"}';
                 echo $json;
             } else {
@@ -2801,13 +2958,15 @@ class Home extends CI_Controller {
     /* Marketing Form    Added by :Anfiya    29/08/17 */
 
     public function marketing() {
+        $data['camp_category'] = $this->Database->select_data('sub_category_name', 'subcategory', 'category_id="6"');
         $this->load->view('include/header');
-        $this->load->view('add_marketing');
+        $this->load->view('add_marketing', $data);
         $this->load->view('include/footer');
     }
 
     public function insert_marketing() {
         $values = json_decode($_REQUEST['json'], true);
+        print_r($values);
         if (!empty($values['entry_date'])) {
             $values['entry_date'] = strtotime($values['entry_date']);
         }
@@ -2841,6 +3000,7 @@ class Home extends CI_Controller {
     public function edit_marketing() {
         $data_id = $this->uri->segment(3);
         $where = "id='$data_id'";
+        $data['camp_category'] = $this->Database->select_data('sub_category_name', 'subcategory', 'category_id="6"');
         $data['marketing'] = $this->Database->select_data('*', 'marketing', $where);
         $this->load->view('include/header');
         $this->load->view('edit_marketing', $data);
@@ -2861,6 +3021,7 @@ class Home extends CI_Controller {
 
     public function update_marketing() {
         $values = json_decode($_REQUEST['json'], true);
+
         if (!empty($values['entry_date'])) {
             $values['entry_date'] = strtotime($values['entry_date']);
         }
@@ -2870,7 +3031,36 @@ class Home extends CI_Controller {
         if (!empty($values['parent_dob'])) {
             $values['parent_dob'] = strtotime($values['parent_dob']);
         }
+        if ($values['hear_about_us'] != 8) {
+            $values['about_us_internet_socialmedia'] = '';
+            $values['internet_other'] = '';
+        }
+        $hear_abt_us_specify = ['1', '2', '3', '9'];
+        if (!in_array($values['hear_about_us'], $hear_abt_us_specify)) {
+            $values['about_us_specify'] = '';
+        }
+        if ($values['about_us_internet_socialmedia'] != 9) {
+            $values['internet_other'] = '';
+        }
+        if ($values['categories_nature'] != 1) {
+            $values['camp'] = '';
+            $values['active_client'] = '';
+            $values['therapy_specify'] = '';
+        }
 
+
+        $categories = ['1', '2', '3', '5'];
+        if (!in_array($values['categories_nature'], $categories)) {
+            $values['categories_nature_specify'] = '';
+        }
+
+        if ($values['active_client'] != 8) {
+            $values['camp'] = '';
+        }
+        $active_specify = ['12', '9', '10', '11'];
+        if (!in_array($values['active_client'], $active_specify)) {
+            $values['active_client_specify'] = '';
+        }
         $id = $values['id'];
         echo $result = $this->Database->update_data($id, $values, 'marketing');
     }

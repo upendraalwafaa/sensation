@@ -12,10 +12,13 @@ class Database extends CI_Model {
         return $this->db->insert_id();
     }
 
+    function insert_with_name_array($table_name, $array) {
+        
+    }
+
     function select_qry_array($query) {
         $query = $this->db->query($query);
-         return $query->result();
-        
+        return $query->result();
     }
 
     function update($cond, $array, $table_name) {
@@ -33,24 +36,21 @@ class Database extends CI_Model {
         return $message;
     }
 
-    function select_data($column, $table,$where='') {
-        
-        if($where!='')
-        {
+    function select_data($column, $table, $where = '') {
+
+        if ($where != '') {
             $this->db->select($column);
             $this->db->from($table);
             $this->db->where($where);
             $query = $this->db->get();
             return $result = $query->result();
             //$this->db->last_query();exit;
-        }
-        else
-        {
+        } else {
             $this->db->select($column);
             $this->db->from($table);
             $query = $this->db->get();
             return $result = $query->result();
-           // echo $this->db->last_query();exit;
+            // echo $this->db->last_query();exit;
         }
     }
 
@@ -64,13 +64,12 @@ class Database extends CI_Model {
         $query = $this->db->query($query);
         return $query;
     }
-    
-    function update_data($id,$data,$table_nm)
-    {
+
+    function update_data($id, $data, $table_nm) {
         $this->db->where('id', $id);
-        $result =$this->db->update($table_nm, $data); 
+        $result = $this->db->update($table_nm, $data);
         return $result;
-       // echo $this->db->last_query();exit;
+        // echo $this->db->last_query();exit;
     }
-    
+
 }
