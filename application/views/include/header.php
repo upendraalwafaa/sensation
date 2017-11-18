@@ -18,6 +18,8 @@
         <link href="<?= base_url() ?>assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
         <link href="<?= base_url() ?>assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
         <link href="<?= base_url() ?>assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
+        <link href="<?= base_url() ?>assets/global/plugins/pace/themes/pace-theme-big-counter.css" rel="stylesheet" id="style_components" type="text/css" />        
+
         <link href="<?= base_url() ?>assets/global/plugins/bootstrap-multiselect/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
         <link href="<?= base_url() ?>assets/global/plugins/bootstrap-summernote/summernote.css" rel="stylesheet" type="text/css" />
         <!-- END GLOBAL MANDATORY STYLES -->
@@ -74,13 +76,10 @@
                             <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
                                 <?php
                                 $session_arr = $this->session->userdata('logged_in');
-                                $vb = notification_policy($session_arr[0]->id);
-                                if ($vb == 1) :
-                                    ?> 
-                                    <a href="<?= base_url() ?>Home/accept_policy_procedure" class="dropdown-toggle"  data-close-others="true" aria-expanded="true" style="float:left">
-                                        <i class="icon-doc" style="color:#FF0000"></i>
-                                    </a>                                
-                                <?php endif; ?>
+                                ?>
+                                <a href="<?= base_url().'Home/accept_policy_procedure' ?>" class="dropdown-toggle" data-close-others="true" aria-expanded="true" style="float:left">
+                                    <i class="icon-doc" style="color:#FF0000"></i>
+                                </a>
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" aria-expanded="true" style="float:left">
                                     <i class="icon-bell"></i>
                                     <span class="badge badge-default count_notification"> 0 </span>
@@ -298,7 +297,7 @@
                             <li class="nav-item">
                                 <a href="<?= base_url('Home/child_details'); ?>" class="nav-link ">
                                     <i class="fa fa-child"></i>
-                                    <span class="title">Manage Childs</span>
+                                    <span class="title">Manage Children</span>
                                     <!--<span class="arrow"></span>-->
                                 </a>
                                 <ul class="sub-menu">
@@ -316,7 +315,7 @@
                                     <a href="javascript:;" class="nav-link nav-toggle">
                                         <i class="fa fa-plus-circle"></i>
                                         <span class="title">Registration Form</span>
-                                        <span class="arrow"></span>
+                                        <span class=""></span>
                                     </a>
                                     <!--<ul class="sub-menu" >-->
                                     <!--    <li class="nav-item  ">-->
@@ -325,7 +324,7 @@
                                     <!--        </a>-->
                                     <!--    </li>-->
                                     <!--    <li class="nav-item  ">-->
-                                    <!--        <a href="<?php // echo base_url('Home/reg_view');        ?>" class="nav-link ">-->
+                                    <!--        <a href="<?= base_url('Home/reg_view'); ?>" class="nav-link ">-->
                                     <!--            <span class="title">View </span>-->
                                     <!--        </a>-->
                                     <!--    </li>-->
@@ -335,16 +334,16 @@
                                     <a href="javascript:;" class="nav-link nav-toggle">
                                         <i class="fa fa-external-link-square"></i>
                                         <span class="title">Group/Camp/Training</span>
-                                        <span class="arrow"></span>
+                                        <span class=""></span>
                                     </a>
                                     <!--<ul class="sub-menu">-->
                                     <!--    <li class="nav-item  ">-->
-                                    <!--        <a href="<?php // echo base_url('Home/reg_outsidestudent');        ?>" class="nav-link ">-->
+                                    <!--        <a href="<?= base_url('Home/reg_outsidestudent'); ?>" class="nav-link ">-->
                                     <!--            <span class="title">Add </span>-->
                                     <!--        </a>-->
                                     <!--    </li>-->
                                     <!--    <li class="nav-item  ">-->
-                                    <!--        <a href="<?php // echo base_url('Home/view_outsidestudent');        ?>" class="nav-link ">-->
+                                    <!--        <a href="<?= base_url('Home/view_outsidestudent'); ?>" class="nav-link ">-->
                                     <!--            <span class="title">View </span>-->
                                     <!--        </a>-->
                                     <!--    </li>-->
@@ -385,7 +384,7 @@
                                         </li>
                                         <li class="nav-item">
                                             <a href="<?= base_url('Home/add_campreports'); ?>" class="nav-link ">
-                                                <span class="title">Add Camp & Reports</span>
+                                                <span class="title">Add Camp & Reports & EILP</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
@@ -400,76 +399,76 @@
                                     <a href="javascript:;" class="nav-link nav-toggle">
                                         <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
                                         <span class="title">Electronic Link</span>
-                                        <span class="arrow"></span>
+                                        <span class=""></span>
                                     </a>
                                     <!--<ul class="sub-menu">-->
                                     <!--    <li class="nav-item  ">-->
-                                    <!--        <a href="<?php // echo base_url('Home/add_quotation/add_electronic');        ?>" class="nav-link ">-->
+                                    <!--        <a href="<?= base_url('Home/add_quotation/add_electronic'); ?>" class="nav-link ">-->
                                     <!--            <span class="title">Add New Electronic Link</span>-->
                                     <!--        </a> -->
                                     <!--    </li>-->
                                     <!--    <li class="nav-item  ">-->
-                                    <!--        <a href="<?php // echo base_url('Home/electronic_quotation_details');        ?>" class="nav-link ">-->
+                                    <!--        <a href="<?= base_url('Home/electronic_quotation_details'); ?>" class="nav-link ">-->
                                     <!--            <span class="title">Electronic Link Details</span>-->
                                     <!--        </a>-->
                                     <!--    </li>-->
                                     <!--</ul>-->
                                 </li>
                             <?php } if ($session_arr[0]->receipt == 0) { ?>
-                                <li class="nav-item  ">
-                                    <a href="javascript:;" class="nav-link nav-toggle">
-                                        <i class="fa fa-list-alt" aria-hidden="true"></i>
-                                        <span class="title">Receipt Details</span>
-                                        <span class="arrow"></span>
-                                    </a>
-                                    <ul class="sub-menu">
-                                        <li class="nav-item  ">
-                                            <a href="<?= base_url('Home/create_receipt'); ?>" class="nav-link ">
-                                                <span class="title">Create/Cancellation Receipt</span>
-                                            </a> 
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="<?= base_url('Home/view_child_details'); ?>" class="nav-link ">
-                                                <span class="title">Receipt View</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
+                                <!--<li class="nav-item  ">-->
+                                <!--    <a href="javascript:;" class="nav-link nav-toggle">-->
+                                <!--        <i class="fa fa-list-alt" aria-hidden="true"></i>-->
+                                <!--        <span class="title">Receipt Details</span>-->
+                                <!--        <span class="arrow"></span>-->
+                                <!--    </a>-->
+                                <!--    <ul class="sub-menu">-->
+                                <!--        <li class="nav-item  ">-->
+                                <!--            <a href="<?php // echo base_url('Home/create_receipt');    ?>" class="nav-link ">-->
+                                <!--                <span class="title">Create/Cancellation Receipt</span>-->
+                                <!--            </a> -->
+                                <!--        </li>-->
+                                <!--        <li class="nav-item  ">-->
+                                <!--            <a href="<?php // echo base_url('Home/view_child_details');    ?>" class="nav-link ">-->
+                                <!--                <span class="title">Receipt View</span>-->
+                                <!--            </a>-->
+                                <!--        </li>-->
+                                <!--    </ul>-->
+                                <!--</li>-->
                                 <li class="nav-item" onclick="window.location = '<?= base_url('Home/report_types'); ?>';">
                                     <a href="javascript:;" class="nav-link nav-toggle">
                                         <i class="fa fa-file-text" aria-hidden="true"></i>
                                         <span class="title">Reports</span>
-                                        <span class="arrow"></span>
+                                        <span class=""></span>
                                     </a>
-                                    <!--                                    <ul class="sub-menu">
-                                                                            <li class="nav-item  ">
-                                                                                <a href="<?php // echo base_url('Home/create_reports');       ?>" class="nav-link ">
-                                                                                    <span class="title">Therapy Reports</span>
-                                                                                </a> 
-                                                                            </li>
-                                    
-                                                                            <li class="nav-item  ">
-                                                                                <a href="<?php // echo base_url('Home/registration_reports');       ?>" class="nav-link ">
-                                                                                    <span class="title">Registration Reports</span>
-                                                                                </a> 
-                                                                            </li>
-                                                                            <li class="nav-item  ">
-                                                                                <a href="<?php //echo base_url('Home/quotation_reports');       ?>" class="nav-link ">
-                                                                                    <span class="title">Quotation Reports</span>
-                                                                                </a> 
-                                                                            </li>
-                                                                            <li class="nav-item  ">
-                                                                                <a href="<?php // echo base_url('Home/receipt_reports');       ?>" class="nav-link ">
-                                                                                    <span class="title">Receipt Reports</span>
-                                                                                </a> 
-                                                                            </li>
-                                                                            <li class="nav-item  ">
-                                                                                <a href="<?php // echo base_url('Home/capacity_reports');       ?>" class="nav-link ">
-                                                                                    <span class="title">Capacity Reports</span>
-                                                                                </a> 
-                                                                            </li>
-                                    
-                                                                        </ul>-->
+                                    <!--<ul class="sub-menu">-->
+                                    <!--    <li class="nav-item  ">-->
+                                    <!--        <a href="<?php // echo base_url('Home/create_reports');    ?>" class="nav-link ">-->
+                                    <!--            <span class="title">Therapy Reports</span>-->
+                                    <!--        </a> -->
+                                    <!--    </li>-->
+
+                                    <!--    <li class="nav-item  ">-->
+                                    <!--        <a href="<?php // echo base_url('Home/registration_reports');    ?>" class="nav-link ">-->
+                                    <!--            <span class="title">Registration Reports</span>-->
+                                    <!--        </a> -->
+                                    <!--    </li>-->
+                                    <!--    <li class="nav-item  ">-->
+                                    <!--        <a href="<?php // echo base_url('Home/quotation_reports');    ?>" class="nav-link ">-->
+                                    <!--            <span class="title">Quotation Reports</span>-->
+                                    <!--        </a> -->
+                                    <!--    </li>-->
+                                    <!--    <li class="nav-item  ">-->
+                                    <!--        <a href="<?php // echo base_url('Home/receipt_reports');    ?>" class="nav-link ">-->
+                                    <!--            <span class="title">Receipt Reports</span>-->
+                                    <!--        </a> -->
+                                    <!--    </li>-->
+                                    <!--     <li class="nav-item  ">-->
+                                    <!--        <a href="<?php // echo base_url('Home/capacity_reports');    ?>" class="nav-link ">-->
+                                    <!--            <span class="title">Capacity Reports</span>-->
+                                    <!--        </a> -->
+                                    <!--    </li>-->
+
+                                    <!--</ul>-->
                                 </li>
                             <?php } if ($session_arr[0]->therapy_notes == 0) { ?>
 
@@ -511,6 +510,11 @@
                                                 <span class="title">View</span>
                                             </a> 
                                         </li>
+                                        <li class="nav-item  ">
+                                            <a href="<?= base_url('Home/marketing_reports'); ?>" class="nav-link ">
+                                                <span class="title">Existing Client Reports</span>
+                                            </a> 
+                                        </li>                                        
                                     </ul>
                                 </li>
                             <?php } ?>

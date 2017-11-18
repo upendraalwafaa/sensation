@@ -1,0 +1,530 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Survey</title>
+
+<style>
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.img-up{    width: 250px; float:left;    margin-right: 10px;}
+.img-up img{    width: 100%;}
+
+a {
+  color: #607D8B;
+  text-decoration: none;
+}
+
+body {
+  position: relative;
+  width: 21cm;  
+  height:29cm; 
+  margin: 0 auto; 
+  color: #555555;
+  background: #FFFFFF; 
+  font-family: Arial, sans-serif !important; 
+  font-size: 13.2px; 
+  -webkit-print-color-adjust:exact;
+
+}
+header {
+  padding: 5px 5px;
+  margin-bottom: 0px;
+  border-bottom: 1px solid #607D8B;
+}
+
+#logo {
+    float: left;
+    margin-top: 5px;
+    width: 180px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+#txt {
+    float: left;
+    margin-top: 8px;
+    width: 100%;
+    font-size: 14px;
+    font-weight: bold;
+	border-top:1px solid #607D8B;
+	    padding-top: 5px;
+}
+
+
+#logo img {
+  height: 60px;
+}
+
+#company {
+  float: right;
+  text-align: right;
+}
+
+#details {
+  margin-bottom:0px;
+}
+
+#client {
+  padding-left: 6px;
+  border-left: 6px solid #607D8B;
+  float: left;
+  width: 300px;
+}
+
+#client .to {
+  color: #777777;
+}
+
+h2.name {
+  font-size: 1.3em;
+  font-weight: normal;
+  margin: 0;
+}
+
+#invoice {
+  float: right;
+  text-align: right;
+}
+
+#invoice h1 {
+  color: #607D8B;
+  font-size: 1.2em;
+  line-height: 1em;
+  font-weight: normal;
+  margin: 0  0 0px 0;
+}
+
+#invoice .date {
+  font-size: 1.1em;
+  color: #777777;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-bottom: 20px;
+}
+
+table th,
+table td {
+ 
+
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+}
+td{border: 1px solid #ccc;font-size: 13px; padding:3.1px 4px;}
+p{padding: 0;
+    margin: 0;
+	}
+h3 {
+    padding: 10;
+    margin: 10px 0px;
+    font-weight: normal;
+    font-size: 13px;
+}
+.no{}
+
+.img-up{    width: 300px; float:left; margin-right: 10px;border: solid 5px #fff;}
+.img-up img{    width: 100%; margin-right: 10px;border: solid 5px #fff;}
+
+@media print{
+h3 { padding: 20;
+    margin: 5px 6px;}
+   
+}
+
+
+
+</style>
+
+
+
+
+</head>
+
+<body>
+ <?php
+    $d = $data[0];
+    ?>
+<header class="clearfix">
+      <div id="logo">
+       <h1>IMECSMS</h1>
+      </div>
+        <div id="company">
+                <h2 class="name">Case Ref No: <?= $d->case_ref_no ?></h2>
+                <div><span class="date"><strong>Date</strong>: <?= date_formate($d->date_of_visit); ?></span></div>
+                <div><span class="date"><strong>Time</strong>: <?= time_formate($d->date_of_visit) ?></span></div>
+            </div>
+</header>
+  <div id="details" class="clearfix">
+            <div id="client">
+                <div class="to">Applicants Name:</div>
+                <h2 class="name"><?= $d->applicants_name ?></h2>
+                <div class="address"><?= $d->company_name ?></div>
+                <div class="address"><?= $d->package_information ?></div>
+                <div class="address"><?= $d->business_address ?></div>
+                <div class="address"><?= $d->verified_business_address ?></div>
+            </div>
+            <div id="invoice">
+                <h1><b>Basic Information</b></h1>
+                <div class="date"><?= $d->contact_person ?></div>
+                <div class="date"><strong>Mobile Number: </strong><?= $d->mobile_number ?></div>
+                <div class="date"><strong>Tel No: </strong><?= $d->telephone_number ?></div>
+            </div>
+        </div>
+      
+<header class="clearfix">
+  </div>
+      
+
+
+
+   </header>      
+
+<main>
+  <div id="details" class="clearfix">&#10026; <strong>INFORMATION FROM THE COMPANY</strong></div>
+      <table border="0" cellspacing="0" cellpadding="0">
+                <thead style="margin-bottom: 10px;float: left;">
+                    <tr>
+                        <th colspan="4" class="no">&nbsp;</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="no" bgcolor="#f8f8f8"><h3>Trade License No</h3>            </td>
+                        <td colspan="2" bgcolor="#f8f8f8" class="unit"> <?= $d->trade_license_no ?></td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f8f8f8" class="no"><h3>Type of Company</h3></td>
+                        <td bgcolor="#f8f8f8" class="unit"> Free Zone  <?= $d->type_of_freezone == 1 ? 'Yes' : 'No'; ?></td>
+                        <td bgcolor="#f8f8f8" class="qty"><?= $d->type_of_company ?></td>
+                    </tr>
+
+                </tbody>
+                <tfoot>
+                    <tr bgcolor="#f8f8f8">
+                        <td bgcolor="#f8f8f8"><h3>Type of License</h3></td>
+                        <td bgcolor="#f8f8f8"> <?= $d->type_of_license ?></td>
+                        <td bgcolor="#f8f8f8">Picture taken :<?= $d->company_pic_taken == 1 ? 'Yes' : 'No' ?></td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f8f8f8"><h3>Company Phone No</h3></td>
+                        <td bgcolor="#f8f8f8" colspan="2">  <?= $d->company_phone_no ?></td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f8f8f8"><h3>Company email</h3></td>
+                        <td bgcolor="#f8f8f8" colspan="2"> <?= $d->company_email ?></td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f8f8f8"><h3>Company Website</h3></td>
+                        <td bgcolor="#f8f8f8" colspan="2"> <?= $d->company_website ?></td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f8f8f8"><h3>No of Branches</h3></td>
+                        <td bgcolor="#f8f8f8" colspan="2"> <?= $d->no_of_branches ?></td>
+                    </tr>
+                </tfoot>
+  </table>
+
+     
+       <table border="0" cellspacing="0" cellpadding="0">
+                
+                <thead >
+                    <tr>
+                        <th bgcolor="#eeeded" width="35%" class="no">BRANCH ADDRESSES</th>
+                        <th bgcolor="#eeeded" width="21%" class="desc"><strong>LOCAL</strong></th>
+                        <th bgcolor="#eeeded" width="24%" class="unit"><strong>INTERNATIONAL</strong></th>
+                        <th bgcolor="#eeeded" width="20%" class="qty"><strong>WAREHOUSE</strong></th>
+ 
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td bgcolor="#f8f8f8" class="no"><h3>(With Nearest land mark)</h3>            </td>
+                        <td bgcolor="#f8f8f8" class="unit"><?= $d->branch_local_address ?></td>
+                        <td bgcolor="#f8f8f8" class="unit"><?= $d->branch_intl_address ?></td>
+                        <td bgcolor="#f8f8f8" class="unit"><?= $d->branch_ware_address ?></td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f8f8f8" class="no"><h3>Tel Nos</h3></td>
+                        <td bgcolor="#f8f8f8" class="unit"><?= $d->branch_local_phone ?></td>
+                        <td  bgcolor="#f8f8f8" class="unit"><?= $d->branch_intl_phone ?></td>
+                        <td bgcolor="#f8f8f8" class="unit"><?= $d->branch_ware_phone ?></td>
+                    </tr>
+                   <tr>
+                        <td bgcolor="#fff" class="no">&nbsp;</td>
+                        <td bgcolor="#fff" class="unit"></td>
+                        <td  bgcolor="#fff" class="unit"></td>
+                        <td bgcolor="#fff" class="unit"></td>
+                    </tr>
+
+                </tbody>
+                <tfoot>
+                   
+                    <tr>
+                        <td bgcolor="#f8f8f8" ><h3>Name of Person Met</h3></td>
+                        <td bgcolor="#f8f8f8" colspan="2" class="unit"><?= $d->name_person_met ?></td>
+                        <td bgcolor="#f8f8f8" class="unit">Designation : <?= $d->designation ?></td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f8f8f8" ><h3>Nature of Business</h3></td>
+                        <td bgcolor="#f8f8f8" colspan="3" class="unit"><?= $d->nature_of_business ?></td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f8f8f8" ><h3>Owners Name</h3></td>
+                        <td bgcolor="#f8f8f8" colspan="2" class="unit"><?= $d->owners_name ?></td>
+                        <td bgcolor="#f8f8f8" class="unit">Nationality : <?= get_nationality_name_byid($d->nationality) ?></td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f8f8f8" ><h3>Local Sponsor</h3></td>
+                        <td bgcolor="#f8f8f8" colspan="3" class="unit"><?= $d->local_sponsor ?></td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f8f8f8" ><h3>Name of Group Company</h3></td>
+                        <td bgcolor="#f8f8f8" colspan="2" class="unit"><?= $d->name_group_company ?></td>
+                        <td bgcolor="#f8f8f8" class="unit">Subsidiary : <?= $d->subsidiary ?></td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f8f8f8" ><h3>Other lines of Businesses</h3></td>
+                        <td bgcolor="#f8f8f8" colspan="3" class="unit"><?= $d->other_lines_business ?></td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f8f8f8" ><h3>Years in Business</h3></td>
+                        <td bgcolor="#f8f8f8" colspan="2" class="unit"><?= $d->years_in_business ?></td>
+                        <td bgcolor="#f8f8f8" class="unit">Permanent : <?= $d->permanent_employees_no ?></td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f8f8f8"><h3>Monthly business turnover</h3></td>
+                        <td bgcolor="#f8f8f8" colspan="2" class="unit"><?= $d->monthly_business ?></td>
+                        <td bgcolor="#f8f8f8" class="unit">Contract : <?= $d->contract_employees_no ?></td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f8f8f8" >Company Bank &amp; Branch</td>
+                        <td  bgcolor="#f8f8f8" colspan="3" class="unit"><?= $d->company_bank_branch ?></td>
+                    </tr>
+<!--                    <tr>
+                        <td>Assign To Category A</td>
+                        <td colspan="3" class="unit">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>Assign To Category C</td>
+                        <td colspan="3" class="unit">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td><h3>&nbsp;</h3></td>
+                        <td colspan="3" class="unit">&nbsp;</td>
+                    </tr>-->
+                </tfoot>
+  </table>
+    
+  <div  id="details">
+       
+        <p>&nbsp;</p>
+         <p>&nbsp;</p>
+          <p>&nbsp;</p> 
+          <p>&nbsp;</p>
+           <p>&nbsp;</p>
+            <p>&nbsp;</p>
+             <p>&nbsp;</p>
+              <p>&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;</p>
+               <p>&nbsp;</p>
+                <p>&nbsp;</p>
+    <p>&#10026; <strong >OBSERVATIONS</strong></p> <p>&nbsp;</p>
+   
+  </div>
+  <table bgcolor="#f8f8f8" border="0" cellspacing="0" cellpadding="0">
+       <tbody>
+          
+           
+                    <tr  bgcolor="#eeeded">
+                        <td  bgcolor="#f8f8f8" class="no"><h3>Signboards/Signage</h3></td>
+                        <td  bgcolor="#f8f8f8"  class="unit"><strong>Visible</strong> :<?= $d->signboards_visible == 1 ? 'Yes' : 'No' ?></td>
+                        <?php
+                        $office_entrace = explode('~', $d->office_entrace);
+                        $office_entra='';
+                        for ($i = 0; $i < count($office_entrace); $i++) {
+                            $office_entra=$office_entra.$office_entrace[$i].', ';
+                        }
+                         ?> <td  bgcolor="#f8f8f8" colspan="3" class="unit"><?= $office_entra; ?></td><?php
+                        ?>
+                    </tr>
+                    <?php
+                    $premises_type = explode('~', $d->premises_type);
+                    ?>
+                    <tr bgcolor="#f8f8f8">
+                        <td class="no"><h3>Type of premises</h3></td>
+                        <?php
+                        $premises_type_string='';
+                        for ($i = 0; $i < count($premises_type); $i++) {
+                           $premises_type_string=$premises_type_string.$premises_type[$i].', ';
+                        }
+                         ?> <td  class="unit" colspan="3"><?= $premises_type_string; ?></td>
+                    </tr>
+					 <tr>
+                       <td bgcolor="#f8f8f8"><h3>Type of signboard</h3></td>
+                        <td bgcolor="#f8f8f8" class="unit"><?= $d->type_of_signboard ?></td>
+                        <td bgcolor="#f8f8f8" class="unit">&nbsp;</td>
+                        <td bgcolor="#f8f8f8" class="unit">&nbsp;</td>
+                    </tr>
+                    <tr bgcolor="#f8f8f8">
+                        <td bgcolor="#f8f8f8"><h3>Type of location</h3></td>
+                        <td colspan="3"><?= $d->type_of_location ?></td>
+                    </tr>
+                    <tr bgcolor="#f8f8f8">
+                      <td><h3>Business Locality</h3></td>
+                        <td colspan="3"><?= $d->business_locality ?></td>
+                    </tr>
+                    <tr>
+                      <td bgcolor="#f8f8f8"><h3>Other companies in same office.</h3></td>
+                        <td colspan="2" bgcolor="#f8f8f8"><?= $d->other_companies_visible == 1 ? 'Yes' : 'No' ?>  </td>
+                        <td>No of Employees seen : <?= $d->no_of_employees_visible ?></td>
+                    </tr>
+                    <tr bgcolor="#f8f8f8">
+                        <td><h3>Customers Sighted</h3></td>
+                        <td colspan="2"><?= $d->customers_sighted ?></td><td  bgcolor="#f8f8f8" width="29%" class="no"></td>
+                    </tr>
+					
+					 <tr bgcolor="#f8f8f8">
+                       <td><h3>Office equipments</h3></td>
+                        <?php
+                        $office_equipments = explode('~', $d->office_equipments);
+                        $office_equi='';
+                        for ($i = 0; $i < count($office_equipments); $i++) {
+                           $office_equi=$office_equi.$office_equipments[$i].', ';
+                        }
+                        
+                        ?>  <td  class="unit" colspan="3"><?= $office_equi ?></td>
+                        ?>
+                    </tr>
+                    <tr bgcolor="#f8f8f8">
+                      <td><h3>Employees Appearance Professional</h3></td>
+                        <?php
+                        $employees_appearance = explode('~', $d->employees_appearance_professional);
+                        $employees_app='';
+                        for ($i = 0; $i < count($employees_appearance); $i++) {
+                          $employees_app=$employees_app.$employees_appearance[$i].', ';
+                        }
+                        
+                          ?><td colspan="3" class="unit"><?= $employees_app; ?></td>
+                    </tr>
+                    <tr bgcolor="#f8f8f8">
+                      <td><h3>Matches the company profile</h3></td>
+                        <td colspan="3"><?= $d->employees_match_profile == 1 ? 'Yes' : 'No' ?></td>
+                    </tr>
+                    
+                   
+                    <tr bgcolor="#f8f8f8" class="clearfix">
+                      <td colspan="4"><b>Office Appearance</b></td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f8f8f8">Office Size : <?= $d->office_size ?></td>
+                        <td bgcolor="#f8f8f8">Office Setup : <?= $d->office_setup ?></td>
+                      <td bgcolor="#f8f8f8" >Office : <?= $d->office_rented ?></td>
+                        <td bgcolor="#f8f8f8" >Office Timing : <?= $d->office_timing ?></td>
+                    </tr>
+					
+					
+					
+					
+					
+					
+					 <tr bgcolor="#f8f8f8">
+                        <td colspan="3"><b>Employees are working/ busy</b></td>
+                    </tr>
+                    <tr bgcolor="#f8f8f8">
+                        <td >Busy with work : <?= $d->employees_busy_with_work == 1 ? 'Yes' : 'No' ?></td>
+                        <td colspan="3">Does the nature of business match the applicants salary : <?= $d->nature_business_matches_salary == 1 ? 'Yes' : '' ?></td>
+                    </tr>
+                    <tr bgcolor="#f8f8f8">
+                        <td colspan="4">Pretending to be busy :<?= $d->employees_pretending_work == 1 ? 'Yes' : 'No' ?></td>
+                    </tr>
+                    <tr bgcolor="#f8f8f8">
+                        <td colspan="4">Business Related Evidenced :<?= $d->business_evidenced == 1 ? 'Yes' : 'No' ?></td>
+                    </tr>
+                    <tr bgcolor="#f8f8f8">
+                        <td colspan="4">Did you see any products to support the nature of business :<?= $d->product_support_nature_business == 1 ? 'Yes' : 'No' ?></td>
+                    </tr>
+                    <tr bgcolor="#f8f8f8">
+                        <td colspan="4">Land Line Verified :<?= $d->landline_verified ?></td>
+                    </tr>
+					
+					
+					
+					
+					 <tr bgcolor="#f8f8f8">
+                        <td>Neighbour Feedback</td>
+                        <td colspan="3"><?= $d->neighbor_feedback ?></td>
+                    </tr>
+                    <tr bgcolor="#f8f8f8">
+                        <td>Building Security Guard Feedback</td>
+                        <td colspan="3"><?= $d->building_security_guard_feedback ?></td>
+                    </tr>
+                    <tr bgcolor="#f8f8f8">
+                        <td>Positive Observations</td>
+                        <td colspan="3"><?= $d->positive_observations ?></td>
+                    </tr>
+                    <tr bgcolor="#f8f8f8">
+                        <td>Negative Observations</td>
+                        <td colspan="3"><?= $d->negative_observations ?></td>
+                    </tr>
+                    <tr bgcolor="#f8f8f8">
+                        <td>Agency Recommendation</td>
+                        <td colspan="3"><?= $d->agency_recommendation ?></td>
+                    </tr>
+                    <tr bgcolor="#f8f8f8">
+                        <td >Amount Owed</td>
+                        <td colspan="3"><?= $d->amount_owed ?></td>
+                    </tr>
+                    <tr bgcolor="#f8f8f8">
+                        <td colspan="2">The original ID of the person verified-</td>
+                        <td ><?= $d->original_ID_verified == 1 ? 'Yes' : 'No' ?></td><td  bgcolor="#f8f8f8" width="29%" class="no"></td>
+                    </tr>
+					
+					 <tr bgcolor="#f8f8f8">
+                        <td colspan="2">Copy of verified documents</td>
+                        <td ><?= $d->copy_of_verified_documents == 1 ? 'Yes' : 'No' ?></td><td  bgcolor="#f8f8f8" width="29%" class="no"></td>
+                    </tr>
+                    <tr bgcolor="#f8f8f8">
+                        <td colspan="2">Business card collected</td>
+                        <td ><?= $d->business_card_collected == 1 ? 'Yes' : 'No' ?></td><td  bgcolor="#f8f8f8" width="29%" class="no"></td>
+                    </tr>
+                    <tr bgcolor="#f8f8f8">
+                        <td colspan="2">Did customer confirm order</td>
+                        <td ><?= $d->customer_confirm_order == 1 ? 'Yes' : 'No' ?></td><td  bgcolor="#f8f8f8" width="29%" class="no"></td>
+                    </tr>
+                    <tr bgcolor="#f8f8f8">
+                        <td colspan="2"><h3>Details of the order cross checked</h3></td><td  bgcolor="#f8f8f8" width="29%" class="no"></td>
+                        <td ><?= $d->order_cross_checked == 1 ? 'Yes' : 'No' ?></td>
+                    </tr>
+                </tbody>
+
+  </table>
+   <?php 
+                $img_arr=image_array_with_form_id($d->id);
+              
+                ?>
+                 <div id="notices">
+                     <?php  for($i=0;$i<count($img_arr);$i++){
+                          $servert_path = $_SERVER["DOCUMENT_ROOT"] . '/survey/files/document/' . $img_arr[$i]->image_name;
+                          if (is_file($servert_path)) {
+                       ?><div class="img-up"> <img src="<?= base_url().'files/document/' . $img_arr[$i]->image_name; ?>"></div> <?php
+                      }
+                      }
+                      ?>
+  </div>
+ 
+</main>
+
+
+
+
+
+
+</body>
+</html>

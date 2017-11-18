@@ -72,7 +72,6 @@ class Home extends CI_Controller {
     public function view_pdf_quotation($quotation_id, $electronic_link_id = 'NA', $add_receipt = '') {
         $electronic_link_id = $electronic_link_id == 'NA' ? '' : $electronic_link_id;
         $mail_html = genrate_quotation_html_mail($quotation_id, $electronic_link_id, $add_receipt);
-        echo $mail_html;exit;
         $this->load->library('pdf');
         $pdf = $this->pdf->load();
         $pdf->debug = true;
@@ -2795,8 +2794,6 @@ class Home extends CI_Controller {
             $strike_note = $js['strike_note'];
             $strike_id = $js['strike_id'];
             $sess_id = $js['sess_id'];
-
-
             if ($strike_note == '1') {
                 $dd = [];
                 $dd = [
@@ -2804,17 +2801,12 @@ class Home extends CI_Controller {
                 ];
                 $cond = "t_id=" . $strike_id;
                 $result = $this->Database->update($cond, $dd, 'therapy_note');
-
                 $qsdata = [];
                 $qsdata = [
                     'completion_status' => 0
                 ];
                 $cond = "id=" . $sess_id;
                 $result = $this->Database->update($cond, $qsdata, 'quotation_session_details');
-
-
-
-
                 $json = '{"status":"success","message":"Successfuly striked","session":"' . $sess_id . '"}';
                 echo $json;
             } else {
@@ -2838,86 +2830,51 @@ class Home extends CI_Controller {
      */
 
     public function policy_procedure() {
-
-        if (isset($_REQUEST['therapy'])) {
-            $therapy = json_decode($_REQUEST['therapy'], true);
-            $pname = $therapy['pname'];
-            $ppdf = $therapy['ppdf'];
-            $data = [];
-            $data = [
-                'pname' => $pname,
-                'ppdf' => $ppdf,
-                'status' => 1
-            ];
-            $result = $this->Database->insert('policy_procedure', $data);
-            $data = [];
-            $data = [
-                'accept' => "",
-            ];
-            $cond = " id !='' ";
-            $result = $this->Database->update($cond, $data, 'policy_acceptance');
-            if ($result) {
-                send_policy_mail_to_all();
-                $json = '{"status":"success"}';
-                echo $json;
+        $data['status'] = '';
+        if (isset($_REQUEST['form_submit'])) {
+            $session_ar = get_session_array_value();
+            $policy_type = $_REQUEST['policy_type'];
+            $name = $_FILES['file']['name'];
+            $tmpname = $_FILES['file']['tmp_name'];
+            for ($i = 0; $i < count($name); $i++) {
+                if ($name[$i] != '') {
+                    $fl_name = mt_rand() . '_' . $name[$i];
+                    $file_path = $_SERVER['DOCUMENT_ROOT'] . '/sensation/files/policy_procedure/' . $fl_name;
+                    $tp_nm = $tmpname[$i];
+                    if (move_uploaded_file($tp_nm, $file_path)) {
+                        $insert = [];
+                        $insert = [
+                            'policy_type' => $policy_type,
+                            'file_name' => $fl_name,
+                            'created_by' => $session_ar[0]->id
+                        ];
+                        $result = $this->Database->insert('policy_procedure', $insert);
+                        if ($result) {
+                            $data['status'] = 'success';
+                            $data['msg'] = 'File Uploaded Successfully';
+                        }
+                    }
+                }
             }
-        } else {
-
-            $this->load->view('include/header');
-            $this->load->view('policy_procedure');
-            $this->load->view('include/footer');
         }
-    }
-
-    public function view_policy_procedure() {
-        $sql = "SELECT * FROM `policy_procedure` WHERE status=1 ORDER BY timestamp DESC     ";
-        $data['policy_procedure'] = $this->Database->select_qry_array($sql);
         $this->load->view('include/header');
-        $this->load->view('view_policy_procedure', $data);
+        $this->load->view('policy_procedure', $data);
         $this->load->view('include/footer');
     }
 
     public function accept_policy_procedure() {
-        $data['logged_in'] = $this->session->userdata('logged_in');
-        $emp = $data['logged_in'][0]->id;
-        if (isset($_REQUEST['accept'])) {
-            $accept = json_decode($_REQUEST['accept'], true);
-            $accept = $accept['accept'];
-
-            $sql = "SELECT id FROM `policy_acceptance` WHERE employee_id=" . $emp;
-            $data['accept_id'] = $this->Database->select_qry_array($sql);
-            if (!empty($data['accept_id'])) {
-                $accept_id = $data['accept_id'][0]->id;
-            } else {
-                $accept_id = '';
-            }
-            if ($accept_id == '') {
-                $data = [];
-                $data = [
-                    'employee_id' => $emp,
-                    'accept' => $accept,
-                ];
-                $result = $this->Database->insert('policy_acceptance', $data);
-                $json = '{"status":"success"}';
-                echo $json;
-            } else {
-                $data = [
-                    'accept' => $accept,
-                ];
-                $cond = "id=" . $accept_id;
-                $result = $this->Database->update($cond, $data, 'policy_acceptance');
-                $json = '{"status":"success"}';
-                echo $json;
-            }
-        } else {
-            $sql = "SELECT * FROM `policy_procedure` WHERE status=1 ORDER BY timestamp DESC LIMIT 1 ";
-            $data['policy'] = $this->Database->select_qry_array($sql);
-            $sql = "SELECT * FROM `policy_acceptance` WHERE employee_id=" . $emp;
-            $data['policy_procedure'] = $this->Database->select_qry_array($sql);
-            $this->load->view('include/header');
-            $this->load->view('accept_policy_procedure', $data);
-            $this->load->view('include/footer');
-        }
+        $session_arr = get_session_array_value();
+        $qry1 = "SELECT P.*  FROM `policy_procedure` P  WHERE P.`policy_type` = 1 ORDER BY P.timestamp DESC";
+        $qry2 = "SELECT P.*  FROM `policy_procedure` P  WHERE P.`policy_type` = 2 ORDER BY P.timestamp DESC";
+        $qry3 = "SELECT P.*  FROM `policy_procedure` P  WHERE P.`policy_type` = 3 ORDER BY P.timestamp DESC";
+        $data['centre_related'] = $this->Database->select_qry_array($qry1);
+//        echo '<pre>';
+//        print_r($data['centre_related']);exit;
+        $data['client_related'] = $this->Database->select_qry_array($qry2);
+        $data['staff_related'] = $this->Database->select_qry_array($qry3);
+        $this->load->view('include/header');
+        $this->load->view('accept_policy_procedure', $data);
+        $this->load->view('include/footer');
     }
 
     public function view_pdf() {
@@ -2944,14 +2901,6 @@ class Home extends CI_Controller {
         // readfile($file);
         //header( "Content-disposition: inline;filename=".base_url()."files/images/".$data['policy'][0]->ppdf);
         // exit;
-    }
-
-    public function view_policy_accepted_list() {
-        $sql = "SELECT PA.*,EMP.employee_name FROM `policy_acceptance` PA LEFT JOIN employee_details EMP ON EMP.id=PA.employee_id";
-        $data['policy_procedure_accepts'] = $this->Database->select_qry_array($sql);
-        $this->load->view('include/header');
-        $this->load->view('view_policy_procedure_accept', $data);
-        $this->load->view('include/footer');
     }
 
     /* End */

@@ -59,43 +59,7 @@ $('body').on('keyup', '.childnames', function () {
 //    }
 //});
 
-$('body').on('keyup', '.child_names_thpy', function () {
-    var childname = $(this).val();
-    if (childname != '') {
-        var data = {serachTerm: childname};
-        $.ajax({
-            url: base_url + "Home/therapy_note_students",
-            async: true,
-            type: 'POST',
-            data: data,
-            success: function (data) {
-                var json = jQuery.parseJSON(data);
-                var lists = '';
-                var lists = lists + '<ul class="droplist">';
-                for (var i = 0; i < json.length; i++) {
-                    var child_id = json[i].id;
-                    var child_name = json[i].child_name;
-                    var lists = lists + '<li class="child_full_thy" data-childid="' + child_id + '" data-title="' + child_name + '">' + child_name + '</li>';
-                }
-                var lists = lists + '</ul>';
-                $('.child_thpy').html(lists);
-
-            }
-        })
-    }
-});
-
-
 // Get all child details 
-$('body').on('click', '.child_full_thy', function () {
-    var child_detail = $(this).data('childid');
-    $('.child_thpy').val($(this).data('title'));
-    if (child_detail != '') {
-        var red_url = base_url + 'Home/therapy_note_lists/' + child_detail;
-        window.location.replace(red_url);
-    }
-});
-
 // Get all child details 
 $('body').on('change', '#child_names', function () {
     var child_detail = $(this).val();
@@ -107,9 +71,8 @@ $('body').on('change', '#child_names', function () {
 
 
 // Get all child details 
-$('body').on('click', '.child_detail', function () {
-    var child_detail = $(this).data('childid');
-    $('.childnames').val($(this).data('title'));
+$('body').on('change', '.child_detail', function () {
+    var child_detail = $(this).val();
     if (child_detail != '') {
         var red_url = base_url + 'Home/list_therapy_notes/' + child_detail;
         window.location.replace(red_url);
@@ -312,7 +275,10 @@ $('.therapy_note_save').click(function () {
     therapy = therapy + '"recei_rescheduled_date":"' + $('#recei_rescheduled_date').val() + '",';
     therapy = therapy + '"recei_rescheduled_session_time_start":"' + $('#recei_rescheduled_session_time_start').val() + '",';
     therapy = therapy + '"recei_rescheduled_session_time_end":"' + $('#recei_rescheduled_session_time_end').val() + '",';
-    therapy = therapy + '"recei_therapy_note":"' + $('#recei_therapy_note').val().replace(/[^a-zA-Z ]/g, '') + '",';
+
+    var therpaynotes = replace_special_char($('#recei_therapy_note').val());
+    //therapy = therapy + '"recei_therapy_note":"' + therpaynotes + '",';
+
     therapy = therapy + '"recei_session_no":"' + $('#recei_session_no').val() + '",';
     therapy = therapy + '"recei_therapist_name":"' + $('#recei_therapist_name').val() + '",';
     therapy = therapy + '"session_therpay_note_id":"' + $('#session_therpay_note_id').val() + '",';
@@ -326,7 +292,7 @@ $('.therapy_note_save').click(function () {
         url: base_url + "Home/therapy_session_note",
         async: true,
         type: 'POST',
-        data: "therapy=" + encodeURIComponent(therapy),
+        data: "therapy=" + encodeURIComponent(therapy) + '&note=' + encodeURIComponent(therpaynotes),
         success: function (data) {
             var json = jQuery.parseJSON(data);
             if (json.status == 'success') {
@@ -335,11 +301,10 @@ $('.therapy_note_save').click(function () {
                 $('#success-message').html('Therapy Session Note Added Successfully');
                 $('.alert-success').show();
                 $('.alert-success').slideDown(500);
-
                 setTimeout(function () {
-                    $('.alert-danger').slideUp(500);
+
                     window.location = base_url + '/Home/list_therapy_notes/' + ch_id;
-                }, 2000);
+                }, 5000);
 
             } else {
                 $('.alert-danger').show();
@@ -433,9 +398,6 @@ $('body').on('click', '#additional_notes_submit', function () {
         })
     }
 });
-function goBack() {
-    window.history.back();
-}
 
 $('body').on('click', '.permall', function () {
     $(this).removeClass('permall');
@@ -447,45 +409,75 @@ $('body').on('click', '.permdel', function () {
     $(this).addClass('permall');
     $(':checkbox').prop("checked", false);
 });
-$('#procedure_add').click(function () {
-    var therapy = '';
-    var therapy = therapy + '{';
-    if ($('#pname').val() == '') {
-        $('#pname').focus();
-        $('#pname').css('border-color', 'red');
-        return false;
-    } else {
-        $('#pname').css('border-color', '');
-        therapy = therapy + '"pname":"' + $('#pname').val() + '",';
+var add_more_files = 1;
+$('.add_more_files').click(function () {
+    var html = '';
+    html = html + '<div class="form-group" id="more_file_id_' + add_more_files + '">';
+    html = html + '  <label class="control-label col-md-3">Upload</label>';
+    html = html + '  <div class="col-md-4">';
+    html = html + '      <input class="form-control" name="file[]" type="file">';
+    html = html + '  </div>';
+    html = html + '  <div class="col-md-2">';
+    html = html + '      <a remove_file="more_file_id_' + add_more_files + '" class="btn btn-danger remove_more_file"><i class="fa fa-close"></i></a>';
+    html = html + '  </div>';
+    html = html + '</div>';
+    $('#add_more_details').append(html);
+    add_more_files++;
+});
+$('body').on('click', '.remove_more_file', function () {
+    var remove_id = $(this).attr('remove_file');
+    $('#' + remove_id).remove();
+});
+$('.policy_type_view').click(function () {
+    var type = $(this).val();
+    if (type == 1) {
+        $('.staff_related_div').hide(500);
+        $('.client_related_div').hide(500);
+        $('.centre_related_div').show(500);
     }
-    therapy = therapy + '"ppdf":"' + $('#profile').attr('file_name') + '"';
-    var therapy = therapy + '}';
-    console.log(therapy);
-    $.ajax({
-        url: base_url + "Home/policy_procedure",
-        async: true,
-        type: 'POST',
-        data: "therapy=" + encodeURIComponent(therapy),
-        success: function (data) {
-            var json = jQuery.parseJSON(data);
-            if (json.status == 'success') {
-                $('#success-message').html('Policy procedure added successfully');
-                $('.alert-success').show();
-                $('.alert-success').slideDown(500);
-                $('#procedure_add').hide();
-                setTimeout(function () {
-                    $('.alert-danger').slideUp(500);
-                    window.location = base_url + '/Home/view_policy_procedure';
-                }, 2000);
+    if (type == 2) {
+        $('.centre_related_div').hide(500);
+        $('.staff_related_div').hide(500);
+        $('.client_related_div').show(500);
+    }
+    if (type == 3) {
+        $('.centre_related_div').hide(500);
+        $('.client_related_div').hide(500);
+        $('.staff_related_div').show(500);
+    }
+});
 
-            } else {
-                $('.alert-danger').show();
-                $('#success-error').html('Try Again')
-                $('.alert-danger').slideDown(500);
-            }
+$('#submit_policy').click(function () {
+    var accepted = [];
+    $('.policy_procedure').each(function () {
+        if ($(this).is(':checked')) {
+            var policy_id = $(this).attr('policy_id');
+            accepted.push(policy_id);
         }
     });
+    var data = {status: 'accept_polycy_procudure', data: accepted};
+    Lobibox.confirm({
+        msg: 'Are you sure you want to accept this policy',
+        title: 'Policy Procedure',
+        callback: function ($this, type) {
+            if (type === 'yes') {
+                $.ajax({
+                    url: base_url + "Home/common",
+                    async: true,
+                    type: 'POST',
+                    data: data,
+                    success: function (data) {
+                        var json = jQuery.parseJSON(data);
+                        if (json.status == 'success') {
+                            $('#accepted_msg_div').show();
+                        }
+                    }
+                });
+            }
+        }
+    })
 });
+
 $('#procedure_accept').click(function () {
     if ($(this).prop("checked") == true) {
         $(this).val("Yes");
@@ -533,6 +525,7 @@ $('body').on('click', '#procedure_accept_save', function () {
 });
 
 $('body').on('change', '.uppload_file', function () {
+    $('#response').text('loading...');
     var form_name = $(this).attr('form_name');
     var fd = new FormData(document.getElementById(form_name));
     fd.append("file_id", $(this).attr('file_id'));
@@ -561,7 +554,6 @@ $('body').on('click', '.strike_note', function () {
     var strike = $(this).data('strike');
     var stk = $(this).data('stk');
     var sess_id = $(this).data('sessid');
-
 
     var json = '';
     var json = json + '{';
@@ -596,3 +588,12 @@ $('body').on('click', '.strike_note', function () {
         }
     });
 });
+// function replace_special_char(string) {
+//     var temp_s = string.replace('"', ' ').replace("'", ' ').replace(/\\/g, '');
+//     return temp_s;
+// }
+
+function replace_special_char(string) {
+    var temp_s = string.replace('"', ' ').replace("'", ' ').replace(/\\/g, '').replace(",", ' ').replace(/^[0-9\n]+$/);
+    return temp_s;
+}
