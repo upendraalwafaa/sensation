@@ -782,6 +782,16 @@ function accept_polycy_procudure($array) {
     }
 }
 
+function delete_polycy_procudure($array) {
+    $db = load_Database();
+    $policy_id = $array['policy_id'];
+    $qry1 = "DELETE FROM `policy_procedure` WHERE `id` = $policy_id";
+    $qry2 = "DELETE FROM `policy_acceptance` WHERE `policy_id` = $policy_id";
+    $db->Database->delete($qry1);
+    $db->Database->delete($qry2);
+    echo '{"status":"success"}';
+}
+
 function get_accept_status_by_staf_id($staff_id = '', $policy_id = '') {
     $db = load_Database();
     $qry = "SELECT * FROM `policy_acceptance` WHERE `staff_id` = '$staff_id' AND policy_id=$policy_id";
@@ -815,6 +825,40 @@ function get_quotation_month_colloction($array) {
         array_push($new_ar, $temp);
     }
     echo json_encode($new_ar);
+}
+
+function get_header_policy_accept_status() {
+    $db = load_Database();
+    $session_arr = get_session_array_value();
+    $qry1 = "SELECT id FROM  policy_acceptance  WHERE staff_id='" . $session_arr[0]->id . "'";
+    $accept_arr = $db->Database->select_qry_array($qry1);
+    $count_acpt = count($accept_arr);
+    $qry2 = "SELECT id FROM policy_procedure";
+    $array2 = $db->Database->select_qry_array($qry2);
+    $total_polycy = count($array2);
+    $total = $total_polycy - $count_acpt;
+    return $total;
+}
+
+function send_mail_for_upload_policy() {
+    $db = load_Database();
+    $qry = "SELECT * FROM employee_details WHERE archive=0 AND id!=17";
+    $employee_arr = $db->Database->select_qry_array($qry);
+    $messages = '<p>Dear All,</p>
+    <p>Please be noted, Sensation Station Policy and Procedure has been updated. Requesting everyone to read and accept the same.</p>
+    <p>&nbsp;</p>
+    <p>Regards,</p>
+    <p>Sensation Station</p>';
+    $subject = 'Privacy policy has been updated';
+    $email_id = '';
+
+    for ($i = 0; $i < count($employee_arr); $i++) {
+        $id = trim($employee_arr[$i]->email);
+        $email_id = $email_id . ',' . $id;
+    }
+    $email_id = substr($email_id, 1);
+    $cc = get_admin_email_id();
+    send_mail($email_id, $subject, $messages, $file_path = '', $cc);
 }
 
 function get_home_page_details($status = '') {
@@ -920,7 +964,7 @@ function get_dropdown_child_searchbox($id = '', $name = '', $redirurl = '', $cla
 
 function get_dropdown_employee_searchbox($id = '', $name = '', $redirurl = '', $class = '', $employee_id = '') {
     $db = load_Database();
-    $qry = "SELECT * FROM employee_details";
+    $qry = "SELECT * FROM employee_details WHERE archive=0";
     $employee_details_all = $db->Database->select_qry_array($qry);
     ?>
     <select <?= $id != '' ? "id=$id" : '' ?> <?= $name != '' ? "name=$name" : '' ?> <?= $redirurl != '' ? "onchange=window.location=(base_url+'" . $redirurl . "/'+this.value)" : '' ?>  class="selectpicker form-control <?= $class ?>" data-live-search="true">
@@ -930,6 +974,28 @@ function get_dropdown_employee_searchbox($id = '', $name = '', $redirurl = '', $
             $d = $employee_details_all[$cch];
             $employee_name = $d->employee_name;
             ?><option value="<?= $d->id ?>"><?= $employee_name ?></option><?php
+        }
+        ?>
+    </select>
+    <?php
+}
+
+function get_country_code_searchbox($id = '', $name = '', $redirurl = '', $class = '', $attr = '', $db_id = '') {
+    $db = load_Database();
+    $qry = "SELECT * FROM countries WHERE dial_code!='' AND dial_code!=0 ORDER BY dial_code ASC";
+    $array_details_all = $db->Database->select_qry_array($qry);
+    ?>
+    <select <?= $attr ?> <?= $id != '' ? "id=$id" : '' ?> <?= $name != '' ? "name=$name" : '' ?> <?= $redirurl != '' ? "onchange=window.location=(base_url+'" . $redirurl . "/'+this.value)" : '' ?>  class=" form-control <?= $class ?>">
+        <option value="">searching for country code..</option>
+        <?php
+        for ($cch = 0; $cch < count($array_details_all); $cch++) {
+            $d = $array_details_all[$cch];
+            $disipline_name = $d->dial_code;
+            $selected = '';
+            if ($db_id == $d->id) {
+                $selected = 'selected="selected"';
+            }
+            ?><option <?= $selected ?> title="<?= $d->country_name ?>" value="<?= $d->id ?>">+<?= $disipline_name ?></option><?php
         }
         ?>
     </select>
@@ -954,12 +1020,12 @@ function get_dropdown_disipline_searchbox($id = '', $name = '', $redirurl = '', 
     <?php
 }
 
-function get_nationality_dropdow($id = '', $name = '', $class = '', $redirurl = '', $nationality_id = '') {
+function get_nationality_dropdow($id = '', $name = '', $class = '', $redirurl = '', $nationality_id = '', $attr = '') {
     $db = load_Database();
     $qry = "SELECT * FROM countries ORDER BY country_name";
     $array = $db->Database->select_qry_array($qry);
     ?>
-    <select <?= $id != '' ? "id=$id" : '' ?> <?= $name != '' ? "name=$name" : '' ?> <?= $redirurl != '' ? "onchange=window.location=(base_url+'" . $redirurl . "/'+this.value)" : '' ?>  class="selectpicker form-control <?= $class ?>" data-live-search="true">
+    <select <?= $attr ?> <?= $id != '' ? "id=$id" : '' ?> <?= $name != '' ? "name=$name" : '' ?> <?= $redirurl != '' ? "onchange=window.location=(base_url+'" . $redirurl . "/'+this.value)" : '' ?>  class="selectpicker form-control <?= $class ?>" data-live-search="true">
         <option value="">searching for country..</option>
         <?php
         for ($cch = 0; $cch < count($array); $cch++) {
@@ -996,6 +1062,54 @@ function send_quotation_outside_student_registred_student($quotation_details_id 
     $pdf->Output($file_path);
     $admin_emial = get_admin_email_id();
     send_mail($mail_body[1], $mail_body[2], $mail_body[0], $file_path, $admin_emial);
+}
+
+function view_marketing_filtter($array) {
+    extract($array);
+    $cond = '';
+    if ($from_date != '' && $to_date != '') {
+        $cond = $cond . '(DATE(M.entry_date) BETWEEN "' . date('Y-m-d', strtotime($from_date)) . '" AND "' . date('Y-m-d', strtotime($to_date)) . '") AND ';
+    } else if ($to_date != '') {
+        $cond = $cond . "DATE(M.entry_date) > '" . date('Y-m-d', strtotime($from_date)) . "' AND ";
+    }
+    if ($designation != '') {
+        $cond = $cond . "M.`designation` LIKE '%$designation%' AND ";
+    }
+    if ($country != '') {
+        $cond = $cond . 'M.country="' . $country . '" AND ';
+    }
+    if ($religion != '') {
+        $cond = $cond . 'M.religion="' . $religion . '" AND ';
+    }
+    if ($here_about_us != '') {
+        $cond = $cond . 'M.hear_about_us="' . $here_about_us . '" AND ';
+    }
+    if ($nature_of_business != '') {
+        $cond = $cond . 'M.categories_nature="' . $nature_of_business . '" AND ';
+    }
+    if ($city != '') {
+        $cond = $cond . "M.`city` LIKE '%$city%' AND ";
+    }
+    if ($cond != '') {
+        $cond = 'WHERE ' . $cond;
+        $cond = substr($cond, 0, -4);
+    }
+    if ($cond == '') {
+        $cond = 'ORDER BY M.entry_date DESC LIMIT 1000';
+    }
+    return $cond;
+}
+
+function get_hear_about_us_marketing() {
+    $hear_About_us = ['1' => 'Referral from School / Nursery', '2' => 'Referral from another Mum / Friend',
+        '3' => 'Referral from another Co./Others', '4' => 'Brochure / Flyer', '5' => 'Roll-up Banner / IBG',
+        '6' => 'Direct Email', '7' => 'Newsletter', '8' => 'Internet / Social Media', '9' => 'Others'];
+    return $hear_About_us;
+}
+
+function categories_for_marketing_module() {
+    $categories = ['1' => 'Active Client', '2' => 'Waitlisted Client', '3' => 'Inquiry only / Potential Sales Lead', '4' => 'Inactive / Discharged Client', '5' => 'Others', '6' => 'Comment'];
+    return $categories;
 }
 
 function get_admin_email_id() {

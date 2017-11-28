@@ -120,7 +120,7 @@ function receipt_html_body($child_id = '', $electronic_link_id = '', $quotation_
         $html = $html . '</tbody>
     </table>';
         $html = $html . '<p>You will also be asked to provide us with a copy of the parent&rsquo;s Emirate&rsquo;s ID (copy for each parent/one parent), so please bring these documents with you on the day.</p>
-        <p><strong><u>Please note that the appointment will be confirmed only after completing the Registration form from the below link:</u></strong></p>
+        <p><strong><u>Please note that the appointment will be confirmed only after completing the Registration form the below link:</u></strong></p>
 <p><u>Payment options:</u>&nbsp;Cheque/Bank Transfer/Cash or Card. Please see attached invoice for billing reference.</p>
 <p>Please find below links for the location map and facilities picture guide of Sensation Station for your reference.&nbsp;Valet parking is available and is chargeable after the first 30 minutes. Also behind the building you will find free Robotic Parking.</p>
 <p>Kindly note, if you are unable to attend this meeting, and fail to inform us, we will re-allocate your referral to the bottom of the waiting list.</p>
@@ -139,14 +139,28 @@ function receipt_html_body($child_id = '', $electronic_link_id = '', $quotation_
         $chils_arr = $ci->Database->select_qry_array($child_q);
         $qry_quo = "SELECT QS.*,D.description,E.employee_name FROM `quotation_session_details` QS LEFT JOIN employee_details E ON E.id=QS.staff_id LEFT JOIN disipline_details D ON D.id=QS.discipline_type_id WHERE QS.`quotation_id`=$quotation_details_id";
         $quotation_arr = $ci->Database->select_qry_array($qry_quo);
+        $q_del = "SELECT * FROM `quotation_details` WHERE `quotation_id` = $quotation_details_id";
+        $quotation_details = $ci->Database->select_qry_array($q_del);
+        $emp_name = '';
+        if (isset($quotation_arr[0]->employee_name)) {
+            $emp_name = $quotation_arr[0]->employee_name;
+        }
         $email_id = $chils_arr[0]->father_personal_email;
         if ($email_id == '') {
             $email_id = $chils_arr[0]->mother_personal_email;
+        } else {
+            if ($chils_arr[0]->mother_personal_email != '') {
+                $email_id = $email_id . ',' . $chils_arr[0]->mother_personal_email;
+            }
         }
-
         $subject = '' . $chils_arr[0]->child_name . ' quotation sensation sation';
+        $email_notes = '';
+        if ($quotation_details[0]->email_notes != '') {
+            $email_notes = '<p><strong>Notes:</strong> ' . $quotation_details[0]->email_notes . '</p>';
+        }
         $html = '<p>Dear Parent,</p>
-<p>Hope you are well. Please see attached invoice for ' . $quotation_arr[0]->description . ' session with Masnoena for the dates mentioned in the invoice.</p>
+<p>Hope you are well. Please see attached quotation for ' . $quotation_arr[0]->description . ' session with ' . $emp_name . ' for the dates mentioned in the quotation.</p>
+' . $email_notes . '
 <p><strong>Payment options:</strong> Cash / Cheque / Bank Transfer / Credit Card.</p>
 <p>If paying by cheque you can address it to: <span style="text-decoration: underline;"><strong>&ldquo;SENSATION STATION CENTER&rdquo;</strong></span>.</p>
 <p>If it is through Bank Transfer, please find the attched document for the bank details. If you have any queries you can email or contact us for the details </p>
@@ -159,21 +173,32 @@ function receipt_html_body($child_id = '', $electronic_link_id = '', $quotation_
 function send_mail_receipt_amount_paid($quotation_id = '') {
     $file_path = make_pdf_and_save_by_quotation_id($quotation_id, $add_receipt = 'Yes');
     $qd = get_quotation_deatils_by_quotation_id($quotation_id);
+    $payment_history = get_payment_history_by_quotation_id($quotation_id);
     $body_html = ' <p>Dear  Parents</p>
     <p>Thank you for your recent payment, please find attached your receipt.&nbsp;</p>
     <!--<p>Receipt Number &nbsp; &nbsp; &nbsp;: ' . $qd->receipt_no . '</p>
     <p>Receipt Amount &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;: ' . $qd->total . '</p>-->
+    <p>Note &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;: ' . $payment_history[0]->email_note . '</p>
     <p>Regards,</p>
     <p>Sensation Center</p>';
     $admin_emial = get_admin_email_id();
     $parent_email_id = $qd->father_personal_email;
     if ($parent_email_id == '') {
         $parent_email_id = $qd->mother_personal_email;
+    } else {
+        if ($qd->mother_personal_email != '') {
+            $parent_email_id = $parent_email_id . ',' . $qd->mother_personal_email;
+        }
     }
-
-
     $subject = $qd->child_name . ' Receipt – Sensation Station';
     send_mail($parent_email_id, $subject, $body_html, $file_path, $admin_emial);
+}
+
+function get_payment_history_by_quotation_id($quotation_id) {
+    $ci = load_Database();
+    $qry = "SELECT * FROM payment_history WHERE quotation_id='" . $quotation_id . "' ORDER BY timestamp DESC";
+    $payment_history = $ci->Database->select_qry_array($qry);
+    return $payment_history;
 }
 
 function send_mail_cancelled_session($quotation_id = '') {
@@ -372,4 +397,15 @@ function notification_policy($id = '') {
     if ($procedure == '') {
         return 1;
     }
+}
+
+function send_notif_mail_to_admin($child_name = '', $receipt_no = '', $compl_count = '', $total_sessions = '', $child_id = '') {
+    $url = base_url() . 'Home/create_receipt/' . $child_id;
+    $html = '';
+    $html = $html . ' <p>Dear Admin,</p>';
+    $html = $html . ' <p>Please be note that, ' . $child_name . ' has been completed his ' . $compl_count . '/' . $total_sessions . ' sessions. So please raise the receipt for the quotation (' . $receipt_no . ') using below link.</p>';
+    $html = $html . ' <p>Link: ' . $url . '</p>';
+    $subject = 'Payment not done by ' . $child_name;
+
+    send_mail('bibin.m@alwafaagroup.com', $subject, $html, $file_path = '');
 }

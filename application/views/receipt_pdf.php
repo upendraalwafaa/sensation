@@ -1,8 +1,16 @@
 <?php
 $qdel = $quotation_details[0];
+$staff_name = [];
+for ($i = 0; $i < count($quotation_details); $i++) {
+    $staff = $quotation_details[$i]->therapy_name;
+    if (!in_array($staff, $staff_name)) {
+        $staff_name[] = $staff;
+    }
+}
 if ($child_arr != '') {
     $chld = $child_arr[0];
 }
+
 $report_arr = get_category_show_status_array();
 ?>
 
@@ -113,7 +121,7 @@ $report_arr = get_category_show_status_array();
                                                 </tr>
                                                 <tr>
                                                     <td align="left" valign="top" bgcolor="#f2f2f2" style="border-left:1px solid #000;border-bottom:1px solid #000;border-right:1px solid #000;">Therapist Name: </td>
-                                                    <td align="left" valign="top" style=" border-bottom:1px solid #000;border-right:1px solid #000;"><?= $qdel->therapy_name ?></td>
+                                                    <td align="left" valign="top" style=" border-bottom:1px solid #000;border-right:1px solid #000;"><?= implode(', ', $staff_name); ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td align="left" valign="top" bgcolor="#f2f2f2" style="border-left:1px solid #000;border-bottom:1px solid #000;border-right:1px solid #000;">Email: </td>

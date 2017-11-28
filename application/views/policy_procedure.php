@@ -14,7 +14,6 @@
     .has-warning .md-radio label>.check, .has-warning.md-radio label>.check {
         background: #327ad5;
     }
-
 </style>
 <div class="page-content-wrapper">
     <div class="page-content">

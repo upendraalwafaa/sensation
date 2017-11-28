@@ -515,7 +515,13 @@ class Home extends CI_Controller {
                 'father_personal_email' => $json['father_email'],
                 'mother_personal_email' => $json['mother_email'],
                 'marital_status' => $json['father_marital_status'],
-                'marital_status_other' => $json['marital_status_other']
+                'marital_status_other' => $json['marital_status_other'],
+                'father_mobile_code' => $json['father_mobile_code'],
+                'father_work_number_code' => $json['father_work_number_code'],
+                'father_home_number_code' => $json['father_home_number_code'],
+                'mother_mobile_code' => $json['mother_mobile_code'],
+                'mother_work_number_code' => $json['mother_work_number_code'],
+                'mother_home_number_code' => $json['mother_home_number_code']
             ];
 
             $prenatal_history = [];
@@ -916,6 +922,7 @@ class Home extends CI_Controller {
                     'discount' => $json['discount'],
                     'total' => $json['total'],
                     'note' => $json['note'],
+                    'email_notes' => $json['email_notes'],
                     'electronic_link' => $electronic_link,
                     'electronic_link_id' => $electronic_link_id,
                     'date_time' => date('Y-m-d H:i:s'),
@@ -1235,6 +1242,7 @@ class Home extends CI_Controller {
                 $main_ar = $json['main_ar'];
                 for ($ser = 0; $ser < count($main_ar); $ser++) {
                     $d = $main_ar[$ser];
+                    (int) $category_id = $d['category_id'];
                     $servc_ins = [
                         'quotation_id' => $qdel_ins_id,
                         'category_id' => $d['category_id'],
@@ -1264,7 +1272,9 @@ class Home extends CI_Controller {
                     $this->Database->insert('quotation_session_details', $qses_insert);
                 }
                 if ($qdel_ins_id) {
-                    send_quotation_outside_student_registred_student($qdel_ins_id, $electronic_link_id = '');
+                    if ($category_id != 21) {
+                        send_quotation_outside_student_registred_student($qdel_ins_id, $electronic_link_id = '');
+                    }
                     $json = '{"status":"success"}';
                 } else {
                     $json = '{"status":"error"}';
@@ -1452,33 +1462,28 @@ class Home extends CI_Controller {
             } else if ($start_date != '') {
                 $cond = $cond . "DATE(timestamp) > '" . date('Y-m-d', strtotime($start_date)) . "' AND ";
             }
-
             if ($search_type == 'Caseloads' || $search_type == '') {
                 $cond = $cond . 'archive=0 OR archive=1';
             }
-
             if ($search_type == 'Active') {
                 $cond = $cond . 'archive=0';
             }
-
             if ($search_type == 'Out Reach') {
                 $cond = $cond . 'session_type="' . $search_type . '" AND archive=0';
             }
-
             if ($search_type == 'Center') {
                 $cond = $cond . 'session_type="' . $search_type . '" AND archive=0';
             }
             if ($search_type == 'Inactive') {
                 $cond = $cond . 'archive=1';
             }
-
+            if ($disipline_name != '') {
+                $cond = $cond . " AND discipline_id LIKE '%$disipline_name%' ";
+            }
             if ($cond != '' || $search_type != '') {
                 $cond = 'WHERE ' . $cond;
             }
-
-
             $qry = "SELECT * FROM child_details LEFT JOIN parent_details ON child_details.id=parent_details.child_id  $cond";
-
             $array_new = $this->Database->select_qry_array($qry);
             $data['reports_marketing'] = $array_new;
         }
@@ -2004,7 +2009,6 @@ class Home extends CI_Controller {
                 OR QSES.completion_status = 3
                 OR QSES.completion_status = 4
                 OR QSES.completion_status = 5
-                OR QSES.completion_status = 6
                 OR QSES.completion_status = 7
                 THEN 1 END) as completed_ses,
             SUM(CASE
@@ -2012,9 +2016,14 @@ class Home extends CI_Controller {
 
             $qry4 = "SELECT THN.t_id,Q.quotation_id,THN.t_session_id FROM `therapy_note` as THN LEFT JOIN quotation_details as Q ON Q.quotation_id=THN.t_quotation_id   WHERE THN.t_therapy_note='' and THN.t_child_id=" . $id;
 
-            $qry5 = "SELECT Q.quotation_id,QSD.id FROM `quotation_session_details` as QSD LEFT JOIN quotation_details as Q ON Q.quotation_id=QSD.quotation_id WHERE Q.student_id=" . $id . " AND QSD.staff_id=" . $staff_id . " AND (QSD.completion_status=0 OR QSD.completion_status=9 OR QSD.completion_status=8) GROUP BY Q.quotation_id";
+            // $qry5 = "SELECT Q.quotation_id,QSD.id FROM `quotation_session_details` as QSD LEFT JOIN quotation_details as Q ON Q.quotation_id=QSD.quotation_id WHERE Q.student_id=" . $id . " AND QSD.staff_id=" . $staff_id . " AND (QSD.completion_status=0 OR QSD.completion_status=9 OR QSD.completion_status=8) GROUP BY Q.quotation_id";
 
+            $qry5 = "SELECT Q.quotation_id,Q.student_id,QSD.id FROM `quotation_session_details` as QSD LEFT JOIN quotation_details as Q ON Q.quotation_id=QSD.quotation_id WHERE Q.student_id=" . $id . " AND (QSD.completion_status=0 OR QSD.completion_status=9 OR QSD.completion_status=8) GROUP BY Q.quotation_id";
             $qry6 = "SELECT external_triggers_desc,disorders_in_fm_desc FROM `medical_history` WHERE child_id =" . $id;
+
+            $qry7 = "SELECT Q.quotation_id,Q.student_id,QS.discipline_type_id,EMP.employee_name,DD.disipline_name FROM `quotation_details` Q LEFT JOIN quotation_session_details QS ON QS.quotation_id=Q.quotation_id LEFT JOIN employee_details EMP ON QS.staff_id=EMP.id LEFT JOIN disipline_details DD ON DD.id=QS.discipline_type_id WHERE Q.student_id =" . $id . " GROUP BY employee_name";
+            $qry8 = "SELECT Q.quotation_id,Q.student_id,QS.discipline_type_id,EMP.employee_name,DD.disipline_name FROM `quotation_details` Q LEFT JOIN quotation_session_details QS ON QS.quotation_id=Q.quotation_id LEFT JOIN employee_details EMP ON QS.staff_id=EMP.id LEFT JOIN disipline_details DD ON DD.id=QS.discipline_type_id WHERE Q.student_id =" . $id . " GROUP BY disipline_name";
+
 
             $data['child_details']['information'] = $this->Database->select_qry_array($qry1);
             $data['child_details']['parent_information'] = $this->Database->select_qry_array($qry2);
@@ -2022,6 +2031,12 @@ class Home extends CI_Controller {
             $data['child_details']['therapy_notes'] = $this->Database->select_qry_array($qry4);
             $data['child_details']['q_sessions'] = $this->Database->select_qry_array($qry5);
             $data['child_details']['allergies'] = $this->Database->select_qry_array($qry6);
+
+            $data['child_details']['service_information'] = $this->Database->select_qry_array($qry7);
+            $data['child_details']['discipline_information'] = $this->Database->select_qry_array($qry8);
+
+
+
             // echo "<pre>";            
             // print_r($data['child_details']['q_sessions']);
             // exit;
@@ -2440,9 +2455,19 @@ class Home extends CI_Controller {
             $qry5 = "SELECT * FROM `child_doc` WHERE child_id =" . $id;
             $qry6 = "SELECT external_triggers_desc,disorders_in_fm_desc FROM `medical_history` WHERE child_id =" . $id;
 
-            $qry7 = "SELECT Q.quotation_id,Q.student_id,Q.erp_register_no,Q.receipt_no,Q.timestamp,QD.id as qd_id, QD.quotation_id as qd_id, SUBQ.sub_category_name,CAT.category_name,COUNT(QSES.id) AS tot_ses, COUNT(CASE WHEN QSES.completion_status != 0 THEN 1 END) as completed_ses,
+            $qry7 = "SELECT Q.quotation_id,Q.student_id,Q.erp_register_no,Q.receipt_no,Q.timestamp,PM.amount,QD.id as qd_id, QD.quotation_id as qd_id, SUBQ.sub_category_name,CAT.category_name,COUNT(QSES.id) AS tot_ses, COUNT(
+                CASE WHEN 
+                   QSES.completion_status = 1 
+                OR QSES.completion_status = 2 
+                OR QSES.completion_status = 3
+                OR QSES.completion_status = 4
+                OR QSES.completion_status = 5
+                OR QSES.completion_status = 7
+                THEN 1 END) as completed_ses,
             SUM(CASE
-                WHEN QSES.completion_status = 2 || QSES.completion_status = 5 || QSES.completion_status = 6 || QSES.completion_status = 8 || QSES.completion_status = 9  THEN 1 ELSE 0 END) AS 'cancl_sess' FROM `quotation_details` Q LEFT JOIN quotation_discipline_details QD ON Q.quotation_id=QD.quotation_id LEFT JOIN subcategory SUBQ ON QD.category_id= SUBQ.category_id AND QD.sub_category_id=SUBQ.id LEFT JOIN sen_category_details CAT ON CAT.id=QD.category_id LEFT JOIN quotation_session_details QSES ON QSES.quotation_discipline_id=QD.id WHERE Q.accept_status='Accept' AND Q.student_id=" . $id . " GROUP BY Q.quotation_id ORDER BY Q.timestamp DESC";
+                WHEN QSES.completion_status = 1 || QSES.completion_status = 2 || QSES.completion_status = 5 || QSES.completion_status = 6 THEN 1 ELSE 0 END) AS 'cancl_sess',(SELECT SUM(pay_amount) FROM payment_history Pm WHERE Q.quotation_id=Pm.quotation_id) as paid_amounts FROM `quotation_details` Q LEFT JOIN quotation_discipline_details QD ON Q.quotation_id=QD.quotation_id LEFT JOIN subcategory SUBQ ON QD.category_id= SUBQ.category_id AND QD.sub_category_id=SUBQ.id LEFT JOIN sen_category_details CAT ON CAT.id=QD.category_id LEFT JOIN quotation_session_details QSES ON QSES.quotation_discipline_id=QD.id 
+LEFT JOIN payment_details PM ON PM.quotation_id=Q.quotation_id
+WHERE Q.accept_status='Accept' AND Q.student_id=" . $id . "  GROUP BY Q.quotation_id ORDER BY Q.timestamp DESC";
 
 
 
@@ -2490,7 +2515,7 @@ class Home extends CI_Controller {
     public function view_sessions($qt_id = "") {
         error_reporting(0);
         if ($qt_id != '') {
-            $qry = "SELECT qt.quotation_id, qt_ds.start_date,qt_ds.end_date,qt_sd.services_fee,qt_sd.id, qt_sd.session_date, 
+            $qry = "SELECT qt.quotation_id,qt.student_id, qt_ds.start_date,qt_ds.end_date,qt_sd.services_fee,qt_sd.id, qt_sd.session_date, 
             qt_sd.discipline_type_id, qt_sd.start_time, qt_sd.end_time, qt_sd.staff_id,ds_de.disipline_name,emp_de.employee_name,tp_nt.t_status FROM `quotation_details` AS qt
             LEFT JOIN `quotation_discipline_details` AS qt_ds ON qt.quotation_id = qt_ds.quotation_id 
             LEFT JOIN `quotation_session_details` AS qt_sd ON qt.quotation_id = qt_sd.quotation_id 
@@ -2500,9 +2525,9 @@ class Home extends CI_Controller {
             WHERE qt.quotation_id =" . $qt_id . " GROUP BY qt_sd.id ";
 
             $data['qt_session_details'] = $this->Database->select_qry_array($qry);
-// echo "<pre>";
-// print_r($data['qt_session_details']);
-// exit;
+            // echo "<pre>";
+            // print_r($data['qt_session_details']);
+            // exit;
 
             $this->load->view('include/header');
             $this->load->view('view_sessions', $data);
@@ -2520,7 +2545,7 @@ class Home extends CI_Controller {
             LEFT JOIN `therapy_note` AS tp_nt ON tp_nt.t_session_id = qt_sd.id             
             LEFT JOIN `disipline_details` AS ds_de ON ds_de.id = qt_sd.discipline_type_id  
             LEFT JOIN `employee_details` AS emp_de ON emp_de.id = qt_sd.staff_id   
-            WHERE qt.quotation_id =" . $qt_id;
+            WHERE qt.quotation_id =" . $qt_id . " GROUP BY qt_sd.id ";
 
             $data['qt_session_details'] = $this->Database->select_qry_array($qry);
 
@@ -2531,7 +2556,7 @@ class Home extends CI_Controller {
         }
     }
 
-    public function view_single_session($s_session_id = "") {
+    public function view_single_session($s_session_id = "", $student_id = "", $quotation_id = "") {
         error_reporting(0);
 
         if ($s_session_id != '') {
@@ -2602,6 +2627,14 @@ class Home extends CI_Controller {
             $sql = "SELECT * FROM `employee_details` WHERE `disipline_id` IN (1,2,3,4,5) AND archive=0 AND therapy_notes=0";
             $data['list_of_therapist'] = $this->Database->select_qry_array($sql);
             $data['logged_in'] = $this->session->userdata('logged_in');
+
+            $qry10 = "SELECT TN.*,Q.receipt_no,EMP.employee_name, TN.t_therapy_note as latest_note, (SELECT count(TH.therapy_note) FROM therapy_note_history as TH LEFT JOIN  therapy_note as T ON TH.therapy_id=T.t_id WHERE TH.therapy_id=TN.t_id  ORDER BY TH.id DESC ) as countnotes FROM `therapy_note` as TN 
+            LEFT JOIN quotation_details as Q ON TN.t_quotation_id=Q.quotation_id 
+            LEFT JOIN employee_details as EMP ON EMP.id=TN.t_staff   
+            LEFT JOIN therapy_note_history as TNH ON TNH.therapy_id=TN.t_id
+            WHERE TN.t_child_id=" . $student_id . " AND TN.t_therapy_note !='' AND Q.quotation_id=" . $quotation_id . " GROUP BY TN.t_id";
+            $data['qt_all_notes'] = $this->Database->select_qry_array($qry10);
+
 
             $this->load->view('include/header');
             $this->load->view('view_single_session', $data);
@@ -2838,7 +2871,7 @@ class Home extends CI_Controller {
             $tmpname = $_FILES['file']['tmp_name'];
             for ($i = 0; $i < count($name); $i++) {
                 if ($name[$i] != '') {
-                    $fl_name = mt_rand() . '_' . $name[$i];
+                    $fl_name = $name[$i];
                     $file_path = $_SERVER['DOCUMENT_ROOT'] . '/sensation/files/policy_procedure/' . $fl_name;
                     $tp_nm = $tmpname[$i];
                     if (move_uploaded_file($tp_nm, $file_path)) {
@@ -2856,6 +2889,7 @@ class Home extends CI_Controller {
                     }
                 }
             }
+            //send_mail_for_upload_policy();
         }
         $this->load->view('include/header');
         $this->load->view('policy_procedure', $data);
@@ -2884,23 +2918,7 @@ class Home extends CI_Controller {
         $notification_mail = $this->Database->select_qry_array($qry);
         for ($i = 0; $i < count($notification_mail); $i++) {
             $cd = $notification_mail[$i];
-            echo "<pre>";
-            //echo $cd->father_personal_email;
         }
-
-        //     $sql = "SELECT * FROM `policy_procedure` WHERE status=1 ORDER BY timestamp DESC LIMIT 1 ";
-        //     $data['policy'] = $this->Database->select_qry_array($sql);
-        //   $file = base_url()."files/images/".$data['policy'][0]->ppdf;
-        // header("Content-Length: ".@filesize ($file) ); 
-        // header("Content-type: application/pdf"); 
-        // header("Content-disposition: inline; filename=".basename($file));
-        // header('Expires: 0');
-        // header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-        // ob_clean();
-        // flush();
-        // readfile($file);
-        //header( "Content-disposition: inline;filename=".base_url()."files/images/".$data['policy'][0]->ppdf);
-        // exit;
     }
 
     /* End */
@@ -2915,22 +2933,23 @@ class Home extends CI_Controller {
 
     public function insert_marketing() {
         $values = json_decode($_REQUEST['json'], true);
-        print_r($values);
-        if (!empty($values['entry_date'])) {
-            $values['entry_date'] = strtotime($values['entry_date']);
+        if (is_array($values)) {
+            print_r($values);
+
+            $this->Database->insert('marketing', $values);
         }
-        if (!empty($values['child_dob'])) {
-            $values['child_dob'] = strtotime($values['child_dob']);
-        }
-        if (!empty($values['parent_dob'])) {
-            $values['parent_dob'] = strtotime($values['parent_dob']);
-        }
-        $this->Database->insert('marketing', $values);
     }
 
     public function view_marketing() {
-
-        $data['marketing'] = $this->Database->select_data('*', 'marketing');
+        $data['form_data'] = '';
+        if (isset($_REQUEST['search'])) {
+            $return_arr = view_marketing_filtter($_REQUEST);
+            $qry2 = "SELECT M.* FROM `marketing` M $return_arr";
+            $data['marketing'] = $this->Database->select_qry_array($qry2);
+            $data['form_data'] = $_REQUEST;
+        } else {
+            $data['marketing'] = $this->Database->select_data('*', 'marketing');
+        }
         $this->load->view('include/header');
         $this->load->view('view_marketing', $data);
         $this->load->view('include/footer');
@@ -2970,47 +2989,10 @@ class Home extends CI_Controller {
 
     public function update_marketing() {
         $values = json_decode($_REQUEST['json'], true);
-
-        if (!empty($values['entry_date'])) {
-            $values['entry_date'] = strtotime($values['entry_date']);
-        }
-        if (!empty($values['child_dob'])) {
-            $values['child_dob'] = strtotime($values['child_dob']);
-        }
-        if (!empty($values['parent_dob'])) {
-            $values['parent_dob'] = strtotime($values['parent_dob']);
-        }
-        if ($values['hear_about_us'] != 8) {
-            $values['about_us_internet_socialmedia'] = '';
-            $values['internet_other'] = '';
-        }
-        $hear_abt_us_specify = ['1', '2', '3', '9'];
-        if (!in_array($values['hear_about_us'], $hear_abt_us_specify)) {
-            $values['about_us_specify'] = '';
-        }
-        if ($values['about_us_internet_socialmedia'] != 9) {
-            $values['internet_other'] = '';
-        }
-        if ($values['categories_nature'] != 1) {
-            $values['camp'] = '';
-            $values['active_client'] = '';
-            $values['therapy_specify'] = '';
-        }
-
-
-        $categories = ['1', '2', '3', '5'];
-        if (!in_array($values['categories_nature'], $categories)) {
-            $values['categories_nature_specify'] = '';
-        }
-
-        if ($values['active_client'] != 8) {
-            $values['camp'] = '';
-        }
-        $active_specify = ['12', '9', '10', '11'];
-        if (!in_array($values['active_client'], $active_specify)) {
-            $values['active_client_specify'] = '';
-        }
         $id = $values['id'];
+        if ($values['undefined'] == '') {
+            unset($values['undefined']);
+        }
         echo $result = $this->Database->update_data($id, $values, 'marketing');
     }
 

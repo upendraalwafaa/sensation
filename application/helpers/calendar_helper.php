@@ -785,7 +785,7 @@ function get_week_calender($array) {
                         ?> 
 
                         <div class="areow_wrap">
-                            <span start_date="<?= $prev7_date ?>"   class="fc-icon fc-icon-left-single-arrow pervnext_week"></span>
+                            <span start_date="<?= $prev7_date ?>"   class="fc-icon fc-icon-left-single-arrow  pervnext_week"></span>
                             <span start_date="<?= $end_date_nxtbtn ?>"  class="fc-icon fc-icon-right-single-arrow pervnext_week"></span>
                         </div>
                         <?php $free_hou = get_worlking_houre_details($last_sunday, $end_date, $emp_id); ?>

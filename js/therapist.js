@@ -452,10 +452,13 @@ $('#submit_policy').click(function () {
     $('.policy_procedure').each(function () {
         if ($(this).is(':checked')) {
             var policy_id = $(this).attr('policy_id');
-            accepted.push(policy_id);
+            if ($(this).attr('db') != 'Yes') {
+                accepted.push(policy_id);
+            }
         }
     });
     var data = {status: 'accept_polycy_procudure', data: accepted};
+    console.log(accepted);
     Lobibox.confirm({
         msg: 'Are you sure you want to accept this policy',
         title: 'Policy Procedure',
@@ -469,7 +472,7 @@ $('#submit_policy').click(function () {
                     success: function (data) {
                         var json = jQuery.parseJSON(data);
                         if (json.status == 'success') {
-                            $('#accepted_msg_div').show();
+                            window.location = '';
                         }
                     }
                 });
@@ -477,7 +480,30 @@ $('#submit_policy').click(function () {
         }
     })
 });
-
+$('.delete_policy').click(function () {
+    var policy_id = $(this).attr('policy_id');
+    var data = {status: 'delete_polycy_procudure', policy_id: policy_id};
+    Lobibox.confirm({
+        msg: 'Are you sure you want to delete this policy',
+        title: 'Policy Procedure Delete',
+        callback: function ($this, type) {
+            if (type === 'yes') {
+                $.ajax({
+                    url: base_url + "Home/common",
+                    async: true,
+                    type: 'POST',
+                    data: data,
+                    success: function (data) {
+                        var json = jQuery.parseJSON(data);
+                        if (json.status == 'success') {
+                            window.location = '';
+                        }
+                    }
+                });
+            }
+        }
+    })
+});
 $('#procedure_accept').click(function () {
     if ($(this).prop("checked") == true) {
         $(this).val("Yes");

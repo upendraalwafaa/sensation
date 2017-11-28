@@ -20,15 +20,7 @@
                     <!-- <div class="col-lg-3 col-xs-12 col-sm-3"></div>-->
                     <div class="wrap_alldrop">
                         <div class="ui-widget" >
-                            <select id="receipt_by_name" class="selectpicker form-control" data-live-search="true">
-                                <option value="">searching for child..</option>
-                                <?php
-                                for ($cch = 0; $cch < count($child_details_all); $cch++) {
-                                    $d = $child_details_all[$cch];
-                                    ?><option value="<?= $d->id ?>"><?= $d->child_name ?></option><?php
-                                }
-                                ?>
-                            </select>
+                            <?= get_dropdown_child_searchbox($id = 'receipt_by_name', $name = '', $redirurl = '', $class = ''); ?>
                           <!--  <input id="receipt_by_name" type="text" class="form-control" placeholder="Search for student..."/> 
                             <div class="alldropdown" style="display:none;">
                                 <div class="childs_names">
@@ -63,7 +55,7 @@
                         </div>
 
                         <div class="col-lg-12 col-xs-12">
-                            <table class="table table-striped table-hover table-bordered dataTable no-footer" id="sample_1" role="grid" aria-describedby="sample_1_info">
+                            <table class="table table-striped dataTable_class table-hover table-bordered dataTable no-footer" id="sample_1" role="grid" aria-describedby="sample_1_info">
                                 <thead>
                                     <tr>
                                         <th> Sl No</th>
@@ -109,7 +101,7 @@
                                             </td>
 
                                         </tr>
-    <?php } ?>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                             <!--content Area  End-->
@@ -153,16 +145,16 @@
                                                     ?>
                                                     <tr>
                                                         <td>
-                                                                <?php if ($d->completion_status == 0) { ?>
+                                                            <?php if ($d->completion_status == 0) { ?>
                                                                 <div class="md-checkbox">
-            <?php $edit_attr = "staff_id='" . $d->staff_id . "' start_time='" . date('H:i', strtotime($d->start_time)) . "' end_time='" . date('H:i', strtotime($d->end_time)) . "' date='" . $d->session_date . "'"; ?>
+                                                                    <?php $edit_attr = "staff_id='" . $d->staff_id . "' start_time='" . date('H:i', strtotime($d->start_time)) . "' end_time='" . date('H:i', strtotime($d->end_time)) . "' date='" . $d->session_date . "'"; ?>
                                                                     <input <?php echo $edit_attr; ?> session_tbl_id="<?= $d->id ?>" amount="<?= $d->services_fee ?>"  type="checkbox" id="quotation_cancel_<?= $i ?>" class="md-check selected_checkbox">
                                                                     <label for="quotation_cancel_<?= $i ?>">
                                                                         <span class="inc"></span>
                                                                         <span class="check"></span>
                                                                         <span class="box"></span> </label>
                                                                 </div>
-        <?php } ?>
+                                                            <?php } ?>
                                                         </td>
                                                         <td><?= $i + 1; ?></td>
                                                         <td > <?= $d->disipline_name; ?></td>
@@ -172,7 +164,7 @@
                                                         <td ><?= date('H:i', strtotime($d->start_time)) . ' / ' . date('H:i', strtotime($d->end_time)) ?></td>
                                                         <td ><?= $d->services_fee ?> </td>
                                                     </tr>
-    <?php } ?>
+                                                <?php } ?>
                                             </tbody>
                                         </table>
                                     </div>
@@ -230,7 +222,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-    <?php } ?>
+                                                <?php } ?>
                                                 <div class="form-body ">
                                                     <div class="form-group">
                                                         <label class="control-label col-md-3">Note</label>
@@ -344,7 +336,7 @@
                                                         <div class="col-md-4">
                                                             <input disabled="" value="<?= $quotation_details[0]->sub_total ?>"  class="form-control quotation_amount" type="text">
                                                         </div>
-    <?php if (count($payment_mode) > 0) { ?>
+                                                        <?php if (count($payment_mode) > 0) { ?>
                                                             <div class="col-md-4">
                                                                 <b>Payment Mode : </b>&nbsp;<?php
                                                                 $payment_mode_string = '';
@@ -366,7 +358,7 @@
                                                                 echo substr($payment_mode_string, 0, -2);
                                                                 ?>
                                                             </div>
-    <?php } ?>
+                                                        <?php } ?>
                                                     </div>
                                                 </div>
                                                 <div class="form-body">
@@ -385,7 +377,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-    <?php if ($previous_pay != '') { ?>
+                                                <?php if ($previous_pay != '') { ?>
                                                     <div class="form-body">
                                                         <div class="form-group">
                                                             <label class="control-label col-md-3">Already Paid</label>
@@ -394,7 +386,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-    <?php } if ($quotation_details[0]->total > $previous_pay) { ?>
+                                                <?php } if ($quotation_details[0]->total > $previous_pay) { ?>
                                                     <div class="form-body">
                                                         <div class="form-group">
                                                             <label class="control-label col-md-3">Payable Amount</label>
@@ -429,6 +421,14 @@
                                                 ?>
                                                 <div class="form-body">
                                                     <div class="form-group">
+                                                        <label class="control-label col-md-3">Email Note</label>
+                                                        <div class="col-md-4">
+                                                            <textarea id="email_note" class="form-control autosizeme" rows="6" placeholder="Email Note..." data-autosize-on="true" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 60px;"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-body">
+                                                    <div class="form-group">
                                                         <label class="control-label col-md-3">Note</label>
                                                         <div class="col-md-4">
                                                             <textarea id="notes" class="form-control autosizeme" rows="6" placeholder="Note..." data-autosize-on="true" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 80px;"></textarea>
@@ -451,7 +451,7 @@
                                 </div>
                             </div>
                         </div>
-<?php } ?>
+                    <?php } ?>
                     <!--content Area  End-->
                     <div class="clearfix"></div>
                 </div>

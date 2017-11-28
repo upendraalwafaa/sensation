@@ -21,8 +21,11 @@ $session_arr = get_session_array_value();
 $url_id = $this->uri->segment(3);
 $disabled = "disabled";
 $staff_id = $session_arr[0]->id;
-if ($url_id == $session_arr[0]->id) {
-    $disabled = '';
+if ($url_id > 0) {
+    $staff_id = $url_id;
+}
+if ($url_id == $session_arr[0]->id || $url_id == '') {
+    $disabled = "";
 }
 ?>
 <div  class="page-content-wrapper">
@@ -44,9 +47,11 @@ if ($url_id == $session_arr[0]->id) {
                             </div>
                         </div>						
                         <div class="portlet-body">
-                            <div class="view_qt_search adnewsbox col-sm-3">
-                                <?= get_dropdown_employee_searchbox($id = '', $name = '', $redirurl = 'Home/accept_policy_procedure', $class = ''); ?>
-                            </div>
+                            <?php if ($session_arr[0]->id == 17) { ?>
+                                <div class="view_qt_search adnewsbox col-sm-3">
+                                    <?= get_dropdown_employee_searchbox($id = '', $name = '', $redirurl = 'Home/accept_policy_procedure', $class = ''); ?>
+                                </div>
+                            <?php } ?>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="portlet-body row">
@@ -67,7 +72,7 @@ if ($url_id == $session_arr[0]->id) {
                                                                     <div class="col-md-6">
                                                                         <div class="col-sm-4">
                                                                             <div class="md-radio has-warning">
-                                                                                <input value="1" type="radio" id="centre_related" name="policy_type_view" class="md-radiobtn policy_type_view">
+                                                                                <input value="1" type="radio" checked="" id="centre_related" name="policy_type_view" class="md-radiobtn policy_type_view">
                                                                                 <label for="centre_related">
                                                                                     <span class="inc"></span>
                                                                                     <span class="check"></span>
@@ -83,6 +88,7 @@ if ($url_id == $session_arr[0]->id) {
                                                                                     <span class="box"></span>Client Related</label>
                                                                             </div>
                                                                         </div>
+
                                                                         <div class="col-sm-4">
                                                                             <div class="md-radio has-warning">
                                                                                 <input value="3" type="radio" id="staff_related" name="policy_type_view" class="md-radiobtn policy_type_view">
@@ -94,21 +100,24 @@ if ($url_id == $session_arr[0]->id) {
                                                                         </div>
                                                                     </div>
                                                                 </div>
+
                                                                 <div class="form-group">
-                                                                    <div id="sample_1_wrapper" class="dataTables_wrapper no-footer centre_related_div" style="display: none;">
+                                                                    <div id="sample_1_wrapper" class="dataTables_wrapper no-footer centre_related_div" style="display: block;">
                                                                         <table class="table table-striped table-hover table-bordered dataTable no-footer dataTable_class"  role="grid" aria-describedby="sample_1_info">
                                                                             <thead>
                                                                                 <tr>
                                                                                     <th>Sl No</th>
                                                                                     <th >Status</th>
                                                                                     <th >POLICY</th>
-
+                                                                                    <th >Date</th>
+                                                                                    <th></th>
                                                                                 </tr>
                                                                             </thead>
                                                                             <tbody>
                                                                                 <?php
                                                                                 for ($i = 0; $i < count($centre_related); $i++) {
                                                                                     $d = $centre_related[$i];
+
                                                                                     $status = get_accept_status_by_staf_id($staff_id, $d->id);
                                                                                     ?>
                                                                                     <tr>
@@ -117,19 +126,26 @@ if ($url_id == $session_arr[0]->id) {
                                                                                             <div class="md-checkbox has-success">
                                                                                                 <?php
                                                                                                 $checked = '';
+                                                                                                $child_dsb = '';
                                                                                                 if ($status == 1) {
-                                                                                                    $checked = 'checked=""';
+                                                                                                    $checked = 'checked="" db="Yes"';
+                                                                                                    $child_dsb = 'disabled';
                                                                                                 }
                                                                                                 ?>
-                                                                                                <input <?= $checked . ' ' . $disabled ?>   policy_id="<?= $d->id ?>" type="checkbox" id="centre_related_<?= $i ?>" class="md-check policy_procedure">
+                                                                                                <input <?= $checked . ' ' . $disabled . ' ' . $child_dsb ?>   policy_id="<?= $d->id ?>" type="checkbox" id="centre_related_<?= $i ?>" class="md-check policy_procedure">
                                                                                                 <label for="centre_related_<?= $i ?>">
                                                                                                     <span class="inc"></span>
                                                                                                     <span class="check"></span>
                                                                                                     <span class="box"></span>Accept</label>
 
                                                                                             </div>  </td>
-                                                                                        <td > <a href="<?= base_url() . 'files/policy_procedure' . $d->file_name ?>"><?= $d->file_name ?></a></td>
-
+                                                                                        <td > <a target="__blank" href="<?= base_url() . 'files/policy_procedure/' . $d->file_name ?>"><?= $d->file_name ?></a></td>
+                                                                                        <td><?= date('d-m-Y', strtotime($d->timestamp)) ?></td>
+                                                                                        <td> 
+                                                                                            <?php if ($session_arr[0]->id == 17) { ?>
+                                                                                                <a policy_id="<?= $d->id ?>" title="Delete" class="btn btn-xs red delete_policy"><i class="icon-trash"></i></a>
+                                                                                            <?php } ?>
+                                                                                        </td>
                                                                                     </tr> 
                                                                                 <?php } ?>
                                                                             </tbody>
@@ -143,7 +159,8 @@ if ($url_id == $session_arr[0]->id) {
                                                                                     <th>Sl No</th>
                                                                                     <th >Status</th>
                                                                                     <th >POLICY</th>
-
+                                                                                    <th >Date</th>
+                                                                                    <th></th>
                                                                                 </tr>
                                                                             </thead>
                                                                             <tbody>
@@ -158,19 +175,22 @@ if ($url_id == $session_arr[0]->id) {
                                                                                             <div class="md-checkbox has-success">
                                                                                                 <?php
                                                                                                 $checked = '';
+                                                                                                $child_dsb = '';
                                                                                                 if ($status == 1) {
-                                                                                                    $checked = 'checked=""';
+                                                                                                    $checked = 'checked="" db="Yes"';
+                                                                                                    $child_dsb = 'disabled';
                                                                                                 }
                                                                                                 ?>
-                                                                                                <input <?= $checked . ' ' . $disabled ?> policy_id="<?= $d->id ?>" type="checkbox" id="client_related_<?= $i ?>" class="md-check policy_procedure">
+                                                                                                <input <?= $checked . ' ' . $disabled . ' ' . $child_dsb ?> policy_id="<?= $d->id ?>" type="checkbox" id="client_related_<?= $i ?>" class="md-check policy_procedure">
                                                                                                 <label  for="client_related_<?= $i ?>">
                                                                                                     <span class="inc"></span>
                                                                                                     <span class="check"></span>
                                                                                                     <span class="box"></span>Accept</label>
 
                                                                                             </div> </td>
-                                                                                        <td > <a href="<?= base_url() . 'files/policy_procedure' . $d->file_name ?>"><?= $d->file_name ?></a></td>
-
+                                                                                        <td > <a target="__blank" href="<?= base_url() . 'files/policy_procedure/' . $d->file_name ?>"><?= $d->file_name ?></a></td>
+                                                                                        <td><?= date('d-m-Y', strtotime($d->timestamp)) ?></td>
+                                                                                        <td>                     <?php if ($session_arr[0]->id == 17) { ?> <a policy_id="<?= $d->id ?>" title="Delete" class="btn btn-xs red delete_policy"><i class="icon-trash"></i></a><?php } ?></td>
                                                                                     </tr> 
                                                                                 <?php } ?>
                                                                             </tbody>
@@ -183,7 +203,8 @@ if ($url_id == $session_arr[0]->id) {
                                                                                     <th>Sl No</th>
                                                                                     <th >Status</th>
                                                                                     <th >POLICY</th>
-
+                                                                                    <th >Date</th>
+                                                                                    <th></th>
                                                                                 </tr>
                                                                             </thead>
                                                                             <tbody>
@@ -197,19 +218,22 @@ if ($url_id == $session_arr[0]->id) {
                                                                                         <td ><div class="md-checkbox has-success">
                                                                                                 <?php
                                                                                                 $checked = '';
+                                                                                                $child_dsb = '';
                                                                                                 if ($status == 1) {
-                                                                                                    $checked = 'checked=""';
+                                                                                                    $checked = 'checked="" db="Yes"';
+                                                                                                    $child_dsb = 'disabled';
                                                                                                 }
                                                                                                 ?>
-                                                                                                <input <?= $checked . ' ' . $disabled ?> policy_id="<?= $d->id ?>" type="checkbox" id="staff_related<?= $i ?>" class="md-check policy_procedure">
+                                                                                                <input <?= $checked . ' ' . $disabled . ' ' . $child_dsb ?> policy_id="<?= $d->id ?>" type="checkbox" id="staff_related<?= $i ?>" class="md-check policy_procedure">
                                                                                                 <label for="staff_related<?= $i ?>">
                                                                                                     <span class="inc"></span>
                                                                                                     <span class="check"></span>
                                                                                                     <span class="box"></span>Accept</label>
 
                                                                                             </div> </td>
-                                                                                        <td > <a href="<?= base_url() . 'files/policy_procedure' . $d->file_name ?>"><?= $d->file_name ?></a></td>
-
+                                                                                        <td > <a target="__blank" href="<?= base_url() . 'files/policy_procedure/' . $d->file_name ?>"><?= $d->file_name ?></a></td>
+                                                                                        <td><?= date('d-m-Y', strtotime($d->timestamp)) ?></td>
+                                                                                        <td>   <?php if ($session_arr[0]->id == 17) { ?> <a policy_id="<?= $d->id ?>" title="Delete" class="btn btn-xs red delete_policy"><i class="icon-trash"></i></a> <?php } ?></td>
                                                                                     </tr> 
                                                                                 <?php } ?>
                                                                             </tbody>

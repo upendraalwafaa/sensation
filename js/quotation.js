@@ -197,19 +197,19 @@ $('#add_services').click(function () {
                 var html = html + '    <div  class="col-md-4" id="carete_single_sec_' + services_counter + '" style="display:none;"> ';
                 var html = html + '        <div class="form-group form-md-line-input form-md-floating-label has-success">';
                 var html = html + '            <label for="disipline_name">Date</label>';
-                var html = html + ' <input div_id="' + services_counter + '" class="form-control form-control-inline input datepicker_dsb"   type="text" value="" id="single_quo__date_' + services_counter + '" >';
+                var html = html + ' <input div_id="' + services_counter + '" class="form-control form-control-inline input datepicker"   type="text" value="" id="single_quo__date_' + services_counter + '" >';
                 var html = html + '        </div>';
                 var html = html + '     </div>';
                 var html = html + '    <div  class="col-md-4" id="with_quo_start_date_div_' + services_counter + '" style="display:none"> ';
                 var html = html + '        <div class="form-group form-md-line-input form-md-floating-label has-success">';
                 var html = html + '            <label for="disipline_name">Start Date</label>';
-                var html = html + ' <input  class="form-control form-control-inline input datepicker_dsb" type="text" value="" id="with_quo_start_date_' + services_counter + '" >';
+                var html = html + ' <input  class="form-control form-control-inline input datepicker" type="text" value="" id="with_quo_start_date_' + services_counter + '" >';
                 var html = html + '        </div>';
                 var html = html + '     </div>';
                 var html = html + '    <div  class="col-md-4" id="with_quo_end_date_div_' + services_counter + '" style="display:none"> ';
                 var html = html + '        <div class="form-group form-md-line-input form-md-floating-label has-success">';
                 var html = html + '            <label for="disipline_name">End Date</label>';
-                var html = html + ' <input class="form-control form-control-inline input datepicker_dsb" type="text" value="" id="with_quo_end_date_' + services_counter + '">';
+                var html = html + ' <input class="form-control form-control-inline input datepicker" type="text" value="" id="with_quo_end_date_' + services_counter + '">';
                 var html = html + '        </div>';
                 var html = html + '     </div>';
 
@@ -788,6 +788,7 @@ $('body').on('click', '#submit_btn', function () {
     json = json + '"discount":"' + $('#session_discount').val() + '",';
     json = json + '"total":"' + $('#total').text() + '",';
     json = json + '"note":"' + replace_special_char($('#note').val()) + '",';
+    json = json + '"email_notes":"' + replace_special_char($('#email_notes').val()) + '",';
     json = json + '"accept_status":"' + $('#accept_status').val() + '",';
     var mail_status = '';
     Lobibox.confirm({
@@ -972,7 +973,7 @@ function Get_pannel_details_array(div_id) {
     $('.pannel_details_' + div_id).each(function () {
         var category_id = $('#quotation_category_' + div_id).val();
         var pannel_id = $(this).attr('pannel_id');
-        $('#c_therapy_name').text($('#pannel_staff_name_' + pannel_id + ' option:selected').text());
+        $('#c_therapy_name').append($('#pannel_staff_name_' + pannel_id + ' option:selected').text() + ', ');
         if (category_id == 4) {
             var Arr = Get_row_details_array_for_report(pannel_id);
         } else {
@@ -1097,6 +1098,8 @@ $('body').on('click', '#get_confirm_popup', function () {
     }
     $('#csession_details').empty();
     $('#all_session_date_list').empty();
+    // for html staff name empty
+    $('#c_therapy_name').text('')
     var electronic_link = href.split('/');
     var parent_Arr = [];
     if (electronic_link[6] == 'add_electronic' || electronic_link[6] > 0) {

@@ -52,7 +52,7 @@ $('#reg_form_submit').click(function () {
         return false;
     } else {
         $('#address').css('border-color', '');
-        json = json + '"address":"' + replace_special_char($('#address').val()) + '",';
+        json = json + '"address":"' + replace_special_char_textarea($('#address').val()) + '",';
     }
     if ($('#father_name').val() == '') {
         $('#father_name').focus();
@@ -111,6 +111,28 @@ $('#reg_form_submit').click(function () {
     json = json + '"mother_home_number":"' + $('#mother_home_number').val() + '",';
     json = json + '"father_email":"' + $('#father_email').val() + '",';
     json = json + '"mother_email":"' + $('#mother_email').val() + '",';
+
+
+    if ($('#father_email').val() != '') {
+        if (validateEmail($('#father_email').val())) {
+
+        } else {
+            alert('Invalid Email Address');
+            $('#father_email').css('border-color', 'red');
+            $('#father_email').focus();
+            e.preventDefault();
+        }
+    }
+    if ($('#mother_email').val() != '') {
+        if (validateEmail($('#mother_email').val())) {
+
+        } else {
+            alert('Invalid Email Address');
+            $('#mother_email').css('border-color', 'red');
+            $('#mother_email').focus();
+            e.preventDefault();
+        }
+    }
     if ($('input[name=father_mother_marital_status]:checked').val() == undefined) {
         $('#marital_staus_display').css('color', 'red');
         $('#father_email').focus();
@@ -443,10 +465,17 @@ $('#reg_form_submit').click(function () {
         json = json + '"accept_pt_btn":"' + $('input[name=accept_pt_btn]:checked').val() + '",';
     }
 
+    json = json + '"father_mobile_code":"' + $('#father_mobile_code').val() + '",';
+    json = json + '"father_work_number_code":"' + $('#father_work_number_code').val() + '",';
+    json = json + '"father_home_number_code":"' + $('#father_home_number_code').val() + '",';
+    json = json + '"mother_mobile_code":"' + $('#mother_mobile_code').val() + '",';
+    json = json + '"mother_work_number_code":"' + $('#mother_work_number_code').val() + '",';
+    json = json + '"mother_home_number_code":"' + $('#mother_home_number_code').val() + '",';
+
 
 
     json = json + '"child_id":"' + $('#child_id').val() + '",';
-    json = json + '"extra_information_child":"' + replace_special_char($('#extra_information_child').val()) + '"';
+    json = json + '"extra_information_child":"' + replace_special_char_textarea($('#extra_information_child').val()) + '"';
 
 
     json = json + '}';
@@ -619,9 +648,9 @@ $('body').on('dblclick', '.child_make_inactive', function () {
     var update_val = $(this).attr('update_val');
     $('#note_inactive').val('');
     if (update_val == 1) {
-        $('#chnage_inactive').html('deactivate?');
+        $('#chnage_inactive').html('for deactivate?');
     } else {
-        $('#chnage_inactive').html('activate?');
+        $('#chnage_inactive').html('for activate?');
     }
     $('#inactive_note_detals').show(500);
     $('#submit_inactive_btn').attr('child_id', child_id);

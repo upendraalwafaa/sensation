@@ -1,4 +1,5 @@
 <?php
+
 /*
   Project Name : Sensation Sation
   Company Name : alwafaagroup
@@ -6,6 +7,7 @@
   file Name : receipt_helper.php(Helper)
   Project URI: http://demo.softwarecompany.ae/sensation/
  */
+
 function get_current_receipt_paid_amount($quotation_id) {
     $db = load_Database();
     $qry = "SELECT SUM(`pay_amount`) AS total_pay FROM `payment_history` WHERE quotation_id='$quotation_id'";
@@ -89,6 +91,7 @@ function save_payment_history_table($quotation_id, $pay_amount, $refund_status =
             'updated_by' => $session_array[0]->id,
             'paid_by' => $json['paid_by'],
             'notes' => $json['notes'],
+            'email_note' => $json['email_note'],
             'why_discount' => $json['why_discount'],
             'update_time' => date('Y-m-d H:i:s'),
         ];
@@ -247,24 +250,24 @@ function session_reset_details($array) {
         echo '{"status":"error"}';
     }
 }
- 
- function get_paid_name_by_paid_id($paid_id=''){
-     $payment_mode_string='';
-        if ($paid_id == 0) {
-            $payment_mode_string =  'Cash ';
-        }
-        if ($paid_id == 1) {
-            $payment_mode_string =  'Cheque ';
-        }
-        if ($paid_id == 2) {
-            $payment_mode_string =  'Card ';
-        }
-        if ($paid_id == 3) {
-            $payment_mode_string = 'Bank Transfer ';
-        }
-        return $payment_mode_string;
- }
- 
+
+function get_paid_name_by_paid_id($paid_id = '') {
+    $payment_mode_string = '';
+    if ($paid_id == 0) {
+        $payment_mode_string = 'Cash ';
+    }
+    if ($paid_id == 1) {
+        $payment_mode_string = 'Cheque ';
+    }
+    if ($paid_id == 2) {
+        $payment_mode_string = 'Card ';
+    }
+    if ($paid_id == 3) {
+        $payment_mode_string = 'Bank Transfer ';
+    }
+    return $payment_mode_string;
+}
+
 function make_it_child_not_attended($array) {
     $db_id = $array['db_id'];
     $db = load_Database();

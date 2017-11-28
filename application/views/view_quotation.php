@@ -42,7 +42,7 @@
                         </form>
                         <div id="sample_1_wrapper" class="dataTables_wrapper no-footer">
                             <div class=" ">
-                                <table class="table table-striped table-hover table-bordered dataTable no-footer" id="sample_1" role="grid" aria-describedby="sample_1_info">
+                              <table class="table dataTable_class table-striped table-hover table-bordered dataTable no-footer" id="sample_1" role="grid" aria-describedby="sample_1_info" style="position: relative;">
                                     <thead>
                                         <tr>
                                             <th>Sl No</th>

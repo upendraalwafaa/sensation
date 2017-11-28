@@ -262,11 +262,19 @@ if ($elec_details != '') {
 
                                                 </div>
 
-                                                <div class="form-group form-md-line-input has-success">
-                                                    <label>Nationality <span style="color:red;">*</span></label>
-                                                    <input value="<?= $parent_details == '' ? '' : $parent_details[0]->father_nationality ?>" type="text" class="form-control" id="father_nationality">
-
-                                                </div>
+                                                <!--<div class="form-group form-md-line-input has-success">-->
+                                                <label>Nationality <span style="color:red;">*</span></label>
+                                                <!--<input value="<?php // echo  $parent_details == '' ? '' : $parent_details[0]->father_nationality       ?>" type="text" class="form-control" id="father_nationality">-->
+                                                <?php
+                                                $father_nationality = '';
+                                                $mother_nationality = '';
+                                                if ($parent_details != '') {
+                                                    $father_nationality = $parent_details[0]->father_nationality;
+                                                    $mother_nationality = $parent_details[0]->mother_nationality;
+                                                }
+                                                echo get_nationality_dropdow($id = 'father_nationality', $name = '', $class = '', $redirurl = '', $father_nationality);
+                                                ?>
+                                                <!--</div>-->
 
                                                 <div class="form-group form-md-line-input has-success">
                                                     <label>Occupation <span style="color:red; ">*</span></label>
@@ -276,25 +284,29 @@ if ($elec_details != '') {
 
                                                 <div class="form-group form-md-line-input has-success">
                                                     <label>Mobile Number <span style="color:red;">*</span></label>
+                                                    <?php $father_mobile_code = $parent_details == '' ? '' : $parent_details[0]->father_mobile_code ?>
+                                                    <?= get_country_code_searchbox($id = 'father_mobile_code', $name = '', $redirurl = '', $class = '', $attr = '', $db_id = $father_mobile_code); ?>
                                                     <input value="<?= $parent_details == '' ? '' : $parent_details[0]->father_mobile ?><?= $elec_details == '' ? '' : $elec_details[0]->father_name != '' ? $elec_details[0]->father_phone : '' ?>" type="text" class="form-control only_number" maxlength="15" id="father_mobile">
-
                                                 </div>
 
                                                 <div class="form-group form-md-line-input has-success">
                                                     <label>Work Number</label>
+                                                    <?php $father_work_number_code = $parent_details == '' ? '' : $parent_details[0]->father_work_number_code ?>
+                                                    <?= get_country_code_searchbox($id = 'father_work_number_code', $name = '', $redirurl = '', $class = '', $attr = '', $db_id = $father_work_number_code); ?>
                                                     <input value="<?= $parent_details == '' ? '' : $parent_details[0]->father_work_number ?>" type="text" class="form-control only_number" maxlength="15" id="father_work_number">
-
                                                 </div>
 
                                                 <div class="form-group form-md-line-input has-success">
                                                     <label>Home Number</label>
+                                                    <?php $father_home_number_code = $parent_details == '' ? '' : $parent_details[0]->father_home_number_code ?>
+                                                    <?= get_country_code_searchbox($id = 'father_home_number_code', $name = '', $redirurl = '', $class = '', $attr = '', $db_id = $father_home_number_code); ?>
                                                     <input value="<?= $parent_details == '' ? '' : $parent_details[0]->father_home_number ?>" type="text" id="father_home_number" maxlength="15" class="form-control only_number">
 
                                                 </div>
 
                                                 <div class="form-group form-md-line-input has-success">
                                                     <label>Personal Email <span style="color:red;">*</span></label> 
-                                                    <input value="<?= $elec_details == '' ? '' : $elec_details[0]->father_email ?><?= $parent_details == '' ? '' : $parent_details[0]->father_personal_email ?>" id="father_email" type="text" class="form-control">
+                                                    <input value="<?= $elec_details == '' ? '' : $elec_details[0]->father_email ?><?= $parent_details == '' ? '' : $parent_details[0]->father_personal_email ?>" id="father_email" type="text" class="form-control lowercase">
 
                                                 </div>
                                             </div>
@@ -314,12 +326,12 @@ if ($elec_details != '') {
 
                                                 </div>
 
-                                                <div class="form-group form-md-line-input has-success">
-                                                    <label>Nationality <span style="color:red;">*</span></label>
-                                                    <input value="<?= $parent_details == '' ? '' : $parent_details[0]->mother_nationality ?>" type="text" class="form-control" id="mother_nationality">
+                                                <!--<div class="form-group form-md-line-input has-success">-->
+                                                <label>Nationality <span style="color:red;">*</span></label>
+                                                <!--<input value="<?php // echo $parent_details == '' ? '' : $parent_details[0]->mother_nationality      ?>" type="text" class="form-control" id="mother_nationality">-->
+                                                <?php echo get_nationality_dropdow($id = 'mother_nationality', $name = '', $class = '', $redirurl = '', $mother_nationality); ?>
 
-
-                                                </div>
+                                                <!--</div>-->
 
                                                 <div class="form-group form-md-line-input has-success">
                                                     <label>Occupation <span style="color:red ">*</span></label>
@@ -329,12 +341,16 @@ if ($elec_details != '') {
 
                                                 <div class="form-group form-md-line-input has-success">
                                                     <label>Mobile Number&nbsp;<span style="color:red;">*</span></label>
+                                                    <?php $mother_mobile_code = $parent_details == '' ? '' : $parent_details[0]->mother_mobile_code ?>
+                                                    <?= get_country_code_searchbox($id = 'mother_mobile_code', $name = '', $redirurl = '', $class = '', $attr = '', $db_id = $mother_mobile_code); ?>
                                                     <input value="<?= $parent_details == '' ? '' : $parent_details[0]->mother_mobile ?><?= $elec_details == '' ? '' : $elec_details[0]->father_name != '' ? $elec_details[0]->father_phone : '' ?>" type="text" class="form-control only_number" maxlength="15" id="mother_mobile">
 
                                                 </div>
 
                                                 <div class="form-group form-md-line-input has-success">
                                                     <label>Work Number</label>
+                                                    <?php $mother_work_number_code = $parent_details == '' ? '' : $parent_details[0]->mother_work_number_code ?>
+                                                    <?= get_country_code_searchbox($id = 'mother_work_number_code', $name = '', $redirurl = '', $class = '', $attr = '', $db_id = $mother_work_number_code); ?>
                                                     <input value="<?= $parent_details == '' ? '' : $parent_details[0]->mother_work_number ?>" type="text" class="form-control only_number" maxlength="15" id="mother_work_number">
 
                                                 </div>
@@ -342,13 +358,15 @@ if ($elec_details != '') {
                                                 <div class="form-group form-md-line-input has-success">
 
                                                     <label>Home Number</label>
+                                                    <?php $mother_home_number_code = $parent_details == '' ? '' : $parent_details[0]->mother_home_number_code ?>
+                                                    <?= get_country_code_searchbox($id = 'mother_home_number_code', $name = '', $redirurl = '', $class = '', $attr = '', $db_id = $mother_home_number_code); ?>
                                                     <input value="<?= $parent_details == '' ? '' : $parent_details[0]->mother_home_number ?>" type="text" id="mother_home_number" maxlength="15" class="form-control only_number">
 
                                                 </div>
 
                                                 <div class="form-group form-md-line-input has-success">
                                                     <label>Personal Email <span style="color:red;">*</span></label> 
-                                                    <input value="<?= $parent_details == '' ? '' : $parent_details[0]->mother_personal_email ?>" id="mother_email" type="text" class="form-control" >
+                                                    <input value="<?= $parent_details == '' ? '' : $parent_details[0]->mother_personal_email ?>" id="mother_email" type="text" class="form-control lowercase" >
 
                                                 </div>
 

@@ -280,7 +280,7 @@ $date = date('d-m-y');
                                                 <label><b>Email&nbsp;<span style="color:red;">*</span> : </b></label>
                                             </div>
                                             <div class="col-sm-6">
-                                                <input type="email" id="electronic_email" value="<?= $electronic_mail == '' ? '' : $electronic_mail[0]->father_email ?>" class="form-control">
+                                                <input type="email" id="electronic_email" value="<?= $electronic_mail == '' ? '' : $electronic_mail[0]->father_email ?>" class="form-control lowercase">
                                             </div>
                                         </div>
                                     </div>
@@ -463,7 +463,7 @@ $date = date('d-m-y');
                                 $addition_hide = [4, 5, 6, 7, 8, 9, 10];
 //                                echo '<pre>';
 //                                print_r($main_arr);
-//                                echo '</pre>';exit;
+//                                echo '</pre>';
                                 if ($main_arr != '') {
                                     for ($sd = 0; $sd < count($main_arr); $sd++) {
                                         $div_id = $sd;
@@ -921,10 +921,19 @@ $date = date('d-m-y');
                             <div class="row">
                                 <div class="col-md-12"> 
                                     <div class="form-group form-md-line-input form-md-floating-label has-success" >
+                                        <label for="child_name">Notes</label>
 
-                                        <label for="child_name">Note</label>
+                                        <textarea class="form-control form-control-inline input" id="note"><?= $quotation_details == '' ? '' : $quotation_details[0]->note ?></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12"> 
+                                    <div class="form-group form-md-line-input form-md-floating-label has-success" >
 
-                                        <textarea class="form-control form-control-inline input" id="note"></textarea>
+                                        <label for="child_name">Email Notes</label>
+
+                                        <textarea class="form-control form-control-inline input" id="email_notes"><?= $quotation_details == '' ? '' : $quotation_details[0]->email_notes ?></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -942,8 +951,6 @@ $date = date('d-m-y');
                 </div>
             </div>
         </div>
-
-
 
 
         <div class="confirm_details" style="display: none;">
